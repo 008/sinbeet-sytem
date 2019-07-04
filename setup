@@ -336,6 +336,7 @@ cd
 end() {
 
   #placeholder
+  rm -rf ubu16.*
   exit
 }
 
