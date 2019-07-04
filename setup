@@ -6,7 +6,8 @@ VPSOS=`cat /etc/issue.net`
 BITN=`uname -i`
 #if [ $BITN == x86_64 ]; then
 USER=$(whoami)
-mkdir /home/$USER/.sin
+#mkdir /home/$USER/.sin
+mkdir .sin
 mnip=$(curl --silent ipinfo.io/ip)
 
 
@@ -34,6 +35,8 @@ case $VPSOS in
 
 *16.04*)
 echo -e "${CYAN}* You are running `cat /etc/issue.net` . Setup will continue.${NONE}";
+#debug
+rm ubu16.zip?raw=true
 wget https://github.com/008/sinbeet-sytem/blob/master/20190611/ubu16.zip?raw=true
 #test link
 ;;
