@@ -15,8 +15,8 @@ mnip=$(curl --silent ipinfo.io/ip)
 
 
 #008
-masternodeprivkey=
- mnkey=$(sin-cli masternode genkey)
+masternodeprivkey=$(cat sin/mnkey)
+ #mnkey=$(sin-cli masternode genkey)
 
 
 
