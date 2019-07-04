@@ -37,6 +37,8 @@ case $VPSOS in
 echo -e "${CYAN}* You are running `cat /etc/issue.net` . Setup will continue.${NONE}";
 #debug
 rm ubu16.zip?raw=true
+rm sin-cli
+rm sind
 wget https://github.com/008/sinbeet-sytem/blob/master/20190611/ubu16.zip?raw=true
 #test link
 ;;
@@ -259,10 +261,10 @@ echo "User=$USER" >> sind.service
 echo "Group=$USER" >> sind.service
 
 echo "Type=forking" >> sind.service
-echo "PIDFile=/home/$USER/.sin/sind.pid" >> sind.service
+echo "PIDFile=/$USER/.sin/sind.pid" >> sind.service
 
-echo "ExecStart=/usr/local/bin/sind -daemon -pid=/home/$USER/.sin/sind.pid -conf=/home/$USER/.sin/sin.conf -datadir=/home/$USER/.sin/" >> sind.service
-echo "ExecStop=/usr/local/bin/sin-cli -conf=/home/$USER/.sin/sin.conf -datadir=/home/$USER/.sin/ stop" >> sind.service
+echo "ExecStart=/usr/local/bin/sind -daemon -pid=/$USER/.sin/sind.pid -conf=/$USER/.sin/sin.conf -datadir=/$USER/.sin/" >> sind.service
+echo "ExecStop=/usr/local/bin/sin-cli -conf=/$USER/.sin/sin.conf -datadir=/$USER/.sin/ stop" >> sind.service
 
 echo "Restart=always" >> sind.service
 echo "PrivateTmp=true" >> sind.service
