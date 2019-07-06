@@ -104,7 +104,7 @@ installDependencies() {
 
     
     libboost() {
-	echo installing libboost > status
+	echo "installing libboost ~15 min" > status
     sudo apt-get install -y libssl1.0-dev
     sudo apt-get install -y g++ python-dev autotools-dev libicu-dev libbz2-dev
     wget -O boost_1_58_0.tar.gz https://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.gz/download
@@ -126,8 +126,9 @@ installDependencies() {
 	 
 	 echo berkDB install > status
 	 
-     tar -xzvf db-4.8.30.NC.tar.gz
-     cd db-4.8.30.NC/build_unix
+	 wget http://download.oracle.com/berkeley-db/db-4.8.30.tar.gz
+     tar -xzvf db-4.8.30.tar.gz
+     cd db-4.8.30/build_unix
      ../dist/configure --enable-cxx --disable-shared --with-pic
      export MALLOC_ARENA_MAX=1
      make -j $n
