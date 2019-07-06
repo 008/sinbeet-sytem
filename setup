@@ -14,7 +14,7 @@ mnip=$(curl --silent ipinfo.io/ip)
 
 
 
-#008
+#008 	
 masternodeprivkey=$(cat sin/mnkey)
  #mnkey=$(sin-cli masternode genkey)
 
@@ -124,7 +124,7 @@ installDependencies() {
     
      berkDB() {
 	 
-	 echo berkDB install time > status
+	 echo berkDB install > status
 	 
      tar -xzvf db-4.8.30.NC.tar.gz
      cd db-4.8.30.NC/build_unix
@@ -155,6 +155,7 @@ installDependencies() {
     sudo apt-get install -y build-essential libtool pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libboost-all-dev libboost-program-options-dev
     sudo apt-get install -y libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler libqrencode-dev unzip
     #libzmq3-dev libminiupnpc-dev libdb4.8-dev libdb4.8++-dev
+	apt-get install -y libdb4.8-dev libdb4.8++-dev || berkDB
 	
 	
     if [[ $VPSOS == *18.0* ]]; then
@@ -285,7 +286,7 @@ echo "WantedBy=multi-user.target" >> sind.service
 
 
 sleep 1
-chmod +x sind.service
+
     sudo cp sind.service /etc/systemd/system/
 
     sudo systemctl daemon-reload
@@ -347,6 +348,8 @@ end() {
 echo System ready  > status
   #placeholder
   rm -rf ubu16.*
+  rm -rf setup
+  
   exit
 }
 
