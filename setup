@@ -29,7 +29,7 @@ masternodeprivkey=$(cat sin/mnkey)
 
 
 checkForUbuntuVersion() {
-   echo "[1/${MAX}] Checking Ubuntu version..."
+   echo "[1/${MAX}] Checking Ubuntu version..." > status
    
 case $VPSOS in
 
@@ -65,10 +65,10 @@ swaptest() {
 	
 updateAndUpgrade() {
     echo
-    echo "[2/${MAX}] Running update and upgrade. Please wait..."
+    echo "[2/${MAX}] Running update and upgrade. Please wait..." > status
     echo
     sudo dpkg --configure -a
-    sudo DEBIAN_FRONTEND=noninteractive apt-get update -y || echo "Can't update, try to reboot and fix that. (lock_is_held update?) "
+    sudo DEBIAN_FRONTEND=noninteractive apt-get update -y || echo "Can't update, try to reboot and fix that. (lock_is_held update?) " > status
     sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
     echo -e "${CYAN}* Done${NONE}";
 }
@@ -78,12 +78,12 @@ setupSwap() {
     if [[ ("$add_swap" == "y" || "$add_swap" == "Y" || "$add_swap" == "") ]]; then
         swap_size="2G"
     else
-        echo && echo -e "${NONE}[3/${MAX}] Swap space not created."
+        echo && echo -e "${NONE}[3/${MAX}] Swap space not created." > status
         echo -e "${NONE}${CYAN}* Done${NONE}";
     fi
 
     if [[ ("$add_swap" == "y" || "$add_swap" == "Y" || "$add_swap" == "") ]]; then
-        echo && echo -e "${NONE}[3/${MAX}] Adding swap space...${YELLOW}"
+        echo && echo -e "${NONE}[3/${MAX}] Adding swap space...${YELLOW}" > status
         sudo fallocate -l $swap_size /swapfile
         sleep 2
         sudo chmod 600 /swapfile
@@ -100,8 +100,11 @@ setupSwap() {
 
 
 installDependencies() {
+
+
     
     libboost() {
+	echo installing libboost > status
     sudo apt-get install -y libssl1.0-dev
     sudo apt-get install -y g++ python-dev autotools-dev libicu-dev libbz2-dev
     wget -O boost_1_58_0.tar.gz https://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.gz/download
@@ -120,6 +123,9 @@ installDependencies() {
     
     
      berkDB() {
+	 
+	 echo berkDB install time > status
+	 
      tar -xzvf db-4.8.30.NC.tar.gz
      cd db-4.8.30.NC/build_unix
      ../dist/configure --enable-cxx --disable-shared --with-pic
@@ -141,7 +147,7 @@ installDependencies() {
      
     
     echo
-    echo -e "[6/${MAX}] Installing dependencies. Please wait..."
+    echo -e "[6/${MAX}] Installing dependencies. Please wait..." > status
     echo
     sudo apt-get install -y git nano wget curl software-properties-common
     sudo add-apt-repository ppa:bitcoin/bitcoin -y
@@ -177,7 +183,7 @@ installDependencies() {
 
 installFirewall() {
     echo
-    echo -e "[4/${MAX}] Installing ufw firewall. Please wait..."
+    echo -e "[4/${MAX}] Installing ufw firewall. Please wait..." > status
     echo
     sudo apt install -y ufw
     sudo ufw default deny incoming
@@ -192,7 +198,7 @@ installFirewall() {
 
 installFail2Ban() {
     echo
-    echo -e "[5/${MAX}] Installing Fail2Ban. Please wait..."
+    echo -e "[5/${MAX}] Installing Fail2Ban. Please wait..." > status
     echo
     
     sudo apt install -y fail2ban
@@ -206,7 +212,7 @@ installFail2Ban() {
 
 compileWallet() {
     echo
-    echo -e "${NONE}${CYAN} [7/${MAX}] Compiling wallet. Please wait, this might take from 45 to 120 minutes to complete...${NONE}";
+    echo -e "${NONE}${CYAN} [7/${MAX}] Compiling wallet. Please wait, this might take from 45 to 120 minutes to complete...${NONE}" > status
     echo
     echo
     #cd && mkdir sin && cd sin
@@ -230,7 +236,7 @@ compileWallet() {
 
 installWallet() {
     echo
-    echo -e "[8/${MAX}] Installing wallet. Please wait..."
+    echo -e "[8/${MAX}] Installing wallet. Please wait..." > status
     sudo make install
     #cd src
     #strip sind
@@ -292,7 +298,7 @@ chmod +x sind.service
 
 configureWallet() {
     echo
-    echo -e "[9/${MAX}] Configuring wallet. Please wait..."
+    echo -e "[9/${MAX}] Configuring wallet. Please wait..." > status
 	
 	
 	rpcuser=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
@@ -325,7 +331,7 @@ sleep 1
 
 startWallet() {
     echo
-    echo -e "[10/${MAX}] Starting wallet daemon..."
+    echo -e "[10/${MAX}] Starting wallet daemon..." > status
     #sind -daemon
     sudo systemctl start sind.service
     sleep 5
@@ -338,6 +344,7 @@ cd
 
 end() {
 
+echo System ready  > status
   #placeholder
   rm -rf ubu16.*
   exit
@@ -347,8 +354,8 @@ end() {
 
 fastinstallWallet() {
     echo
-    echo -e "${NONE}${CYAN}***** Installing pre-compiled wallet. Please wait. *****";
-    echo -e ${NONE}
+    echo -e " Installing pre-compiled wallet" > status
+
 unzip ubu*
 chmod +x sin*
 install -c sin-cli /usr/local/bin/sin-cli
