@@ -10,15 +10,22 @@ USER=$(whoami)
 mkdir .sin
 mnip=$(curl --silent ipinfo.io/ip)
 
-
-
-
-
 #008 	
 masternodeprivkey=$(cat sin/mnkey)
  #mnkey=$(sin-cli masternode genkey)
 
-
+ 
+#if new setup if old
+if [ -f "status" ]; then
+service sind stop
+killall -9 sind
+sleep 1
+rm -rf status
+        else
+        echo no
+        fi
+		
+		
 
 
 
@@ -38,10 +45,13 @@ rm sind
 case $VPSOS in
 
 *16.04*)
-echo -e "${CYAN}* You are running `cat /etc/issue.net` . Setup will continue.${NONE}";
+#echo -e "${CYAN}* You are running `cat /etc/issue.net` . Setup will continue.${NONE}";
 #debug
+echo -e "You are running `cat /etc/issue.net` . Please use Ubuntu 18 and run setup again." > status
+exit
 
-wget https://github.com/008/sinbeet-sytem/raw/master/20190611/ubu16.zip
+
+#wget https://github.com/008/sinbeet-sytem/raw/master/20190611/ubu16.zip
 #test link
 ;;
 
@@ -51,8 +61,8 @@ wget https://github.com/008/sinbeet-sytem/raw/master/20190611/ubu18.zip
 ;;
 
 *)
-echo -e "${RED}* You are running not compatible OS (Ubuntu 16.04, 18.04, 18.10 only). You are running `cat /etc/issue.net` ${NONE}";
-echo && echo "Installation cancelled" && echo;
+echo -e "You are running not compatible OS (Ubuntu 18 only). You are running `cat /etc/issue.net`. Please use Ubuntu 18 and run setup again." > status
+##echo && echo "Installation cancelled" && echo;
 exit
 ;;
 esac
