@@ -80,9 +80,9 @@ updateAndUpgrade() {
     echo
     echo "[2/${MAX}] Running update and upgrade. Please wait..." > status
     echo
-    sudo dpkg --configure -a
-    sudo DEBIAN_FRONTEND=noninteractive apt-get update -y || echo "Can't update, try to reboot and fix that. (lock_is_held update?) " > status
-    sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
+     dpkg --configure -a
+     DEBIAN_FRONTEND=noninteractive apt-get update -y || echo "Can't update, try to reboot and fix that. (lock_is_held update?) " > status
+     DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
     echo -e "${CYAN}* Done${NONE}";
 }
 
@@ -97,16 +97,16 @@ setupSwap() {
 
     if [[ ("$add_swap" == "y" || "$add_swap" == "Y" || "$add_swap" == "") ]]; then
         echo && echo -e "${NONE}[3/${MAX}] Adding swap space...${YELLOW}" > status
-        sudo fallocate -l $swap_size /swapfile
+         fallocate -l $swap_size /swapfile
         sleep 2
-        sudo chmod 600 /swapfile
-        sudo mkswap /swapfile
-        sudo swapon /swapfile
-        echo -e "/swapfile none swap sw 0 0" | sudo tee -a /etc/fstab > /dev/null 2>&1
-        sudo sysctl vm.swappiness=10
-        sudo sysctl vm.vfs_cache_pressure=50
-        echo -e "vm.swappiness=10" | sudo tee -a /etc/sysctl.conf > /dev/null 2>&1
-        echo -e "vm.vfs_cache_pressure=50" | sudo tee -a /etc/sysctl.conf > /dev/null 2>&1
+         chmod 600 /swapfile
+         mkswap /swapfile
+         swapon /swapfile
+        echo -e "/swapfile none swap sw 0 0" |  tee -a /etc/fstab > /dev/null 2>&1
+         sysctl vm.swappiness=10
+         sysctl vm.vfs_cache_pressure=50
+        echo -e "vm.swappiness=10" |  tee -a /etc/sysctl.conf > /dev/null 2>&1
+        echo -e "vm.vfs_cache_pressure=50" |  tee -a /etc/sysctl.conf > /dev/null 2>&1
         echo -e "${NONE}${CYAN}* Done${NONE}";
     fi
 }
@@ -118,17 +118,17 @@ installDependencies() {
     
     libboost() {
 	echo "installing libboost ~15 min" > status
-    sudo apt-get install -y libssl1.0-dev
-    sudo apt-get install -y g++ python-dev autotools-dev libicu-dev libbz2-dev
+     apt-get install -y libssl1.0-dev
+     apt-get install -y g++ python-dev autotools-dev libicu-dev libbz2-dev
     wget -O boost_1_58_0.tar.gz https://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.gz/download
     tar -xvzf boost_1_58_0.tar.gz
     cd boost_1_58_0/
     ./bootstrap.sh --prefix=/usr/local
     user_configFile=`find $PWD -name user-config.jam`
     echo "using mpi ;" >> $user_configFile
-    sudo ./b2 --with=all -j $n install 
-    sudo sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/local.conf'
-    sudo ldconfig
+     ./b2 --with=all -j $n install 
+     sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/local.conf'
+     ldconfig
     cd
     ln -s /usr/lib/x86_64-linux-gnu/libevent_pthreads-2.1.so.6 /usr/lib/x86_64-linux-gnu/libevent_pthreads-2.0.so.5
     ln -s /usr/lib/x86_64-linux-gnu/libevent-2.1.so.6 /usr/lib/x86_64-linux-gnu/libevent-2.0.so.5
@@ -145,16 +145,16 @@ installDependencies() {
      ../dist/configure --enable-cxx --disable-shared --with-pic
      export MALLOC_ARENA_MAX=1
      make -j $n
-     sudo make install
+      make install
 
      #export BDB_INCLUDE_PATH="/usr/local/BerkeleyDB.4.8/include"
      #export BDB_LIB_PATH="/usr/local/BerkeleyDB.4.8/lib"
-     #sudo ln -s /usr/local/BerkeleyDB.4.8/lib/libdb-4.8.so /usr/lib/libdb-4.8.so
-     #sudo ln -s /usr/local/BerkeleyDB.4.8/lib/libdb_cxx-4.8.so /usr/lib/libdb_cxx-4.8.so
+     # ln -s /usr/local/BerkeleyDB.4.8/lib/libdb-4.8.so /usr/lib/libdb-4.8.so
+     # ln -s /usr/local/BerkeleyDB.4.8/lib/libdb_cxx-4.8.so /usr/lib/libdb_cxx-4.8.so
 	 
-     sudo ln -s /usr/local/BerkeleyDB.4.8 /usr/include/db4.8
-     sudo ln -s /usr/include/db4.8/include/* /usr/include
-     sudo ln -s /usr/include/db4.8/lib/* /usr/lib
+      ln -s /usr/local/BerkeleyDB.4.8 /usr/include/db4.8
+      ln -s /usr/include/db4.8/include/* /usr/include
+      ln -s /usr/include/db4.8/lib/* /usr/lib
      cd ..
      cd ..
      }
@@ -163,17 +163,17 @@ installDependencies() {
     echo
     echo -e "[6/${MAX}] Installing dependencies. Please wait..." > status
     echo
-    sudo apt-get install -y git nano wget curl software-properties-common
-    sudo add-apt-repository ppa:bitcoin/bitcoin -y
-    sudo apt-get install -y mc htop autoconf automake libevent-dev libboost-all-dev build-essential libtool autotools-dev pkg-config libssl-dev
-    sudo apt-get install -y build-essential libtool pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libboost-all-dev libboost-program-options-dev
-    sudo apt-get install -y libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler libqrencode-dev unzip
+     apt-get install -y git nano wget curl software-properties-common
+     add-apt-repository ppa:bitcoin/bitcoin -y
+     apt-get install -y mc htop autoconf automake libevent-dev libboost-all-dev build-essential libtool autotools-dev pkg-config libssl-dev
+     apt-get install -y build-essential libtool pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libboost-all-dev libboost-program-options-dev
+     apt-get install -y libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler libqrencode-dev unzip
     #libzmq3-dev libminiupnpc-dev libdb4.8-dev libdb4.8++-dev
 	apt-get install -y libdb4.8-dev libdb4.8++-dev || berkDB
 	
 	
     if [[ $VPSOS == *18.0* ]]; then
-    sudo apt-get install -y libssl1.0-dev
+     apt-get install -y libssl1.0-dev
     libboost
        
     fi
@@ -200,13 +200,13 @@ installFirewall() {
     echo
     echo -e "[4/${MAX}] Installing ufw firewall. Please wait..." > status
     echo
-    sudo apt install -y ufw
-    sudo ufw default deny incoming
-    sudo ufw default allow outgoing
-    sudo ufw allow ssh
-    sudo ufw allow 8008
-    sudo ufw allow 20970/tcp # master node port
-    echo "y" | sudo ufw enable
+     apt install -y ufw
+     ufw default deny incoming
+     ufw default allow outgoing
+     ufw allow ssh
+     ufw allow 8008
+     ufw allow 20970/tcp # master node port
+    echo "y" |  ufw enable
     echo -e "${NONE}${CYAN}* Done${NONE}";
 }
 
@@ -216,9 +216,9 @@ installFail2Ban() {
     echo -e "[5/${MAX}] Installing Fail2Ban. Please wait..." > status
     echo
     
-    sudo apt install -y fail2ban
-    sudo systemctl enable fail2ban
-    sudo systemctl start fail2ban
+     apt install -y fail2ban
+     systemctl enable fail2ban
+     systemctl start fail2ban
 
     echo -e "${NONE}${CYAN}* Done${NONE}";
 }
@@ -236,31 +236,31 @@ compileWallet() {
     cd sin
     
     #berkDB
-    sudo apt-get install -y libdb4.8-dev libdb4.8++-dev || berkDB
+     apt-get install -y libdb4.8-dev libdb4.8++-dev || berkDB
     
     chmod 755 src/leveldb/build_detect_platform
-    sudo chmod 755 autogen.sh
-    sudo ./autogen.sh
-    sudo ./configure --without-gui --without-miniupnpc --disable-zmq CXXFLAGS="--param ggc-min-expand=1 --param ggc-min-heapsize=32768"
+     chmod 755 autogen.sh
+     ./autogen.sh
+     ./configure --without-gui --without-miniupnpc --disable-zmq CXXFLAGS="--param ggc-min-expand=1 --param ggc-min-heapsize=32768"
     #--with-incompatible-bdb --disable-dependency-tracking
-    sudo chmod 755 share/genbuild.sh
+     chmod 755 share/genbuild.sh
     export MALLOC_ARENA_MAX=1
-    sudo make -j $n
+     make -j $n
     echo -e "${NONE}${CYAN}* Done${NONE}";
 }
 
 installWallet() {
     echo
     echo -e "[8/${MAX}] Installing wallet. Please wait..." > status
-    sudo make install
+     make install
     #cd src
     #strip sind
     #strip sin-cli
     #strip $COINTX
-    #sudo mv sind /usr/bin
-    #sudo mv sin-cli /usr/bin
-    #sudo mv $COINTX /usr/bin
-    #cd && sudo rm -rf sin
+    # mv sind /usr/bin
+    # mv sin-cli /usr/bin
+    # mv $COINTX /usr/bin
+    #cd &&  rm -rf sin
     #cd
     echo -e "${NONE}${CYAN}* Done${NONE}";
     
@@ -301,12 +301,12 @@ echo "WantedBy=multi-user.target" >> sind.service
 
 sleep 1
 
-    sudo cp sind.service /etc/systemd/system/
+     cp sind.service /etc/systemd/system/
 
-    sudo systemctl daemon-reload
+     systemctl daemon-reload
     sleep 3
-    #sudo systemctl start sind.service
-    sudo systemctl enable sind.service
+    # systemctl start sind.service
+     systemctl enable sind.service
     echo end
 
     }
@@ -348,7 +348,7 @@ startWallet() {
     echo
     echo -e "[10/${MAX}] Starting wallet daemon..." > status
     #sind -daemon
-    sudo systemctl start sind.service
+     systemctl start sind.service
     sleep 5
     echo -e "${CYAN}* Done${NONE}";
 }
