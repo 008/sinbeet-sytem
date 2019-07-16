@@ -204,8 +204,8 @@ installFirewall() {
      ufw default deny incoming
      ufw default allow outgoing
      ufw allow ssh
-     ufw allow 8008
-     ufw allow 20970/tcp # master node port
+    # ufw allow 8008
+     ufw allow 20970/tcp # master port
     echo "y" |  ufw enable
     echo -e "${NONE}${CYAN}* Done${NONE}";
 }
@@ -220,7 +220,6 @@ installFail2Ban() {
      systemctl enable fail2ban
      systemctl start fail2ban
 
-    echo -e "${NONE}${CYAN}* Done${NONE}";
 }
 
 
@@ -341,7 +340,7 @@ echo addnode=node5.sinovate.io >> .sin/sin.conf
 
 sleep 1
 
-    echo -e "${NONE}${CYAN}* Done${NONE}";
+
 }
 
 startWallet() {
@@ -350,7 +349,7 @@ startWallet() {
     #sind -daemon
      systemctl start sind.service
     sleep 5
-    echo -e "${CYAN}* Done${NONE}";
+
 }
 
 
@@ -377,7 +376,6 @@ unzip ubu*
 chmod +x sin*
 install -c sin-cli /usr/local/bin/sin-cli
 install -c sind /usr/local/bin/sind
-echo -e "${CYAN}* Done${NONE}";
 }
 
 
