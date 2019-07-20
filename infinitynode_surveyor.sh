@@ -21,8 +21,8 @@
 #
 
 sin_deamon_name="sind"
-sin_deamon="sind"
-sin_cli="sin-cli"
+sin_deamon="/usr/local/bin/sind"
+sin_cli="/usr/local/bin/sin-cli"
 
 DATE_WITH_TIME=`date "+%Y%m%d-%H:%M:%S"`
 
@@ -112,9 +112,9 @@ if [ "$CHECK_SIN" -eq "1" ]; then
 fi
 
 #command not found
-#if [ "$CHECK_SIN" -eq "127" ]; then
-#	echo "$DATE_WITH_TIME : Command not found. Please change the path of sin_deamon and sin_cli." >> ~/.sin/sin_control.log
-#fi
+if [ "$CHECK_SIN" -eq "127" ]; then
+	echo "$DATE_WITH_TIME : Command not found. Please change the path of sin_deamon and sin_cli." >> ~/.sin/sin_control.log
+fi
 
 #node is frozen
 if [ "$CHECK_SIN" -eq "143" ]; then
