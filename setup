@@ -57,7 +57,7 @@ exit
 
 *18.*)
 echo -e "${CYAN}* You are running `cat /etc/issue.net` . Setup will continue.${NONE}";
-wget https://github.com/008/sinbeet-sytem/raw/master/20190611/ubu18.zip
+wget https://github.com/008/sinbeet-sytem/raw/master/current/ubu18.zip
 ;;
 
 *)
