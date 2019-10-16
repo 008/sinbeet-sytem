@@ -28,7 +28,15 @@ rm -rf status
 		
 
 
+clean() {
 
+
+rm -rf .sin
+
+
+
+
+}
 
 
 
@@ -396,7 +404,7 @@ install -c sind /usr/local/bin/sind
 
 
 
-    
+    clean
     checkForUbuntuVersion
 	swaptest
     updateAndUpgrade
