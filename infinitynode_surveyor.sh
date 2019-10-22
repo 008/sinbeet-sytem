@@ -97,7 +97,7 @@ if [ "$CHECK_SIN" -eq "0" ]; then
 
 	else
 		echo "$DATE_WITH_TIME : node is synchronising...please wait!" >> ~/.sin/sin_control.log
-		echo "Synchronising..." > status
+		echo "Node is synchronising...please wait for block $exp_blockheight" > status
 	fi
 fi
 
