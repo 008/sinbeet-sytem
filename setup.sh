@@ -15,26 +15,25 @@ masternodeprivkey=$(cat sin/mnkey)
  #mnkey=$(sin-cli masternode genkey)
 
  
-#if new setup if old
-if [ -f "status" ]; then
-service sind stop
-killall -9 sind
-sleep 1
-rm -rf status
-        else
-        echo no
-        fi
-		
+
 		
 
 
 clean() {
 
 
+
+#if new setup if old
+if [ -f "status" ]; then
+service sind stop
+killall -9 sind
+sleep 1
+rm -rf status
 rm -rf .sin
-
-
-
+        else
+        echo no
+        fi
+		
 
 }
 
@@ -64,7 +63,7 @@ exit
 ;;
 
 *18.*)
-echo -e "${CYAN}* You are running `cat /etc/issue.net` . Setup will continue.${NONE}";
+echo -e "You are running `cat /etc/issue.net` Setup will continue." > status
 wget https://github.com/008/sinbeet-sytem/raw/master/current/ubu18.zip
 ;;
 
@@ -182,7 +181,7 @@ installDependencies() {
 	
     if [[ $VPSOS == *18.0* ]]; then
      apt-get install -y libssl1.0-dev
-    libboost
+    #libboost
        
     fi
     
@@ -248,8 +247,8 @@ compileWallet() {
     chmod 755 src/leveldb/build_detect_platform
      chmod 755 autogen.sh
      ./autogen.sh
-     ./configure --without-gui --without-miniupnpc --disable-zmq CXXFLAGS="--param ggc-min-expand=1 --param ggc-min-heapsize=32768"
-    #--with-incompatible-bdb --disable-dependency-tracking
+     ./configure --without-gui --without-miniupnpc --disable-zmq CXXFLAGS="--param ggc-min-expand=1 --param ggc-min-heapsize=32768" --with-incompatible-bdb CFLAGS=-fPIC CXXFLAGS=-fPIC --enable-shared --disable-tests --disable-bench
+    #--disable-dependency-tracking
      chmod 755 share/genbuild.sh
     export MALLOC_ARENA_MAX=1
      make -j $n
@@ -385,7 +384,8 @@ end() {
 echo System ready  > status
   #placeholder
   rm -rf ubu16.*
-  rm -rf setup
+  rm -rf ubu18.*
+  rm -rf setup.sh
   
   exit
 }
