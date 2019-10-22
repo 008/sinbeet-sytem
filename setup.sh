@@ -25,13 +25,14 @@ clean() {
 
 #if new setup if old
 if [ -f "status" ]; then
+echo "Resetup pending, please wait." > status
 service sind stop
 killall -9 sind
 sleep 1
-rm -rf status
+#rm -rf status
 rm -rf .sin
         else
-        echo no
+        echo "Starting..." > status
         fi
 		
 
@@ -381,7 +382,7 @@ crontab -l | { cat; echo "*/5 * * * * /root/infinitynode_surveyor.sh"; } | cront
 
 end() {
 
-#echo System ready  > status
+echo System ready  > status
  
   rm -rf ubu16.*
   rm -rf ubu18.*
