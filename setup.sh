@@ -34,6 +34,9 @@ sleep 1
 rm -rf .sin
 rm -rf /usr/local/bin/sin-cli
 rm -rf /usr/local/bin/sind
+rm -rf ubu18.*
+rm -rf ubu16.*
+
 
         else
         echo "Starting..." > status
