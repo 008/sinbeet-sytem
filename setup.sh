@@ -381,11 +381,15 @@ crontab -l | { cat; echo "*/5 * * * * /root/infinitynode_surveyor.sh"; } | cront
 
 end() {
 
-echo System ready  > status
-  #placeholder
+#echo System ready  > status
+ 
   rm -rf ubu16.*
   rm -rf ubu18.*
   rm -rf setup.sh
+  rm -rf sin
+  rm -rf sin-cli
+  rm -rf sind
+  rm -rf sind.service
   
   exit
 }
@@ -417,7 +421,8 @@ install -c sind /usr/local/bin/sind
     configureWallet
     serviceInstall
     startWallet
-    end
 	cron
+    end
+	
 
    
