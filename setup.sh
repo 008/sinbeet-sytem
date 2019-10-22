@@ -26,11 +26,15 @@ clean() {
 #if new setup if old
 if [ -f "status" ]; then
 echo "Resetup pending, please wait." > status
+
 service sind stop
 killall -9 sind
 sleep 1
 #rm -rf status
 rm -rf .sin
+rm -rf /usr/local/bin/sin-cli
+rm -rf /usr/local/bin/sind
+
         else
         echo "Starting..." > status
         fi
@@ -45,10 +49,6 @@ rm -rf .sin
 
 checkForUbuntuVersion() {
    echo "[1/${MAX}] Checking Ubuntu version..." > status
-   
-rm ubu*
-rm sin-cli
-rm sind
    
 case $VPSOS in
 
@@ -181,8 +181,7 @@ installDependencies() {
 	
 	
     if [[ $VPSOS == *18.0* ]]; then
-     apt-get install -y libssl1.0-dev
-    #libboost
+     apt-get install -y libssl1.0-dev || libboost
        
     fi
     
