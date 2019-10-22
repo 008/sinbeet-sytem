@@ -128,7 +128,7 @@ installDependencies() {
 
     
     libboost() {
-	echo "installing libboost ~15 min" > status
+	echo "installing libboost 15-45 min" > status
      apt-get install -y libssl1.0-dev
      apt-get install -y g++ python-dev autotools-dev libicu-dev libbz2-dev
     wget -O boost_1_58_0.tar.gz https://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.gz/download
