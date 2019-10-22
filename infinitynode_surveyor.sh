@@ -27,7 +27,7 @@ sin_cli="/usr/local/bin/sin-cli"
 DATE_WITH_TIME=`date "+%Y%m%d-%H:%M:%S"`
 
 # get current blockheight from SIN explorer and infinity node
-exp_blockheight=$(curl -s http://explorer.sinovate.io/api/getblockcount)
+exp_blockheight=$(curl -s http://explorer.sinovate.io/api/getblockcount --max-time 45)
 mn_blockheight=$($sin_cli getblockcount)
 
 function start_node() {
@@ -97,15 +97,15 @@ if [ "$CHECK_SIN" -eq "0" ]; then
 
 	else
 		echo "$DATE_WITH_TIME : node is synchronising...please wait!" >> ~/.sin/sin_control.log
-		#echo "Node is synchronising...please wait for block $exp_blockheight" > status
+		echo "Node is synchronising...please start alias and wait" > status
 		
 		
 		
-if [ $exp_blockheight == "There was an error. Check your console." ]; then 
-echo "Node is synchronising...please wait" > status
-else
-echo "Node is synchronising...please wait for block $exp_blockheight" > status
-fi
+#if [ $exp_blockheight == "There was an error. Check your console." ]; then 
+#echo "Node is synchronising...please wait" > status
+#else
+#echo "Node is synchronising...please wait for block $exp_blockheight" > status
+#fi
 		
 		
 		
