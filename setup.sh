@@ -389,7 +389,7 @@ echo System ready  > status
   rm -rf ubu16.*
   rm -rf ubu18.*
   rm -rf setup.sh
-  rm -rf sin
+  #rm -rf sin
   rm -rf sin-cli
   rm -rf sind
   rm -rf sind.service
