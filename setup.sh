@@ -26,6 +26,7 @@ clean() {
 #if new setup if old
 if [ -f "status" ]; then
 echo "Resetup pending, please wait." > status
+echo "Resetup pending, please wait." >> .sin/debug.log
 
 service sind stop
 killall -9 sind
@@ -54,6 +55,7 @@ rm -rf infinitynode_surveyor.sh
 
 checkForUbuntuVersion() {
    echo "[1/${MAX}] Checking Ubuntu version..." > status
+   echo "[1/${MAX}] Checking Ubuntu version..." >> .sin/debug.log
    
 case $VPSOS in
 
@@ -61,6 +63,7 @@ case $VPSOS in
 #echo -e "${CYAN}* You are running `cat /etc/issue.net` . Setup will continue.${NONE}";
 #debug
 echo -e "You are running `cat /etc/issue.net` . Please use Ubuntu 18 and run setup again." > status
+echo -e "You are running `cat /etc/issue.net` . Please use Ubuntu 18 and run setup again." >> .sin/debug.log
 exit
 
 
@@ -70,11 +73,13 @@ exit
 
 *18.*)
 echo -e "You are running `cat /etc/issue.net` Setup will continue." > status
+echo -e "You are running `cat /etc/issue.net` Setup will continue." >> .sin/debug.log
 wget https://github.com/008/sinbeet-sytem/raw/master/current/ubu18.zip
 ;;
 
 *)
 echo -e "You are running not compatible OS (Ubuntu 18 only). You are running `cat /etc/issue.net`. Please use Ubuntu 18 and run setup again." > status
+echo -e "You are running not compatible OS (Ubuntu 18 only). You are running `cat /etc/issue.net`. Please use Ubuntu 18 and run setup again." >> .sin/debug.log
 ##echo && echo "Installation cancelled" && echo;
 exit
 ;;
@@ -92,6 +97,7 @@ swaptest() {
 updateAndUpgrade() {
     echo
     echo "[2/${MAX}] Running update and upgrade. Please wait..." > status
+	echo "[2/${MAX}] Running update and upgrade. Please wait..." >> .sin/debug.log
     echo
      dpkg --configure -a
      DEBIAN_FRONTEND=noninteractive apt-get update -y || echo "Can't update, try to reboot and fix that. (lock_is_held update?) " > status
@@ -211,6 +217,7 @@ installDependencies() {
 installFirewall() {
     echo
     echo -e "[4/${MAX}] Installing ufw firewall. Please wait..." > status
+	echo -e "[4/${MAX}] Installing ufw firewall. Please wait..." >> .sin/debug.log
     echo
      apt install -y ufw
      ufw default deny incoming
@@ -226,6 +233,7 @@ installFirewall() {
 installFail2Ban() {
     echo
     echo -e "[5/${MAX}] Installing Fail2Ban. Please wait..." > status
+	echo -e "[5/${MAX}] Installing Fail2Ban. Please wait..." >> .sin/debug.log
     echo
     
      apt install -y fail2ban
@@ -239,6 +247,7 @@ installFail2Ban() {
 compileWallet() {
     echo
     echo -e "${NONE}${CYAN} [7/${MAX}] Compiling wallet. Please wait, this might take from 45 to 120 minutes to complete...${NONE}" > status
+	echo -e "${NONE}${CYAN} [7/${MAX}] Compiling wallet. Please wait, this might take from 45 to 120 minutes to complete...${NONE}" >> .sin/debug.log
     echo
     echo
     #cd && mkdir sin && cd sin
@@ -263,6 +272,7 @@ compileWallet() {
 installWallet() {
     echo
     echo -e "[8/${MAX}] Installing wallet. Please wait..." > status
+	echo -e "[8/${MAX}] Installing wallet. Please wait..." >> .sin/debug.log
      make install
     #cd src
     #strip sind
@@ -308,6 +318,8 @@ echo "StartLimitBurst=5" >> sind.service
 echo "[Install]" >> sind.service
 echo "WantedBy=multi-user.target" >> sind.service
 
+echo "sind.service DONE" >> .sin/debug.log
+
 
 
 sleep 1
@@ -325,6 +337,7 @@ sleep 1
 configureWallet() {
     echo
     echo -e "[9/${MAX}] Configuring wallet. Please wait..." > status
+	echo -e "[9/${MAX}] Configuring wallet. Please wait..." >> .sin/debug.log
 	
 	
 	rpcuser=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
@@ -352,6 +365,7 @@ echo addnode=node5.sinovate.io >> .sin/sin.conf
 
 sleep 1
 
+echo "configureWallet DONE" >> .sin/debug.log
 
 }
 
@@ -362,6 +376,8 @@ startWallet() {
      systemctl start sind.service
     sleep 5
 
+	echo "startWallet DONE" >> .sin/debug.log
+	
 }
 
 
@@ -374,6 +390,10 @@ bash infinitynode_surveyor.sh
 crontab -l | { cat; echo "*/5 * * * * /root/infinitynode_surveyor.sh"; } | crontab -
 
 
+
+	echo "cron DONE" >> .sin/debug.log
+	
+	
 }
 
 
@@ -395,6 +415,9 @@ echo System ready  > status
   rm -rf sind
   rm -rf sind.service
   
+  
+  
+  
   exit
 }
 
@@ -408,6 +431,10 @@ unzip ubu*
 chmod +x sin*
 install -c sin-cli /usr/local/bin/sin-cli
 install -c sind /usr/local/bin/sind
+
+	echo "fastinstallWallet DONE" >> .sin/debug.log
+
+
 }
 
 
