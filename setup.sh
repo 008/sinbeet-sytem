@@ -8,7 +8,7 @@ BITN=`uname -i`
 USER=$(whoami)
 #mkdir /home/$USER/.sin
 mkdir .sin
-mnip=$(curl --silent ipinfo.io/ip)
+mnip=$(curl --silent ipinfo.io/ip) || echo "get IP FAIL, run again" >> status && echo "get IP FAIL, run again" >> .sin/debug.log && exit
 
 #008 	
 masternodeprivkey=$(cat sin/mnkey)
@@ -25,8 +25,7 @@ clean() {
 
 #if new setup if old
 if [ -f "status" ]; then
-echo "Resetup pending, please wait." > status
-echo "Resetup pending, please wait." >> .sin/debug.log
+
 
 service sind stop
 killall -9 sind
@@ -40,9 +39,15 @@ rm -rf ubu16.*
 crontab -r
 rm -rf infinitynode_surveyor.sh
 
+mkdir .sin
+echo "Resetup pending, please wait." > status
+echo "Resetup pending, please wait." >> .sin/debug.log
+
 
         else
+		mkdir .sin
         echo "Starting..." > status
+		echo "Starting..." >> .sin/debug.log
         fi
 		
 
