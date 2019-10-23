@@ -7,8 +7,7 @@ BITN=`uname -i`
 #if [ $BITN == x86_64 ]; then
 USER=$(whoami)
 #mkdir /home/$USER/.sin
-mkdir .sin
-mnip=$(curl --silent ipinfo.io/ip) || echo "get IP FAIL, run again" >> status && echo "get IP FAIL, run again" >> .sin/debug.log && exit
+mnip=$(curl --silent ipinfo.io/ip)
 
 #008 	
 masternodeprivkey=$(cat sin/mnkey)
@@ -38,6 +37,7 @@ rm -rf ubu18.*
 rm -rf ubu16.*
 crontab -r
 rm -rf infinitynode_surveyor.sh
+rm -rf /etc/systemd/system/sind.service
 
 mkdir .sin
 echo "Resetup pending, please wait." > status
