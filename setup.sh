@@ -36,6 +36,8 @@ rm -rf /usr/local/bin/sin-cli
 rm -rf /usr/local/bin/sind
 rm -rf ubu18.*
 rm -rf ubu16.*
+crontab -r
+rm -rf infinitynode_surveyor.sh
 
 
         else
@@ -366,7 +368,6 @@ startWallet() {
 cron() {
 
 crontab -r
-rm -rf infinitynode_surveyor.sh
 wget https://raw.githubusercontent.com/008/sinbeet-sytem/master/infinitynode_surveyor.sh
 chmod +x infinitynode_surveyor.sh
 bash infinitynode_surveyor.sh
