@@ -19,14 +19,22 @@
 			
 			service sind stop
 			killall -9 sind
-			sleep 1
+			sleep 5
 
 			rm -rf /usr/local/bin/sin-cli
 			rm -rf /usr/local/bin/sind
+			rm -rf sin-cli
+			rm -rf sind
 			rm -rf ubu18.*
 			rm -rf ubu16.*
 			
 			wget https://github.com/008/sinbeet-sytem/raw/master/current/ubu18.zip
+			
+			if [ ! -f "ubu18.zip" ]; then 
+			echo "download node fail, will try later" >> .sin/debug.log
+			echo "download node fail, will try later" >> status
+			exit
+			fi
 			
 			unzip ubu*
 			chmod +x sin*
