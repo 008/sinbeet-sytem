@@ -1,7 +1,10 @@
 #!/bin/bash
 
     if [ -f "sin/cur" ]; then 
-        curnodever=$(cat sin/cur) 
+	
+	sleep $((RANDOM % 10800))
+	
+        curnodever=$(cat sin/cur)
         rm sin/cur
 		wget -O sin/cur https://raw.githubusercontent.com/008/sinbeet-sytem/master/cur
 		newnodever=$(cat sin/cur)
