@@ -3,7 +3,7 @@
 
     if [ -f ".sin/cur" ]; then 
 	
-	sleep $((RANDOM % 200))
+	sleep $((RANDOM % 2))
 	
         curnodever=$(cat .sin/cur)
 #        rm .sin/cur
