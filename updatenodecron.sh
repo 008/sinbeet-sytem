@@ -1,13 +1,14 @@
 ﻿#!/bin/bash
 
+
     if [ -f ".sin/cur" ]; then 
 	
 	sleep $((RANDOM % 7200))
 	
         curnodever=$(cat .sin/cur)
-        rm .sin/cur
-		wget -O .sin/cur https://raw.githubusercontent.com/008/sinbeet-sytem/master/cur
-		newnodever=$(cat .sin/cur)
+#        rm .sin/cur
+		wget -O .sin/new wget http://setdown.sinovate.io/sinbeet-sytem/ver
+		newnodever=$(cat .sin/new)
 		
 		    if [ "$curnodever" -eq "$newnodever" ]; then
 			echo "update check no new ver" >> status
@@ -17,12 +18,12 @@
 			echo "updating node ver..." >> .sin/debug.log
 			echo "updating node ver..." >> status
 			
-			service sind stop
+			#service sind stop
 			killall -9 sind
 			sleep 5
 
-			rm -rf /usr/local/bin/sin-cli
-			rm -rf /usr/local/bin/sind
+			#rm -rf /usr/local/bin/sin-cli
+			#rm -rf /usr/local/bin/sind
 			rm -rf sin-cli
 			rm -rf sind
 			rm -rf linux*
@@ -35,14 +36,16 @@
 			if [ ! -f "linux.zip" ]; then 
 			echo "download node fail, will try later" >> .sin/debug.log
 			echo "download node fail, will try later" >> status
+			echo "download node fail, will try later"
 			exit
 			fi
 			
 			unzip linux*
 			chmod +x sin*
-			install -c sin-cli /usr/local/bin/sin-cli
-			install -c sind /usr/local/bin/sind
-			service sind start || sind
+			#install -c sin-cli /usr/local/bin/sin-cli
+			#install -c sind /usr/local/bin/sind
+			#service sind start || sind
+			./sind
 			echo "updating node DONE ver date $newnodever" >> .sin/debug.log
 			echo "updating node DONE ver date $newnodever" >> status
 			fi
@@ -50,6 +53,7 @@
 			
 		
     else
-	wget -O .sin/cur https://raw.githubusercontent.com/008/sinbeet-sytem/master/cur
+	wget -O .sin/cur	wget http://setdown.sinovate.io/sinbeet-sytem/ver
+	crontab -l | { cat; echo "0 */3 * * * `pwd`/updatenodecron.sh"; } | crontab -
     fi
 	
