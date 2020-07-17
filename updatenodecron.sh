@@ -1,10 +1,10 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 #wget -6 http://setdown.sinovate.io/sinbeet-sytem/updatenodecron.sh
 
 
 
-down{
+down() {
 
 			echo "updating node ver..." >> .sin/debug.log
 			echo "updating node ver..." >> status
