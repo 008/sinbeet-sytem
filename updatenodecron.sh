@@ -66,6 +66,7 @@ wget -6 -O linux.zip http://setdown.sinovate.io/sinbeet-sytem/$newnodever/linux.
 		
     else
 	wget -6 -O .sin/cur http://setdown.sinovate.io/sinbeet-sytem/ver
+	down
 	#crontab -l | { cat; echo "0 */3 * * * `pwd`/updatenodecron.sh"; } | crontab -
     fi
 	
