@@ -21,7 +21,7 @@ down() {
 			#rm -rf ubu18.*
 			#rm -rf ubu16.*
 			
-wget -6 -O linux.zip http://setdown.sinovate.io/sinbeet-sytem/$newnodever/linux.zip
+wget -6 -O linux.zip http://setdown.sinovate.io/sinbeet-sytem/cur/linux.zip
 
 			if [ ! -f "linux.zip" ]; then 
 			echo "download node fail, will try later" >> .sin/debug.log
