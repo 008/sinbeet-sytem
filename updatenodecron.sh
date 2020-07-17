@@ -1,5 +1,5 @@
 ﻿#!/bin/bash
-
+#wget -O http://setdown.sinovate.io/sinbeet-sytem/updatenodecron.sh
 
     if [ -f ".sin/cur" ]; then 
 	
@@ -7,7 +7,7 @@
 	
         curnodever=$(cat .sin/cur)
 #        rm .sin/cur
-		wget -O .sin/new wget http://setdown.sinovate.io/sinbeet-sytem/ver
+		wget -O .sin/new http://setdown.sinovate.io/sinbeet-sytem/ver
 		newnodever=$(cat .sin/new)
 		
 		    if [ "$curnodever" -eq "$newnodever" ]; then
@@ -31,8 +31,11 @@
 			#rm -rf ubu16.*
 			
 			#wget https://github.com/008/sinbeet-sytem/raw/master/current/ubu18.zip
-			wget https://github.com/008/sinbeet-sytem/blob/master/$newnodever/linux.zip
 			
+			
+			wget -O .sin/cur http://setdown.sinovate.io/sinbeet-sytem/$newnodever/linux.zip
+			
+								
 			if [ ! -f "linux.zip" ]; then 
 			echo "download node fail, will try later" >> .sin/debug.log
 			echo "download node fail, will try later" >> status
@@ -53,7 +56,7 @@
 			
 		
     else
-	wget -O .sin/cur	wget http://setdown.sinovate.io/sinbeet-sytem/ver
+	wget -O .sin/cur http://setdown.sinovate.io/sinbeet-sytem/ver
 	crontab -l | { cat; echo "0 */3 * * * `pwd`/updatenodecron.sh"; } | crontab -
     fi
 	
