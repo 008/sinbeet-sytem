@@ -1,13 +1,13 @@
 #!/bin/bash
 
 #wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh
-#rm updatenodecron.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh
+#rm update.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh
 
 
 down() {
 
-			echo "updating node ver..." >> .sin/debug.log
-			echo "updating node ver..." >> status
+			echo "`date` updating node ver..." >> .sin/debug.log
+			echo "`date` updating node ver..." >> status
 			
 			#service sind stop
 			killall -9 sind
@@ -24,9 +24,9 @@ down() {
 wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 
 			if [ ! -f "cur.zip" ]; then 
-			echo "download node fail, will try later" >> .sin/debug.log
-			echo "download node fail, will try later" >> status
-			echo "download node fail, will try later"
+			echo "`date` download node fail, will try later" >> .sin/debug.log
+			echo "`date` download node fail, will try later" >> status
+			echo "`date` download node fail, will try later"
 			exit
 			fi
 			
@@ -36,8 +36,8 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			#install -c sind /usr/local/bin/sind
 			#service sind start || sind
 			./sind
-			echo "updating node DONE ver date $newnodever" >> .sin/debug.log
-			echo "updating node DONE ver date $newnodever" >> status
+			echo "`date` updating node DONE ver  $newnodever" >> .sin/debug.log
+			echo "`date` updating node DONE ver  $newnodever" >> status
 			
 }
 
@@ -52,8 +52,8 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 		newnodever=$(cat .sin/new)
 		
 		    if [ "$curnodever" -eq "$newnodever" ]; then
-			echo "update check no new ver" >> status
-			echo "update check no new ver" >> .sin/debug.log
+			echo "`date` update check no new ver" >> status
+			echo "`date` update check no new ver" >> .sin/debug.log
 			exit
 			
 			else
