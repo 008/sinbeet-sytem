@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#wget -6 http://setdown.sinovate.io/sinbeet-sytem/updatenodecron.sh
-#rm updatenodecron.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/updatenodecron.sh
+#wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh
+#rm updatenodecron.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh
 
 
 down() {
@@ -42,8 +42,6 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 }
 
 
-
-
     if [ -f ".sin/cur" ]; then 
 	
 	sleep $((RANDOM % 2))
@@ -59,6 +57,7 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			exit
 			
 			else
+			mv .sin/new .sin/cur
 			down
 			fi
 			
