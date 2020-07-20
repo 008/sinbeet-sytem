@@ -4,10 +4,11 @@
 #rm update.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh
 
 
+
 down() {
 
-			echo "`date` updating node ver..." >> .sin/debug.log
-			echo "`date` updating node ver..." >> status
+			echo "`date` updating node $curnodever..." >> .sin/debug.log
+			echo "`date` updating node $curnodever..." >> status
 			
 			#service sind stop
 			killall -9 sind
@@ -36,8 +37,8 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			#install -c sind /usr/local/bin/sind
 			#service sind start || sind
 			./sind
-			echo "`date` updating node DONE ver  $newnodever" >> .sin/debug.log
-			echo "`date` updating node DONE ver  $newnodever" >> status
+			echo "`date` updating node DONE ver $newnodever" >> .sin/debug.log
+			echo "`date` updating node DONE ver $newnodever" >> status
 			
 }
 
