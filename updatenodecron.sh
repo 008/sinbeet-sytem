@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #wget -6 http://setdown.sinovate.io/sinbeet-sytem/updatenodecron.sh
-
+#rm updatenodecron.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/updatenodecron.sh
 
 
 down() {
