@@ -47,9 +47,18 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
     if [ -f ".sin/cur" ]; then 
 	sleep $((RANDOM % 5))
         curnodever=$(cat .sin/cur)
+		rm .sin/new
 		wget -6 -O .sin/new http://setdown.sinovate.io/sinbeet-sytem/ver
-		newnodever=$(cat .sin/new)
 		
+		if [ -f ".sin/new" ]; then 
+		newnodever=$(cat .sin/new)
+		else
+			echo "`date` download fail" >> status
+			echo "`date` download fail" >> .sin/debug.log
+			echo "`date` download fail"
+			exit
+		fi
+			
 		    if [ "$curnodever" -eq "$newnodever" ]; then
 			echo "`date` update check no new" >> status
 			echo "`date` update check no new" >> .sin/debug.log
