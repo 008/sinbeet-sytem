@@ -79,4 +79,5 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 	down
 	#crontab -l | { cat; echo "0 */3 * * * `pwd`/update.sh"; } | crontab -
     fi
+	fi
 	
