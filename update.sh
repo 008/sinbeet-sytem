@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 
 #wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh
 #rm update.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh
