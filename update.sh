@@ -58,7 +58,7 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			exit
 		fi
 			
-			if [ "$curnodever" -lt "1" ]; then
+			if [ "$newnodever" -lt "1" ]; then
 			echo "`date` wget fail" >> status
 			echo "`date` wget fail" >> .sin/debug.log
 			echo "`date` wget fail"
