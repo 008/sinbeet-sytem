@@ -44,11 +44,8 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 
 
     if [ -f ".sin/cur" ]; then 
-	
-	sleep $((RANDOM % 2))
-	
+	sleep $((RANDOM % 5))
         curnodever=$(cat .sin/cur)
-#        rm .sin/cur
 		wget -6 -O .sin/new http://setdown.sinovate.io/sinbeet-sytem/ver
 		newnodever=$(cat .sin/new)
 		
@@ -56,17 +53,13 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			echo "`date` update check no new ver" >> status
 			echo "`date` update check no new ver" >> .sin/debug.log
 			exit
-			
 			else
 			mv .sin/new .sin/cur
 			down
 			fi
-			
-			
-		
     else
 	wget -6 -O .sin/cur http://setdown.sinovate.io/sinbeet-sytem/ver
 	down
-	#crontab -l | { cat; echo "0 */3 * * * `pwd`/updatenodecron.sh"; } | crontab -
+	#crontab -l | { cat; echo "0 */3 * * * `pwd`/update.sh"; } | crontab -
     fi
 	
