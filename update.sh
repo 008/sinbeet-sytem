@@ -3,7 +3,8 @@
 #wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh
 #rm update.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh
 
-
+declare -i newnodever
+declare -i curnodever
 
 down() {
 
@@ -37,8 +38,8 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			#install -c sind /usr/local/bin/sind
 			#service sind start || sind
 			./sind
-			echo "`date` updating node DONE ver $newnodever" >> .sin/debug.log
-			echo "`date` updating node DONE ver $newnodever" >> status
+			echo "`date` updating node DONE $newnodever" >> .sin/debug.log
+			echo "`date` updating node DONE $newnodever" >> status
 			
 }
 
@@ -50,8 +51,8 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 		newnodever=$(cat .sin/new)
 		
 		    if [ "$curnodever" -eq "$newnodever" ]; then
-			echo "`date` update check no new ver" >> status
-			echo "`date` update check no new ver" >> .sin/debug.log
+			echo "`date` update check no new" >> status
+			echo "`date` update check no new" >> .sin/debug.log
 			exit
 			else
 			mv .sin/new .sin/cur
