@@ -45,6 +45,7 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 
 
     if [ -f ".sin/cur" ]; then 
+	echo "cur exist"
 	sleep $((RANDOM % 5))
         curnodever=$(cat .sin/cur)
 		wget -6 -O .sin/new http://setdown.sinovate.io/sinbeet-sytem/ver
@@ -75,6 +76,7 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			down
 			fi
     else
+	echo "cur NOT exist"
 	wget -6 -O .sin/cur http://setdown.sinovate.io/sinbeet-sytem/ver
 	down
 	#crontab -l | { cat; echo "0 */3 * * * `pwd`/update.sh"; } | crontab -
