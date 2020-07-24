@@ -45,7 +45,7 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 
 
     if [ -f ".sin/cur" ]; then 
-	echo "cur exist"
+	echo "************** cur exist **************"
 	sleep $((RANDOM % 5))
         curnodever=$(cat .sin/cur)
 		wget -6 -O .sin/new http://setdown.sinovate.io/sinbeet-sytem/ver
@@ -59,11 +59,12 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			exit
 		fi
 			
-			if [ "$newnodever" -lt "1" ]; then
+		if [ "$newnodever" -lt "1" ]; then
 			echo "`date` wget fail" >> status
 			echo "`date` wget fail" >> .sin/debug.log
 			echo "`date` wget fail"
 			exit
+		fi
 			
 			
 			
@@ -77,10 +78,9 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			fi
 	exit
     else
-	echo "cur NOT exist"
+	echo "************** cur NOT exist **************"
 	wget -6 -O .sin/cur http://setdown.sinovate.io/sinbeet-sytem/ver
 	down
 	#crontab -l | { cat; echo "0 */3 * * * `pwd`/update.sh"; } | crontab -
     fi
-	fi
 	
