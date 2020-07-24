@@ -75,6 +75,7 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			mv .sin/new .sin/cur
 			down
 			fi
+	exit
     else
 	echo "cur NOT exist"
 	wget -6 -O .sin/cur http://setdown.sinovate.io/sinbeet-sytem/ver
