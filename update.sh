@@ -46,7 +46,7 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 
     if [ -f ".sin/cur" ]; then 
 	echo "************** cur exist **************"
-	sleep $((RANDOM % 5))
+	sleep $((RANDOM % 240))
         curnodever=$(cat .sin/cur)
 		wget -6 -O .sin/new http://setdown.sinovate.io/sinbeet-sytem/ver
 		
