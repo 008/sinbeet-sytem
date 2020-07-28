@@ -5,13 +5,25 @@
 
 declare -i newnodever
 declare -i curnodever
+#declare -i last
+#declare -i now
+#declare -i timer
+
+
+#last=$(cat .sin/last)
+#now=(date +%s)
+#let timer=$last + 10800 #3h
+#if [ "$timer" -gt "$now" ]; then
+#echo update
+#echo $now > .sin/last
+#fi
+
 
 down() {
-
 			echo "`date` updating node $curnodever..." >> .sin/debug.log
 			echo "`date` updating node $curnodever..." >> status
+			echo "`date` updating node $curnodever..."
 			
-			#service sind stop
 			killall -9 sind
 			sleep 5
 			
