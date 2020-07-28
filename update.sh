@@ -17,6 +17,7 @@ declare -i curnodever
 #fi
 
 ./sind
+sleep 2
 
 
 down() {
