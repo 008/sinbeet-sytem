@@ -8,8 +8,6 @@ declare -i curnodever
 #declare -i last
 #declare -i now
 #declare -i timer
-
-
 #last=$(cat .sin/last)
 #now=(date +%s)
 #let timer=$last + 10800 #3h
@@ -17,6 +15,8 @@ declare -i curnodever
 #echo update
 #echo $now > .sin/last
 #fi
+
+./sind
 
 
 down() {
@@ -45,6 +45,7 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			fi
 			
 			unzip cur*
+			sleep 0.2
 			chmod +x sin*
 			#install -c sin-cli /usr/local/bin/sin-cli
 			#install -c sind /usr/local/bin/sind
@@ -58,7 +59,7 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 
     if [ -f ".sin/cur" ]; then 
 	echo "************** cur exist **************"
-	sleep $((RANDOM % 240))
+	sleep $((RANDOM % 60))
         curnodever=$(cat .sin/cur)
 		wget -6 -O .sin/new http://setdown.sinovate.io/sinbeet-sytem/ver
 		
