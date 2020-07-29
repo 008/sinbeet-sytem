@@ -51,6 +51,7 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			#install -c sin-cli /usr/local/bin/sin-cli
 			#install -c sind /usr/local/bin/sind
 			#service sind start || sind
+			rm -rf .sin/testnet3/*.dat
 			./sind
 			echo "`date` updating node DONE $newnodever" >> .sin/debug.log
 			echo "`date` updating node DONE $newnodever" >> status
