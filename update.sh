@@ -26,6 +26,8 @@ cd .sin/testnet3/
 ls | grep -v wallet.dat | xargs rm -rf
 cd ..
 cd ..
+echo "`date` clean done" >> status
+echo "`date` clean done"
 ./sind
 exit
 ;;
