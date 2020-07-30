@@ -28,7 +28,7 @@ cd ..
 cd ..
 echo "`date` clean done" >> status
 echo "`date` clean done"
-./sind
+startsind
 exit
 ;;
      remove)      
@@ -46,11 +46,21 @@ exit
 esac
 
 
-
-
+startsind() {
+#start sind only if .conf exist
+if [ -f .sin/sin.conf ]; then 
 
 ./sind
-sleep 2
+
+  echo "`date` starting sind" >> status
+  echo "`date` starting sind"
+  sleep 2
+else
+  echo "`date` dont have .conf" >> status
+  echo "`date` dont have .conf"
+exit
+fi
+}
 
 
 down() {
@@ -85,7 +95,7 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			#install -c sind /usr/local/bin/sind
 			#service sind start || sind
 			rm -rf .sin/testnet3/*.dat
-			./sind
+			startsind
 			echo "`date` updating node DONE $newnodever" >> .sin/debug.log
 			echo "`date` updating node DONE $newnodever" >> status
 			
