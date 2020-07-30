@@ -16,6 +16,37 @@ declare -i curnodever
 #echo $now > .sin/last
 #fi
 
+
+
+case $1 in
+     clean)      
+killall -9 sind
+sleep 5
+cd .sin/testnet3/
+ls | grep -v wallet.dat | xargs rm -rf
+cd ..
+cd ..
+./sind
+exit
+;;
+     remove)      
+          commands
+          ;;
+     st)
+          commands
+          ;; 
+     good)
+          commands
+          ;;
+     *)
+          echo error param
+          ;;
+esac
+
+
+
+
+
 ./sind
 sleep 2
 
