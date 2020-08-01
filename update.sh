@@ -41,7 +41,7 @@ exit
           commands
           ;;
      *)
-          echo error param
+          echo no param
           ;;
 esac
 
