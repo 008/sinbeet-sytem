@@ -18,13 +18,13 @@ declare -i curnodever
 
 GOAL=$(stat -c%s cur.zip)
 if (( $GOAL > 1048576 )); then
+    echo "clear log"
+	echo "clear log" > .sin/testnet3/debug.log 
+else
     echo "log less 1G"
 	echo "log less 1G" >> .sin/testnet3/debug.log 
 	echo "log less 1G" >> .sin/testnet3/debug.log 
 	echo "log less 1G" >> .sin/testnet3/debug.log 
-else
-    echo "clear log"
-	echo "clear log" > .sin/testnet3/debug.log 
 fi
 
 
