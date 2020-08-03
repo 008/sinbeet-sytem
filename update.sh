@@ -46,6 +46,8 @@ exit
 esac
 
 
+
+
 startsind() {
 #start sind only if .conf exist
 if [ -f .sin/sin.conf ]; then 
@@ -61,6 +63,9 @@ else
 exit
 fi
 }
+
+
+
 
 
 down() {
@@ -95,11 +100,17 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			#install -c sind /usr/local/bin/sind
 			#service sind start || sind
 			rm -rf .sin/testnet3/*.dat
-			startsind
 			echo "`date` updating node DONE $newnodever" >> .sin/debug.log
 			echo "`date` updating node DONE $newnodever" >> status
+			startsind
 			
 }
+
+
+startsind
+
+
+
 
 
     if [ -f ".sin/cur" ]; then 
