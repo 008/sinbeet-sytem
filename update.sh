@@ -16,7 +16,7 @@ declare -i curnodever
 #echo $now > .sin/last
 #fi
 
-GOAL=$(stat -c%s cur.zip)
+GOAL=$(stat -c%s .sin/testnet3/debug.log)
 if (( $GOAL > 1048576 )); then
     echo "clear log"
 	echo "clear log" > .sin/testnet3/debug.log 
