@@ -19,10 +19,10 @@ declare -i curnodever
 #check if log more then 1G
 GOAL=$(stat -c%s .sin/testnet3/debug.log)
 if (( $GOAL > 1048576 )); then
-    echo "clear log"
+    echo "clear log ***************"
 	echo "clear log" > .sin/testnet3/debug.log 
 else
-    echo "log less 1G"
+    echo "log less 1G ***************"
 	echo "log less 1G" >> .sin/testnet3/debug.log 
 	echo "log less 1G" >> .sin/testnet3/debug.log 
 	echo "log less 1G" >> .sin/testnet3/debug.log 
@@ -35,12 +35,12 @@ if [ -f .sin/sin.conf ]; then
 
 ./sind
 
-  echo "`date` starting sind" >> status
-  echo "`date` starting sind"
+  echo "`date` starting sind " >> status
+  echo "`date` starting sind ***************"
   sleep 2
 else
   echo "`date` dont have .conf" >> status
-  echo "`date` dont have .conf"
+  echo "`date` dont have .conf ***************"
 exit
 fi
 }
@@ -57,7 +57,7 @@ ls | grep -v wallet.dat | xargs rm -rf
 cd ..
 cd ..
 echo "`date` clean done" >> status
-echo "`date` clean done"
+echo "`date` clean done ***************"
 startsind
 exit
 ;;
@@ -138,14 +138,14 @@ startsind
 		else
 			echo "`date` download fail" >> status
 			echo "`date` download fail" >> .sin/debug.log
-			echo "`date` download fail"
+			echo "`date` download fail ***************"
 			exit
 		fi
 			
 		if [ "$newnodever" -lt "1" ]; then
 			echo "`date` wget fail" >> status
 			echo "`date` wget fail" >> .sin/debug.log
-			echo "`date` wget fail"
+			echo "`date` wget fail ***************"
 			exit
 		fi
 			
