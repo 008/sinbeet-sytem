@@ -47,6 +47,7 @@ fi
 
 
 
+
 case $1 in
      clean)      
 killall -9 sind
@@ -60,8 +61,8 @@ echo "`date` clean done"
 startsind
 exit
 ;;
-     remove)      
-          commands
+     nowait)      
+          nowait=1
           ;;
      st)
           commands
@@ -124,8 +125,12 @@ startsind
 
     if [ -f ".sin/cur" ]; then 
 	echo "************** cur exist **************"
+	
+	if [ -z "$nowait" ]; then
 	sleep $((RANDOM % 60))
-        curnodever=$(cat .sin/cur)
+	fi
+	
+	    curnodever=$(cat .sin/cur)
 		wget -6 -O .sin/new http://setdown.sinovate.io/sinbeet-sytem/ver
 		
 		if [ -f ".sin/new" ]; then 
