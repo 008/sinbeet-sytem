@@ -57,7 +57,7 @@ ls | grep -v wallet.dat | xargs rm -rf
 cd ..
 cd ..
 echo "`date` clean done" >> status
-echo "`date` clean done ***************"
+echo "`date` clean done !!!!!!!!!!!"
 startsind
 exit
 ;;
