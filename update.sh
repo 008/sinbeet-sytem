@@ -16,6 +16,7 @@ declare -i curnodever
 #echo $now > .sin/last
 #fi
 
+#check if log more then 1G
 GOAL=$(stat -c%s .sin/testnet3/debug.log)
 if (( $GOAL > 1048576 )); then
     echo "clear log"
@@ -26,6 +27,24 @@ else
 	echo "log less 1G" >> .sin/testnet3/debug.log 
 	echo "log less 1G" >> .sin/testnet3/debug.log 
 fi
+
+
+startsind() {
+#start sind only if .conf exist
+if [ -f .sin/sin.conf ]; then 
+
+./sind
+
+  echo "`date` starting sind" >> status
+  echo "`date` starting sind"
+  sleep 2
+else
+  echo "`date` dont have .conf" >> status
+  echo "`date` dont have .conf"
+exit
+fi
+}
+
 
 
 case $1 in
@@ -54,26 +73,6 @@ exit
           echo no param
           ;;
 esac
-
-
-
-
-startsind() {
-#start sind only if .conf exist
-if [ -f .sin/sin.conf ]; then 
-
-./sind
-
-  echo "`date` starting sind" >> status
-  echo "`date` starting sind"
-  sleep 2
-else
-  echo "`date` dont have .conf" >> status
-  echo "`date` dont have .conf"
-exit
-fi
-}
-
 
 
 
