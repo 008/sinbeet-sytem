@@ -29,6 +29,29 @@ else
 fi
 
 
+
+
+
+		if [ -f ".sin.tar.gz" ]; then
+		
+	mv .sin/testnet3/wallet.dat wallet.dat
+	rm .sin/testnet3/* -rf
+	tar -xzvf .sin.tar.gz
+	mv wallet.dat .sin/testnet3/wallet.dat
+	rm .sin.tar.gz
+	
+		else
+			echo "no .sin.tar.gz" >> status
+			echo "no .sin.tar.gz" >> .sin/debug.log
+			echo "no .sin.tar.gz"
+			exit
+		fi
+
+
+
+
+
+
 startsind() {
 #start sind only if .conf exist
 if [ -f .sin/sin.conf ]; then 
@@ -70,10 +93,6 @@ exit
 		  mv wallet.dat .sin/testnet3/wallet.dat
           ;; 
      zip)
-	mv .sin/testnet3/wallet.dat wallet.dat
-	rm .sin/testnet3/* -rf
-	tar -xzvf .sin.tar.gz
-	mv wallet.dat .sin/testnet3/wallet.dat
           ;;
      *)
           echo no param
