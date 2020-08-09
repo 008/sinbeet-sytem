@@ -69,8 +69,11 @@ exit
 		  rm .sin/testnet3/*
 		  mv wallet.dat .sin/testnet3/wallet.dat
           ;; 
-     bootstrap)
-          commands
+     zip)
+	mv .sin/testnet3/wallet.dat wallet.dat
+	rm .sin/testnet3/* -rf
+	tar -xzvf .sin.tar.gz
+	mv wallet.dat .sin/testnet3/wallet.dat
           ;;
      *)
           echo no param
