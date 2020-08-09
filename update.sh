@@ -65,7 +65,9 @@ exit
           nowait=1
           ;;
      removedat)
-          commands
+          mv .sin/testnet3/wallet.dat wallet.dat
+		  rm .sin/testnet3/*
+		  mv wallet.dat .sin/testnet3/wallet.dat
           ;; 
      bootstrap)
           commands
