@@ -64,10 +64,10 @@ exit
      nowait)      
           nowait=1
           ;;
-     st)
+     removedat)
           commands
           ;; 
-     good)
+     bootstrap)
           commands
           ;;
      *)
