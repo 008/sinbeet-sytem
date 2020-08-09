@@ -44,7 +44,6 @@ fi
 			echo "no .sin.tar.gz" >> status
 			echo "no .sin.tar.gz" >> .sin/debug.log
 			echo "no .sin.tar.gz"
-			exit
 		fi
 
 
