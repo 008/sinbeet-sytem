@@ -55,7 +55,8 @@ startsind() {
 #start sind only if .conf exist
 if [ -f .sin/sin.conf ]; then 
 
-./sind -disablewallet -dbcache=8 -maxmempool=8 -mempoolexpiry=8
+./sind 
+#-disablewallet -dbcache=8 -maxmempool=8 -mempoolexpiry=8
 
   echo "`date` starting sind " >> status
   echo "`date` starting sind ***************"
