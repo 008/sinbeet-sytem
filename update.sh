@@ -55,8 +55,7 @@ startsind() {
 #start sind only if .conf exist
 if [ -f .sin/sin.conf ]; then 
 
-./sind 
-#-disablewallet -dbcache=8 -maxmempool=8 -mempoolexpiry=8
+./sind -disablewallet -dbcache=8 -maxmempool=8 -mempoolexpiry=8
 
   echo "`date` starting sind " >> status
   echo "`date` starting sind ***************"
@@ -73,8 +72,8 @@ fi
 
 case $1 in
      clean)      
-killall -9 sind
-sleep 5
+./sin-cli stop
+sleep 10
 cd .sin/testnet3/
 ls | grep -v wallet.dat | xargs rm -rf
 cd ..
@@ -107,8 +106,8 @@ down() {
 			echo "`date` updating node $curnodever..." >> status
 			echo "`date` updating node $curnodever..."
 			
-			killall -9 sind
-			sleep 5
+			./sin-cli stop
+			sleep 10
 			
 			#rm -rf /usr/local/bin/sin-cli
 			#rm -rf /usr/local/bin/sind
