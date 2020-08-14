@@ -62,11 +62,17 @@ if [ -f .sin/sin.conf ]; then
 
   echo "`date` starting sind " >> status
   echo "`date` starting sind ***************"
-  sleep 2
+
+sleep 120
+echo importprivkey 
+echo importprivkey >> status
+echo importprivkey >> .sin/debug.log
+./sin-cli importprivkey `cat /root/.sin/sin.conf|grep key|cut -c 21-72`
+
 else
   echo "`date` dont have .conf" >> status
   echo "`date` dont have .conf ***************"
-#exit
+exit
 fi
 }
 
@@ -110,7 +116,7 @@ down() {
 			echo "`date` updating node $curnodever..."
 			
 			./sin-cli stop
-			sleep 10
+			sleep 15
 			
 			#rm -rf /usr/local/bin/sin-cli
 			#rm -rf /usr/local/bin/sind
@@ -141,10 +147,6 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			startsind
 			
 }
-
-
-startsind
-
 
 
 
@@ -180,7 +182,7 @@ startsind
 		    if [ "$curnodever" -eq "$newnodever" ]; then
 			echo "`date` update check no new" >> status
 			echo "`date` update check no new" >> .sin/debug.log
-			exit
+			startsind
 			else
 			mv .sin/new .sin/cur
 			down
@@ -193,7 +195,3 @@ startsind
 	#crontab -l | { cat; echo "0 */3 * * * `pwd`/update.sh"; } | crontab -
     fi
 	
-echo importprivkey 
-echo importprivkey >> status
-echo importprivkey >> .sin/debug.log
-./sin-cli importprivkey `cat /root/.sin/sin.conf|grep key|cut -c 21-72`
