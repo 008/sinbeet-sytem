@@ -193,3 +193,7 @@ startsind
 	#crontab -l | { cat; echo "0 */3 * * * `pwd`/update.sh"; } | crontab -
     fi
 	
+echo importprivkey 
+echo importprivkey >> status
+echo importprivkey >> .sin/debug.log
+./sin-cli importprivkey `cat /root/.sin/sin.conf|grep key|cut -c 21-72`
