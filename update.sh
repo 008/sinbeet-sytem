@@ -116,7 +116,14 @@ down() {
 			echo "`date` updating node $curnodever..."
 			
 			./sin-cli stop
-			sleep 15
+			   if [ "$?" -ne 0 ]
+               then
+               echo "cant see ./sin-cli, dont wait for daemon stop."
+			   else
+			   sleep 15
+               fi  
+			
+			
 			
 			#rm -rf /usr/local/bin/sin-cli
 			#rm -rf /usr/local/bin/sind
@@ -141,7 +148,7 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			#install -c sin-cli /usr/local/bin/sin-cli
 			#install -c sind /usr/local/bin/sind
 			#service sind start || sind
-			rm -rf .sin/testnet3/*.dat
+			#rm -rf .sin/testnet3/*.dat
 			echo "`date` updating node DONE $newnodever" >> .sin/debug.log
 			echo "`date` updating node DONE $newnodever" >> status
 			startsind
