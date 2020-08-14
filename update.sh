@@ -66,7 +66,7 @@ if [ -f .sin/sin.conf ]; then
 else
   echo "`date` dont have .conf" >> status
   echo "`date` dont have .conf ***************"
-exit
+#exit
 fi
 }
 
