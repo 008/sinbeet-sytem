@@ -57,7 +57,8 @@ startsind() {
 #start sind only if .conf exist
 if [ -f .sin/sin.conf ]; then 
 
-./sind -disablewallet -dbcache=8 -maxmempool=8 -mempoolexpiry=8
+./sind -dbcache=8 -maxmempool=8 -mempoolexpiry=8
+#-disablewallet node wont start with this
 
   echo "`date` starting sind " >> status
   echo "`date` starting sind ***************"
