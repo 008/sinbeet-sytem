@@ -57,18 +57,20 @@ startsind() {
 #start sind only if .conf exist
 if [ -f .sin/sin.conf ]; then 
 
+
+echo "`date` starting sind " >> status
+echo "`date` starting sind ***************"
+
 ./sind -dbcache=8 
 #-maxmempool=8 -mempoolexpiry=8
 #-disablewallet node wont start with this
 
-  echo "`date` starting sind " >> status
-  echo "`date` starting sind ***************"
-
-sleep 120
+  
+sleep 120 && ./sin-cli importprivkey `cat /root/.sin/sin.conf|grep key|cut -c 21-72` &
 echo importprivkey 
 echo importprivkey >> status
 echo importprivkey >> .sin/debug.log
-./sin-cli importprivkey `cat /root/.sin/sin.conf|grep key|cut -c 21-72`
+
 
 else
   echo "`date` dont have .conf" >> status
