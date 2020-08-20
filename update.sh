@@ -165,6 +165,7 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 	echo "************** cur exist **************"
 	
 	if [ -z "$nowait" ]; then
+	echo "************** rand wait  **************"
 	sleep $((RANDOM % 60))
 	fi
 	
