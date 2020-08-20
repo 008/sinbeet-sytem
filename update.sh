@@ -59,7 +59,7 @@ if [ -f .sin/sin.conf ]; then
 
 
 echo "`date` starting sind " >> status
-echo "`date` starting sind ***************"
+echo "*************** `date` starting sind ***************"
 
 ./sind -dbcache=8 
 #-maxmempool=8 -mempoolexpiry=8
@@ -74,7 +74,7 @@ echo importprivkey >> .sin/debug.log
 
 else
   echo "`date` dont have .conf" >> status
-  echo "`date` dont have .conf ***************"
+  echo "***************`date` dont have .conf ***************"
 exit
 fi
 }
@@ -91,7 +91,7 @@ ls | grep -v wallet.dat | xargs rm -rf
 cd ..
 cd ..
 echo "`date` clean done" >> status
-echo "`date` clean done !!!!!!!!!!!"
+echo "***************`date` clean done !!!!!!!!!!!"
 startsind
 exit
 ;;
@@ -116,7 +116,7 @@ esac
 down() {
 			echo "`date` updating node $curnodever..." >> .sin/debug.log
 			echo "`date` updating node $curnodever..." >> status
-			echo "`date` updating node $curnodever..."
+			echo "***************`date` updating node $curnodever..."
 			
 			./sin-cli stop
 			   if [ "$?" -ne 0 ]
@@ -141,7 +141,7 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			if [ ! -f "cur.zip" ]; then 
 			echo "`date` download node fail, will try later" >> .sin/debug.log
 			echo "`date` download node fail, will try later" >> status
-			echo "`date` download node fail, will try later"
+			echo "*************** `date` download node fail, will try later"
 			exit
 			fi
 			
@@ -153,7 +153,7 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			#service sind start || sind
 			#rm -rf .sin/testnet3/*.dat
 			echo "`date` updating node DONE $newnodever" >> .sin/debug.log
-			echo "`date` updating node DONE $newnodever" >> status
+			echo "*************** `date` updating node DONE $newnodever" >> status
 			startsind
 			
 }
@@ -177,14 +177,14 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 		else
 			echo "`date` download fail" >> status
 			echo "`date` download fail" >> .sin/debug.log
-			echo "`date` download fail ***************"
+			echo "*************** `date` download fail ***************"
 			exit
 		fi
 			
 		if [ "$newnodever" -lt "1" ]; then
 			echo "`date` wget fail" >> status
 			echo "`date` wget fail" >> .sin/debug.log
-			echo "`date` wget fail ***************"
+			echo "*************** `date` wget fail ***************"
 			exit
 		fi
 			
@@ -192,7 +192,7 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			
 		    if [ "$curnodever" -eq "$newnodever" ]; then
 			echo "`date` update check no new" >> status
-			echo "`date` update check no new" >> .sin/debug.log
+			echo "*************** `date` update check no new" >> .sin/debug.log
 			startsind
 			else
 			mv .sin/new .sin/cur
