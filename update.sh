@@ -18,7 +18,7 @@ declare -i curnodever
 
 
 
-check if log more then 1G
+#check if log more then 1G
 GOAL=$(stat -c%s .sin/testnet3/debug.log)
 if (( $GOAL > 1048576 )); then
     echo "clear log ***************"
