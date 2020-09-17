@@ -31,7 +31,18 @@ else
 fi
 
 
+swap=`swapon --show=used --raw --bytes`
+swaparr=($swap)
+swapsize=${swaparr[1]}
 
+
+echo $swapsize
+
+
+if (( $swapsize < 2147483648 )); then
+echo less
+./sin-cli stop && bash update.sh
+fi
 
 
 		if [ -f ".sin.tar.gz" ]; then
