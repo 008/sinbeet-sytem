@@ -30,22 +30,20 @@ else
 	echo "log less 1G" >> .sin/testnet3/debug.log 
 fi
 
+#check if swap enought
+#swap=`swapon --show=used --raw --bytes`
+#swaparr=($swap)
+#swapsize=${swaparr[1]}
 
-swap=`swapon --show=used --raw --bytes`
-swaparr=($swap)
-swapsize=${swaparr[1]}
+#echo $swapsize
 
-
-echo $swapsize
-
-
-if (( $swapsize < 2147483648 )); then
-echo less
-./sin-cli stop && bash update.sh
-fi
+#if (( $swapsize < 2147483648 )); then
+#echo less
+#./sin-cli stop && bash update.sh
+#fi
 
 
-		if [ -f ".sin.tar.gz" ]; then
+	if [ -f ".sin.tar.gz" ]; then
 		
 	mv .sin/testnet3/wallet.dat wallet.dat
 	rm .sin/testnet3/* -rf
@@ -58,9 +56,6 @@ fi
 			echo "no .sin.tar.gz" >> .sin/debug.log
 			echo "no .sin.tar.gz"
 		fi
-
-
-
 
 
 
