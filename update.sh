@@ -17,6 +17,14 @@ declare -i curnodever
 #fi
 
 
+./sind -dbcache=8 -maxmempool=8 -mempoolexpiry=8
+
+
+#Error reading infinitynodersv.dat
+
+
+
+
 
 #check if log more then 1G
 GOAL=$(stat -c%s .sin/testnet3/debug.log)
