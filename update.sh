@@ -97,7 +97,7 @@ fi
 
 case $1 in
      clean)      
-./sin-cli stop
+./sin-cli stop #make kill pid!
 sleep 10
 cd .sin/testnet3/
 ls | grep -v wallet.dat | xargs rm -rf
