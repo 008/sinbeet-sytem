@@ -17,7 +17,7 @@ declare -i curnodever
 #fi
 
 
-./sind -dbcache=4 -maxmempool=3 -mempoolexpiry=1
+./sind -dbcache=4 -maxmempool=5 -mempoolexpiry=1
 
 
 #Error reading infinitynodersv.dat
@@ -75,7 +75,7 @@ if [ -f .sin/sin.conf ]; then
 echo "`date` starting sind " >> status
 echo "*************** `date` starting sind ***************"
 
-./sind -dbcache=4 -maxmempool=3 -mempoolexpiry=1
+./sind -dbcache=4 -maxmempool=5 -mempoolexpiry=1
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
 #-disablewallet node wont start with this
 
