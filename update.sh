@@ -143,7 +143,7 @@ down() {
 			#rm -rf ubu18.*
 			#rm -rf ubu16.*
 			
-wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
+			wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 
 			if [ ! -f "cur.zip" ]; then 
 			echo "`date` download node fail, will try later" >> .sin/debug.log
