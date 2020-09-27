@@ -16,6 +16,19 @@ declare -i curnodever
 #echo $now > .sin/last
 #fi
 
+sinstop() {
+			./sin-cli stop
+			   if [ "$?" -ne 0 ]
+               then
+               echo "cant see ./sin-cli, dont wait for daemon stop."
+			   else
+			   	while [ -f /root/.sin/testnet3/sind.pid ]; 
+				do
+				echo "waiting to stop"
+				sleep 0.2
+				done
+               fi  
+			   }
 
 sinstart() {
 #start sind only if .conf exist
@@ -41,23 +54,43 @@ fi
 }
 
 
-#Error reading infinitynodersv.dat !!!!!!!!!!!!!!!!!!!!!!!!
+sinclean() {
+cd .sin/testnet3/
+ls | grep -v wallet.dat | xargs rm -rf
+cd ..
+cd ..
+echo "`date` clean done" >> status
+echo "***************`date` clean done !!!!!!!!!!!"
+sinstart
+exit
+}
 
 
-sinstop() {
-			./sin-cli stop
-			   if [ "$?" -ne 0 ]
-               then
-               echo "cant see ./sin-cli, dont wait for daemon stop."
-			   else
-			   	while [ -f /root/.sin/testnet3/sind.pid ]; 
-				do
-				echo "waiting to stop"
-				sleep 0.2
-				done
-               fi  
-			   }
 
+sinerror() {
+var2=`tail .sin/testnet3/debug.log -n500|grep "please fix it manually"`
+if [ -z "$var2" ]
+ then
+echo "`date` NO file error"
+ else
+echo "`date` file error - please fix it manually" >> status
+echo "`date` file error - please fix it manually" >> .sin/testnet3/debug.log 
+sinstop
+sinclean
+sinstart
+fi
+
+}
+
+
+
+
+
+
+
+
+
+sinlog(){
 #check if log more then 1G
 GOAL=$(stat -c%s .sin/testnet3/debug.log)
 if (( $GOAL > 1048576 )); then
@@ -69,6 +102,7 @@ else
 	echo "log less 1G" >> .sin/testnet3/debug.log 
 	echo "log less 1G" >> .sin/testnet3/debug.log 
 fi
+}
 
 #check if swap enought
 #swap=`swapon --show=used --raw --bytes`
@@ -101,15 +135,7 @@ fi
 case $1 in
      clean)      
 sinstop
-
-cd .sin/testnet3/
-ls | grep -v wallet.dat | xargs rm -rf
-cd ..
-cd ..
-echo "`date` clean done" >> status
-echo "***************`date` clean done !!!!!!!!!!!"
-sinstart
-exit
+sinclean
 ;;
      nowait)      
           nowait=1
@@ -133,16 +159,7 @@ down() {
 			echo "`date` updating node $curnodever..." >> status
 			echo "***************`date` updating node $curnodever..."
 			
-			sinstop
-			
-			#rm -rf /usr/local/bin/sin-cli
-			#rm -rf /usr/local/bin/sind
-			rm -rf sin-cli
-			rm -rf sind
-			rm -rf cur*
-			#rm -rf ubu18.*
-			#rm -rf ubu16.*
-			
+		
 			wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 
 			if [ ! -f "cur.zip" ]; then 
@@ -161,11 +178,22 @@ down() {
 			#rm -rf .sin/testnet3/*.dat
 			echo "`date` updating node DONE $newnodever" >> .sin/debug.log
 			echo "*************** `date` updating node DONE $newnodever" >> status
+						
+			sinstop
+			
+			#rm -rf /usr/local/bin/sin-cli
+			#rm -rf /usr/local/bin/sind
+			rm -rf sin-cli
+			rm -rf sind
+			rm -rf cur*
+			
 			sinstart
 			
 }
 
 ########################################################################start 
+sinerror
+sinlog
 sinstart
 
 
@@ -213,3 +241,7 @@ sinstart
 	#crontab -l | { cat; echo "0 */3 * * * `pwd`/update.sh"; } | crontab -
     fi
 	
+############cron
+while sleep 86400; do sinstop;sinstart;echo "*************** `date` node restart >> .sin/debug.log; done &
+while sleep  3600; do sinlog; done &
+sleep  60;sinerror
