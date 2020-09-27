@@ -240,8 +240,7 @@ sinstart
 	down
 	#crontab -l | { cat; echo "0 */3 * * * `pwd`/update.sh"; } | crontab -
     fi
-	
 ############cron
 while sleep 86400; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
-while sleep  3600; do sinlog; done &
-sleep  60;sinerror
+while sleep 3600; do sinlog; done &
+sleep 60;sinerror
