@@ -17,14 +17,46 @@ declare -i curnodever
 #fi
 
 
+sinstart() {
+#start sind only if .conf exist
+if [ -f .sin/sin.conf ]; then 
+
+echo "`date` starting sind " >> status
+echo "*************** `date` starting sind ***************"
+
 ./sind -dbcache=4 -maxmempool=5 -mempoolexpiry=1
+#-dbcache=8 -maxmempool=8 -mempoolexpiry=8
+#-disablewallet node wont start with this
+
+sleep 120 && ./sin-cli importprivkey `cat /root/.sin/sin.conf|grep key|cut -c 21-72` &
+echo importprivkey queued
+echo importprivkey queued >> status
+echo importprivkey queued >> .sin/debug.log
+
+else
+  echo "`date` dont have .conf" >> status
+  echo "***************`date` dont have .conf ***************"
+exit
+fi
+}
 
 
-#Error reading infinitynodersv.dat
+#Error reading infinitynodersv.dat !!!!!!!!!!!!!!!!!!!!!!!!
 
 
-
-
+sinstop() {
+			./sin-cli stop
+			   if [ "$?" -ne 0 ]
+               then
+               echo "cant see ./sin-cli, dont wait for daemon stop."
+			   else
+			   	while [ -f /root/.sin/testnet3/sind.pid ]; 
+				do
+				echo "waiting to stop"
+				sleep 0.2
+				done
+               fi  
+			   }
 
 #check if log more then 1G
 GOAL=$(stat -c%s .sin/testnet3/debug.log)
@@ -66,47 +98,17 @@ fi
 		fi
 
 
-
-startsind() {
-#start sind only if .conf exist
-if [ -f .sin/sin.conf ]; then 
-
-
-echo "`date` starting sind " >> status
-echo "*************** `date` starting sind ***************"
-
-./sind -dbcache=4 -maxmempool=5 -mempoolexpiry=1
-#-dbcache=8 -maxmempool=8 -mempoolexpiry=8
-#-disablewallet node wont start with this
-
-
-sleep 120 && ./sin-cli importprivkey `cat /root/.sin/sin.conf|grep key|cut -c 21-72` &
-echo importprivkey queued
-echo importprivkey queued >> status
-echo importprivkey queued >> .sin/debug.log
-
-
-else
-  echo "`date` dont have .conf" >> status
-  echo "***************`date` dont have .conf ***************"
-exit
-fi
-}
-
-
-
-
 case $1 in
      clean)      
-./sin-cli stop #make kill pid!
-sleep 10
+sinstop
+
 cd .sin/testnet3/
 ls | grep -v wallet.dat | xargs rm -rf
 cd ..
 cd ..
 echo "`date` clean done" >> status
 echo "***************`date` clean done !!!!!!!!!!!"
-startsind
+sinstart
 exit
 ;;
      nowait)      
@@ -126,21 +128,12 @@ esac
 
 
 
-
 down() {
 			echo "`date` updating node $curnodever..." >> .sin/debug.log
 			echo "`date` updating node $curnodever..." >> status
 			echo "***************`date` updating node $curnodever..."
 			
-			./sin-cli stop
-			   if [ "$?" -ne 0 ]
-               then
-               echo "cant see ./sin-cli, dont wait for daemon stop."
-			   else
-			   sleep 15
-               fi  
-			
-			
+			sinstop
 			
 			#rm -rf /usr/local/bin/sin-cli
 			#rm -rf /usr/local/bin/sind
@@ -168,11 +161,12 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			#rm -rf .sin/testnet3/*.dat
 			echo "`date` updating node DONE $newnodever" >> .sin/debug.log
 			echo "*************** `date` updating node DONE $newnodever" >> status
-			startsind
+			sinstart
 			
 }
 
-
+########################################################################start 
+sinstart
 
 
     if [ -f ".sin/cur" ]; then 
@@ -205,9 +199,8 @@ wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 			
 			
 		    if [ "$curnodever" -eq "$newnodever" ]; then
-			echo "`date` update check no new" >> status
-			echo "*************** `date` update check no new" >> .sin/debug.log
-			startsind
+			echo "`date` update check: not new" >> status
+			echo "*************** `date` update check: not new" >> .sin/debug.log
 			else
 			mv .sin/new .sin/cur
 			down
