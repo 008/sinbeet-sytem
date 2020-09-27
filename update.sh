@@ -55,6 +55,7 @@ fi
 
 
 sinclean() {
+sinstop
 cd .sin/testnet3/
 ls | grep -v wallet.dat | xargs rm -rf
 cd ..
@@ -75,9 +76,7 @@ echo "`date` NO file error"
  else
 echo "`date` file error - please fix it manually" >> status
 echo "`date` file error - please fix it manually" >> .sin/testnet3/debug.log 
-sinstop
 sinclean
-sinstart
 fi
 
 }
@@ -134,7 +133,6 @@ fi
 
 case $1 in
      clean)      
-sinstop
 sinclean
 ;;
      nowait)      
@@ -197,6 +195,13 @@ sinlog
 sinstart
 
 
+############cron
+while sleep 86400; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
+while sleep 3600; do sinlog; done &
+sleep 30;sinerror &
+
+
+
     if [ -f ".sin/cur" ]; then 
 	echo "************** cur exist **************"
 	
@@ -240,7 +245,3 @@ sinstart
 	down
 	#crontab -l | { cat; echo "0 */3 * * * `pwd`/update.sh"; } | crontab -
     fi
-############cron
-while sleep 86400; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
-while sleep 3600; do sinlog; done &
-sleep 60;sinerror
