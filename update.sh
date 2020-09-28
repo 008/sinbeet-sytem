@@ -180,6 +180,12 @@ down() {
 			exit
 			fi
 			
+			sinstop
+			#rm -rf /usr/local/bin/sin-cli
+			#rm -rf /usr/local/bin/sind
+			rm -rf sin-cli
+			rm -rf sind
+			
 			unzip cur*
 			sleep 0.2
 			chmod +x sin*
@@ -190,14 +196,6 @@ down() {
 			echo "`date` updating node DONE $newnodever" >> .sin/debug.log
 			echo "*************** `date` updating node DONE $newnodever" >> status
 						
-			sinstop
-			
-			#rm -rf /usr/local/bin/sin-cli
-			#rm -rf /usr/local/bin/sind
-			rm -rf sin-cli
-			rm -rf sind
-			rm -rf cur*
-			
 			sinstart
 			
 }
@@ -212,7 +210,7 @@ sinstart
 
 
 ############cron
-while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
+while sleep 4; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
 while sleep 3600; do sinlog; done &
 sleep 30;sinerror &
 
