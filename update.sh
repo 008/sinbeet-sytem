@@ -31,6 +31,17 @@ sinstop() {
 			   }
 
 sinstart() {
+
+	if [ -f "sind" ]; then 
+	echo "************** SIND exist **************"
+	echo "************** SIND exist **************" >> status
+	else
+	echo "************** sind NOT exist **************"
+	echo "************** sind NOT exist **************" >> status
+	down
+	fi
+	
+	
 #start sind only if .conf exist
 if [ -f .sin/sin.conf ]; then 
 
@@ -250,9 +261,3 @@ sleep 30;sinerror &
     fi
 	
 	
-	
-	if [ -f "sind" ]; then 
-	echo "************** SIND exist **************"
-	else
-	down
-	fi
