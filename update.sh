@@ -38,6 +38,7 @@ sinstart() {
 	else
 	echo "************** sind NOT exist **************"
 	echo "************** sind NOT exist **************" >> status
+	nowait=1
 	down
 	fi
 	
@@ -164,6 +165,7 @@ esac
 
 
 down() {
+			echo "`date` starting down" >> status
 			echo "`date` updating node $curnodever..." >> .sin/debug.log
 			echo "`date` updating node $curnodever..." >> status
 			echo "***************`date` updating node $curnodever..."
