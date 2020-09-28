@@ -189,6 +189,9 @@ down() {
 			
 }
 
+#Binding RPC on address 0.0.0.0 port 20981 failed
+
+
 ########################################################################start 
 sinerror
 sinlog
@@ -245,3 +248,11 @@ sleep 30;sinerror &
 	down
 	#crontab -l | { cat; echo "0 */3 * * * `pwd`/update.sh"; } | crontab -
     fi
+	
+	
+	
+	if [ -f "sind" ]; then 
+	echo "************** SIND exist **************"
+	else
+	down
+	fi
