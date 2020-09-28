@@ -212,7 +212,7 @@ sinstart
 echo "`date` start seq done" >> status
 
 ############cron
-while sleep 4; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
+while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
 while sleep 3600; do sinlog; done &
 sleep 30;sinerror &
 
