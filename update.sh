@@ -106,9 +106,11 @@ sinlog(){
 GOAL=$(stat -c%s .sin/testnet3/debug.log)
 if (( $GOAL > 1048576 )); then
     echo "clear log ***************"
+	echo "`date` start clear log" >> status
 	echo "clear log" > .sin/testnet3/debug.log 
 else
     echo "log less 1G ***************"
+	echo "`date` log less 1G" >> status
 	echo "log less 1G" >> .sin/testnet3/debug.log 
 	echo "log less 1G" >> .sin/testnet3/debug.log 
 	echo "log less 1G" >> .sin/testnet3/debug.log 
@@ -207,7 +209,7 @@ down() {
 sinerror
 sinlog
 sinstart
-
+echo "`date` start seq done" >> status
 
 ############cron
 while sleep 4; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
