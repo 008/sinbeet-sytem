@@ -84,7 +84,7 @@ sinerror() {
 var2=`tail .sin/testnet3/debug.log -n500|grep "please fix it manually"`
 if [ -z "$var2" ]
  then
-echo "`date` NO file error"
+echo "`date` NO error1"
  else
 echo "`date` file error - please fix it manually" >> status
 echo "`date` file error - please fix it manually" >> .sin/testnet3/debug.log 
@@ -93,8 +93,19 @@ fi
 
 }
 
+#is marked invalid
+sinerror2() {
+var2=`tail .sin/testnet3/debug.log -n500|grep "is marked invalid"`
+if [ -z "$var2" ]
+ then
+echo "`date` NO error2"
+ else
+echo "`date` AcceptBlockHeader" >> status
+echo "`date` found error AcceptBlockHeader" >> .sin/testnet3/debug.log 
+sinclean
+fi
 
-
+}
 
 
 
@@ -212,9 +223,13 @@ sinstart
 echo "`date` start seq done" >> status
 
 ############cron
-while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
-while sleep 3600; do sinlog; done &
 sleep 30;sinerror &
+while sleep 1740; do sinerror2; done &
+while sleep 3530; do sinlog; done &
+while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
+
+
+
 
 
 
