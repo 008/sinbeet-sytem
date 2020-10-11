@@ -75,7 +75,6 @@ cd ..
 echo "`date` clean done" >> status
 echo "***************`date` clean done !!!!!!!!!!!"
 sinstart
-exit
 }
 
 
