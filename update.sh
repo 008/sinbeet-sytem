@@ -231,7 +231,7 @@ sleep 30;sinerror &
 while sleep 480; do sinerror3; done &
 while sleep 1740; do sinerror2; done &
 while sleep 3530; do sinlog; done &
-while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
+#while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
 
 
 
