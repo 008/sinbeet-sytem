@@ -110,8 +110,8 @@ fi
 sinerror3() {
 var3=`ps aux|grep sind|wc -l`
 if (( $var3 < 2 )); then
-sinstart
 echo "WARNING `date` sinerror3" >> status
+sinstart
 fi
 }
 
