@@ -53,7 +53,7 @@ echo "*************** `date` starting sind ***************"
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
 #-disablewallet node wont start with this
 
-sleep 100 && ./sin-cli importprivkey `cat /root/.sin/sin.conf|grep key|cut -c 21-72` &
+sleep 100 && ./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72` &
 echo importprivkey queued
 echo importprivkey queued >> status
 echo importprivkey queued >> .sin/debug.log
