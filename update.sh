@@ -49,7 +49,7 @@ if [ -f .sin/sin.conf ]; then
 echo "`date` starting sind " >> status
 echo "*************** `date` starting sind ***************"
 
-./sind -dbcache=4 -maxmempool=5 -mempoolexpiry=1
+./sind -dbcache=4 -maxmempool=5 -mempoolexpiry=1 -whitelist=192.168.0.1/24
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
 #-disablewallet node wont start with this
 
