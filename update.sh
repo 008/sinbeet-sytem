@@ -68,7 +68,7 @@ sinstop() {
 
 sinstart() {
 
-	if [ -f "sind" ]; then 
+	if [ -a "sind" ]; then 
 	echo "************** SIND exist **************"
 	echo "************** SIND exist **************" >> status
 	else
@@ -78,22 +78,18 @@ sinstart() {
 	down
 	fi
 	
-	
 #start sind only if .conf exist
-if [ -f .sin/sin.conf ]; then 
-
+if [ -a .sin/sin.conf ]; then 
 echo "`date` starting sind " >> status
 echo "*************** `date` starting sind ***************"
 
 ./sind -dbcache=4 -maxmempool=5 -mempoolexpiry=1 -whitelist=192.168.0.1/24
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
 #-disablewallet node wont start with this
-
 sleep 100 && ./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72` &
 echo importprivkey queued
 echo importprivkey queued >> status
 echo importprivkey queued >> .sin/debug.log
-
 else
   echo "`date` dont have .conf" >> status
   echo "***************`date` dont have .conf ***************"
@@ -114,8 +110,6 @@ echo "`date` clean done" >> status
 echo "***************`date` clean done !!!!!!!!!!!"
 sinstart
 }
-
-
 
 sinerror1() {
 var2=`tail .sin/debug.log -n500|grep "please fix it manually"`
@@ -251,7 +245,7 @@ echo "`date` start seq done" >> status
 
 
 
-    if [ -f ".sin/cur" ]; then 
+    if [ -a ".sin/cur" ]; then 
 	echo "************** cur exist **************"
 	
 	if [ -z "$nowait" ]; then
@@ -262,7 +256,7 @@ echo "`date` start seq done" >> status
 	    curnodever=$(cat .sin/cur)
 		wget -6 -O .sin/new http://setdown.sinovate.io/sinbeet-sytem/ver
 		
-		if [ -f ".sin/new" ]; then 
+		if [ -a ".sin/new" ]; then 
 		newnodever=$(cat .sin/new)
 		else
 			echo "`date` download fail" >> status
