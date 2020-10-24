@@ -158,16 +158,16 @@ fi
 sinlog(){
 #check if log more then 1G
 GOAL=$(stat -c%s .sin/debug.log)
-if (( $GOAL > 1048576 )); then
+if (( $GOAL > 262144 )); then #256MB
     echo "clear log ***************"
 	echo "`date` start clear log" >> status
 	echo "clear log" > .sin/debug.log 
 else
-    echo "log less 1G ***************"
-	echo "`date` log less 1G" >> status
-	echo "log less 1G" >> .sin/debug.log 
-	echo "log less 1G" >> .sin/debug.log 
-	echo "log less 1G" >> .sin/debug.log 
+    echo "log less ***************"
+	echo "`date` log less" >> status
+	echo "log less" >> .sin/debug.log 
+	echo "log less" >> .sin/debug.log 
+	echo "log less" >> .sin/debug.log 
 fi
 }
 
@@ -241,11 +241,11 @@ echo "`date` start seq done" >> status
 
 ############cron
 
-#sleep 30;sinerror1 &
-#while sleep 480; do sinerror3; done & #daemon running check
-#while sleep 1740; do sinerror2; done &
-#while sleep 3530; do sinlog; done &
-#while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
+sleep 30;sinerror1 &
+while sleep 480; do sinerror3; done & #daemon running check
+while sleep 1740; do sinerror2; done &
+while sleep 1861; do sinlog; done &
+while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
 
 
 
