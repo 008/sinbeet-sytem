@@ -179,6 +179,7 @@ sinclean
 	 sleep 0.2
 	 chmod +x sin*
 	 echo "`date` forced to download" >> .sin/debug.log
+	 exit
 	 
           ;;
      *)
