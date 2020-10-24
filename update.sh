@@ -22,7 +22,7 @@ sinstop() {
                then
                echo "cant see ./sin-cli, dont wait for daemon stop."
 			   else
-			   	while [ -f /root/.sin/testnet3/sind.pid ]; 
+			   	while [ -f /root/.sin/sind.pid ]; 
 				do
 				echo "waiting to stop"
 				sleep 0.2
@@ -68,7 +68,7 @@ fi
 
 sinclean() {
 sinstop
-cd .sin/testnet3/
+cd .sin/
 ls | grep -v wallet.dat | xargs rm -rf
 cd ..
 cd ..
@@ -80,14 +80,14 @@ sinstart
 
 
 sinerror1() {
-var2=`tail .sin/testnet3/debug.log -n500|grep "please fix it manually"`
+var2=`tail .sin/debug.log -n500|grep "please fix it manually"`
 if [ -z "$var2" ]
  then
 echo "`date` NO error1"
  else
 echo "WARNING `date` sinerror1" >> status
 echo "`date` file error - please fix it manually" >> status
-echo "`date` file error - please fix it manually" >> .sin/testnet3/debug.log 
+echo "`date` file error - please fix it manually" >> .sin/debug.log 
 sinclean
 fi
 
@@ -95,14 +95,14 @@ fi
 
 #is marked invalid
 sinerror2() {
-var2=`tail .sin/testnet3/debug.log -n500|grep "is marked invalid"`
+var2=`tail .sin/debug.log -n500|grep "is marked invalid"`
 if [ -z "$var2" ]
  then
 echo "`date` NO error2"
  else
  echo "WARNING `date` sinerror2" >> status
 echo "`date` AcceptBlockHeader" >> status
-echo "`date` found error AcceptBlockHeader" >> .sin/testnet3/debug.log 
+echo "`date` found error AcceptBlockHeader" >> .sin/debug.log 
 sinclean
 fi
 }
@@ -118,17 +118,17 @@ fi
 
 sinlog(){
 #check if log more then 1G
-GOAL=$(stat -c%s .sin/testnet3/debug.log)
+GOAL=$(stat -c%s .sin/debug.log)
 if (( $GOAL > 1048576 )); then
     echo "clear log ***************"
 	echo "`date` start clear log" >> status
-	echo "clear log" > .sin/testnet3/debug.log 
+	echo "clear log" > .sin/debug.log 
 else
     echo "log less 1G ***************"
 	echo "`date` log less 1G" >> status
-	echo "log less 1G" >> .sin/testnet3/debug.log 
-	echo "log less 1G" >> .sin/testnet3/debug.log 
-	echo "log less 1G" >> .sin/testnet3/debug.log 
+	echo "log less 1G" >> .sin/debug.log 
+	echo "log less 1G" >> .sin/debug.log 
+	echo "log less 1G" >> .sin/debug.log 
 fi
 }
 
@@ -147,10 +147,10 @@ fi
 
 	if [ -f ".sin.tar.gz" ]; then
 		
-	mv .sin/testnet3/wallet.dat wallet.dat
-	rm .sin/testnet3/* -rf
+	mv .sin/wallet.dat wallet.dat
+	rm .sin/* -rf
 	tar -xzvf .sin.tar.gz
-	mv wallet.dat .sin/testnet3/wallet.dat
+	mv wallet.dat .sin/wallet.dat
 	rm .sin.tar.gz
 	
 		else
@@ -168,9 +168,9 @@ sinclean
           nowait=1
           ;;
      removedat)
-          mv .sin/testnet3/wallet.dat wallet.dat
-		  rm .sin/testnet3/*
-		  mv wallet.dat .sin/testnet3/wallet.dat
+          mv .sin/wallet.dat wallet.dat
+		  rm .sin/*
+		  mv wallet.dat .sin/wallet.dat
           ;; 
      down)
 	 rm cur.zip
@@ -217,7 +217,7 @@ down() {
 			#install -c sin-cli /usr/local/bin/sin-cli
 			#install -c sind /usr/local/bin/sind
 			#service sind start || sind
-			#rm -rf .sin/testnet3/*.dat
+			#rm -rf .sin/*.dat
 			echo "`date` updating node DONE $newnodever" >> .sin/debug.log
 			echo "*************** `date` updating node DONE $newnodever" >> status
 						
