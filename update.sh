@@ -16,6 +16,42 @@ declare -i curnodever
 #echo $now > .sin/last
 #fi
 
+
+
+down() {
+			echo "`date` starting down" >> status
+			echo "`date` updating node $curnodever..." >> .sin/debug.log
+			echo "`date` updating node $curnodever..." >> status
+			echo "***************`date` updating node $curnodever..."
+			
+		
+			wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
+
+			if [ ! -f "cur.zip" ]; then 
+			echo "`date` download node fail, will try later" >> .sin/debug.log
+			echo "`date` download node fail, will try later" >> status
+			echo "*************** `date` download node fail, will try later"
+			exit
+			fi
+			
+			sinstop
+			#rm -rf /usr/local/bin/sin-cli
+			#rm -rf /usr/local/bin/sind
+			rm -rf sin-cli
+			rm -rf sind
+			
+			unzip cur*
+			sleep 0.2
+			chmod +x sin*
+			#install -c sin-cli /usr/local/bin/sin-cli
+			#install -c sind /usr/local/bin/sind
+			#service sind start || sind
+			#rm -rf .sin/*.dat
+			echo "`date` updating node DONE $newnodever" >> .sin/debug.log
+			echo "*************** `date` updating node DONE $newnodever" >> status
+}
+
+
 sinstop() {
 			./sin-cli stop
 			   if [ "$?" -ne 0 ]
@@ -191,50 +227,15 @@ esac
 
 
 
-down() {
-			echo "`date` starting down" >> status
-			echo "`date` updating node $curnodever..." >> .sin/debug.log
-			echo "`date` updating node $curnodever..." >> status
-			echo "***************`date` updating node $curnodever..."
-			
-		
-			wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
-
-			if [ ! -f "cur.zip" ]; then 
-			echo "`date` download node fail, will try later" >> .sin/debug.log
-			echo "`date` download node fail, will try later" >> status
-			echo "*************** `date` download node fail, will try later"
-			exit
-			fi
-			
-			sinstop
-			#rm -rf /usr/local/bin/sin-cli
-			#rm -rf /usr/local/bin/sind
-			rm -rf sin-cli
-			rm -rf sind
-			
-			unzip cur*
-			sleep 0.2
-			chmod +x sin*
-			#install -c sin-cli /usr/local/bin/sin-cli
-			#install -c sind /usr/local/bin/sind
-			#service sind start || sind
-			#rm -rf .sin/*.dat
-			echo "`date` updating node DONE $newnodever" >> .sin/debug.log
-			echo "*************** `date` updating node DONE $newnodever" >> status
-						
-			sinstart
-			
-}
 
 #Binding RPC on address 0.0.0.0 port 20981 failed
 
 
 ########################################################################start 
 
-#sinerror
-#sinlog
-#sinstart
+sinerror1
+sinlog
+sinstart
 echo "`date` start seq done" >> status
 
 ############cron
@@ -285,12 +286,14 @@ echo "`date` start seq done" >> status
 			else
 			mv .sin/new .sin/cur
 			down
+			sinstart			
 			fi
 	exit
     else
 	echo "************** cur NOT exist **************"
 	wget -6 -O .sin/cur http://setdown.sinovate.io/sinbeet-sytem/ver
 	down
+	sinstart
 	#crontab -l | { cat; echo "0 */3 * * * `pwd`/update.sh"; } | crontab -
     fi
 	
