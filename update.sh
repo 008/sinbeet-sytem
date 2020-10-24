@@ -78,7 +78,6 @@ sinstart() {
 	down
 	fi
 	
-	
 while [ ! -f /root/.sin/sin.conf ]
 do
 echo "waiting for .conf" >> status
@@ -86,9 +85,10 @@ sleep 0.2
 done
 	
 #start sind only if .conf exist
-if [ -a /root/.sin/sin.conf ]; then 
-echo "`date` starting sind " >> status
-echo "*************** `date` starting sind ***************"
+if [ -a /root/.sin/sin.conf ]
+then 
+echo "`date` starting sind5 " >> status
+echo "*************** `date` starting sind5 ***************"
 
 ./sind -dbcache=4 -maxmempool=5 -mempoolexpiry=1 -whitelist=192.168.0.1/24
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
@@ -98,8 +98,8 @@ echo importprivkey queued
 echo importprivkey queued >> status
 echo importprivkey queued >> .sin/debug.log
 else
-  echo "`date` dont have .conf" >> status
-  echo "***************`date` dont have .conf ***************"
+  echo "`date` dont have .conf1" >> status
+  echo "***************`date` dont have .conf1 ***************"
 exit
 fi
 }
