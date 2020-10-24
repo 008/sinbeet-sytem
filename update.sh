@@ -221,17 +221,19 @@ down() {
 
 
 ########################################################################start 
-sinerror
-sinlog
-sinstart
+
+#sinerror
+#sinlog
+#sinstart
 echo "`date` start seq done" >> status
 
 ############cron
-sleep 30;sinerror1 &
-while sleep 480; do sinerror3; done & #daemon running check
-while sleep 1740; do sinerror2; done &
-while sleep 3530; do sinlog; done &
-while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
+
+#sleep 30;sinerror1 &
+#while sleep 480; do sinerror3; done & #daemon running check
+#while sleep 1740; do sinerror2; done &
+#while sleep 3530; do sinlog; done &
+#while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
 
 
 
