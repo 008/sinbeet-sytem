@@ -79,14 +79,14 @@ sinstart() {
 	fi
 	
 	
-while [ -f /root/.sin/sin.conf ]; 
+while [ ! -a /root/.sin/sin.conf ]; 
 do
 echo "waiting for .conf" >> status
 sleep 0.2
 done
 	
 #start sind only if .conf exist
-if [ -a .sin/sin.conf ]; then 
+if [ -a /root/.sin/sin.conf ]; then 
 echo "`date` starting sind " >> status
 echo "*************** `date` starting sind ***************"
 
