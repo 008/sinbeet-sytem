@@ -69,7 +69,9 @@ fi
 sinclean() {
 sinstop
 cd .sin/
+mv sin.conf ..
 ls | grep -v wallet.dat | xargs rm -rf
+mv ../sin.conf . 
 cd ..
 cd ..
 echo "`date` clean done" >> status
