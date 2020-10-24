@@ -79,7 +79,7 @@ sinstart
 
 
 
-sinerror() {
+sinerror1() {
 var2=`tail .sin/testnet3/debug.log -n500|grep "please fix it manually"`
 if [ -z "$var2" ]
  then
@@ -227,8 +227,8 @@ sinstart
 echo "`date` start seq done" >> status
 
 ############cron
-sleep 30;sinerror &
-while sleep 480; do sinerror3; done &
+sleep 30;sinerror1 &
+#while sleep 480; do sinerror3; done & #daemon running
 while sleep 1740; do sinerror2; done &
 while sleep 3530; do sinlog; done &
 while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
