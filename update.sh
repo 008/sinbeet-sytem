@@ -172,7 +172,14 @@ sinclean
 		  rm .sin/testnet3/*
 		  mv wallet.dat .sin/testnet3/wallet.dat
           ;; 
-     zip)
+     down)
+	 rm cur.zip
+	 wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
+	 unzip cur*
+	 sleep 0.2
+	 chmod +x sin*
+	 echo "`date` forced to download" >> .sin/debug.log
+	 
           ;;
      *)
           echo no param
