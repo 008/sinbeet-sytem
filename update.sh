@@ -79,7 +79,7 @@ sinstart() {
 	fi
 	
 	
-while [ ! -f /root/.sin/sind.pid ]; 
+while [ ! -f /root/.sin/sin.conf ]; 
 do
 echo "waiting for .conf" >> status
 sleep 0.2
