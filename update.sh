@@ -78,6 +78,13 @@ sinstart() {
 	down
 	fi
 	
+	
+while [ ! -f /root/.sin/sind.pid ]; 
+do
+echo "waiting for .conf" >> status
+sleep 0.2
+done
+	
 #start sind only if .conf exist
 if [ -a .sin/sin.conf ]; then 
 echo "`date` starting sind " >> status
