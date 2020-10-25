@@ -17,6 +17,20 @@ declare -i curnodever
 #fi
 
 
+vartest=`cat .sin/sin.conf|grep testnet=1`
+if [ -z "$vartest" ]
+ then
+echo "not testnet" >> status
+ else
+ rm update.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet.sh; bash testnet.sh
+ exit
+fi
+
+
+
+
+
+
 
 down() {
 			echo "`date` starting down" >> status
