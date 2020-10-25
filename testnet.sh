@@ -1,7 +1,7 @@
 #!/bin/bash
 
-##wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh
-#rm update.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh
+##wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet.sh
+#rm testnet.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet.sh; bash testnet.sh
 
 declare -i newnodever
 declare -i curnodever
@@ -141,7 +141,7 @@ fi
 
 #if (( $swapsize < 2147483648 )); then
 #echo less
-#./sin-cli stop && bash update.sh
+#./sin-cli stop && bash testnet.sh
 #fi
 
 
