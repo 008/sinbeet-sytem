@@ -34,9 +34,9 @@ fi
 
 down() {
 			echo "`date` starting down" >> status
-			echo "`date` updating node $curnodever..." >> .sin/debug.log
-			echo "`date` updating node $curnodever..." >> status
-			echo "***************`date` updating node $curnodever..."
+			echo "`date` updating node old $curnodever" >> .sin/debug.log
+			echo "`date` updating node old $curnodever" >> status
+			echo "***************`date` updating node old $curnodever"
 			
 		
 			wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
@@ -61,8 +61,8 @@ down() {
 			#install -c sind /usr/local/bin/sind
 			#service sind start || sind
 			#rm -rf .sin/*.dat
-			echo "`date` updating node DONE $newnodever" >> .sin/debug.log
-			echo "*************** `date` updating node DONE $newnodever" >> status
+			echo "`date` updating node DONE new ver $newnodever" >> .sin/debug.log
+			echo "*************** `date` updating node DONE new ver $newnodever" >> status
 }
 
 
@@ -236,43 +236,21 @@ sinclean
 	 
           ;;
      *)
-          echo no param
+          echo no param (nowait, removedat, down)
           ;;
 esac
 
 
 
 
-#Binding RPC on address 0.0.0.0 port 20981 failed
-
-
-########################################################################start 
-
-sinerror1
-sinlog
-sinstart
-echo "`date` start seq done" >> status
-
-############cron
-
-sleep 30;sinerror1 &
-while sleep 480; do sinerror3; done & #daemon running check
-while sleep 1740; do sinerror2; done &
-while sleep 1861; do sinlog; done &
-while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
-
-
-
-
-
-
+sinupdate() {
     if [ -a ".sin/cur" ]; then 
 	echo "************** cur exist **************"
 	
-	if [ -z "$nowait" ]; then
-	echo "************** rand wait  **************"
-	sleep $((RANDOM % 60))
-	fi
+	#if [ -z "$nowait" ]; then
+	#echo "************** rand wait  **************"
+	#sleep $((RANDOM % 60))
+	#fi
 	
 	    curnodever=$(cat .sin/cur)
 		wget -6 -O .sin/new http://setdown.sinovate.io/sinbeet-sytem/ver
@@ -311,5 +289,42 @@ while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart
 	sinstart
 	#crontab -l | { cat; echo "0 */3 * * * `pwd`/update.sh"; } | crontab -
     fi
+
+}
+
+
+
+
+
+
+
+
+
+
+#Binding RPC on address 0.0.0.0 port 20981 failed
+
+
+########################################################################start 
+
+sinerror1
+sinlog
+sinupdate
+sinstart
+echo "`date` start seq done" >> status
+
+############cron
+
+sleep 30;sinerror1 &
+while sleep 480; do sinerror3; done & #daemon running check
+while sleep 1740; do sinerror2; done &
+while sleep 1861; do sinlog; done &
+while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
+
+
+
+
+
+
+
 	
 	
