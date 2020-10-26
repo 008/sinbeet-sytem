@@ -236,7 +236,7 @@ sinclean
 	 
           ;;
      *)
-          echo no param (nowait, removedat, down)
+          echo "no param (nowait, removedat, down)"
           ;;
 esac
 
@@ -281,7 +281,7 @@ sinupdate() {
 			down
 			sinstart			
 			fi
-	exit
+	#exit
     else
 	echo "************** cur NOT exist **************"
 	wget -6 -O .sin/cur http://setdown.sinovate.io/sinbeet-sytem/ver
