@@ -17,6 +17,10 @@ declare -i curnodever
 #fi
 
 
+#Ubu18 is all we need.
+
+
+
 vartest=`cat .sin/sin.conf|grep testnet=1`
 if [ -z "$vartest" ]
  then
@@ -54,7 +58,7 @@ down() {
 			rm -rf sin-cli
 			rm -rf sind
 			
-			unzip cur*
+			unzip cur* || apt install unzip -y && unzip cur.zip
 			sleep 0.2
 			chmod +x sin*
 			#install -c sin-cli /usr/local/bin/sin-cli
@@ -228,7 +232,7 @@ sinclean
      down)
 	 rm cur.zip
 	 wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
-	 unzip cur*
+	 unzip cur* || apt install unzip -y && unzip cur.zip
 	 sleep 0.2
 	 chmod +x sin*
 	 echo "`date` forced to download" >> .sin/debug.log
