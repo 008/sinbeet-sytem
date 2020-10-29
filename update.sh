@@ -97,11 +97,12 @@ sinstart() {
 	fi
 	
 
-while [ ! -a /root/.sin/sin.conf ]
+while [ ! -f /root/.sin/sin.conf ]
 do
 echo "waiting for .conf" >> status
 sleep 0.2
 done
+
 echo "found .conf" >> status
 echo "found .conf"
 #start sind only if .conf exist
