@@ -101,8 +101,10 @@ do
 echo "waiting for .conf" >> status
 sleep 0.2
 done
-	
+echo "found .conf" >> status
+echo "found .conf"
 #start sind only if .conf exist
+
 if [ -a /root/.sin/sin.conf ]
 then 
 echo "`date` starting sind5 " >> status
