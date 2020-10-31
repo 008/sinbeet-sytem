@@ -244,7 +244,17 @@ sinclean
 	 
           ;;
      *)
-          echo "no param (nowait, removedat, down)"
+          echo "no param (nowait, removedat, down, pre200)"
+          ;;
+     pre200)
+		sinstop
+		rm .sin/debug.log 
+		rm .sin/wallet.dat
+		rm .sin/sin.conf
+		rm cur.zip
+		rm status
+		echo "removed"
+		exit
           ;;
 esac
 
