@@ -166,6 +166,8 @@ sinclean
 ;;
      nowait)      
           nowait=1
+		  down
+		  sinstart
           ;;
      removedat)
           mv .sin/testnet3/wallet.dat wallet.dat
@@ -221,7 +223,7 @@ down() {
 			echo "`date` updating node DONE $newnodever" >> .sin/debug.log
 			echo "*************** `date` updating node DONE $newnodever" >> status
 						
-			sinstart
+			
 			
 }
 
@@ -230,18 +232,18 @@ down() {
 
 ########################################################################start 
 
-#sinerror
-#sinlog
-#sinstart
+sinerror
+sinlog
+sinstart
 echo "`date` start seq done" >> status
 
 ############cron
 
-#sleep 30;sinerror1 &
-#while sleep 480; do sinerror3; done & #daemon running check
-#while sleep 1740; do sinerror2; done &
-#while sleep 3530; do sinlog; done &
-#while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
+sleep 30;sinerror1 &
+while sleep 480; do sinerror3; done & #daemon running check
+while sleep 1740; do sinerror2; done &
+while sleep 3530; do sinlog; done &
+while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
 
 
 
