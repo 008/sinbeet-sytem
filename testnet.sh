@@ -215,7 +215,7 @@ down() {
 			
 			unzip testnet.zip
 			sleep 0.2
-			chmod +x testnet*
+			chmod +x sin*
 			#install -c sin-cli /usr/local/bin/sin-cli
 			#install -c sind /usr/local/bin/sind
 			#service sind start || sind
