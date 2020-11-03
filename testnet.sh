@@ -175,9 +175,9 @@ sinclean
 		  mv wallet.dat .sin/testnet3/wallet.dat
           ;; 
      down)
-	 rm cur.zip
-	 wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
-	 unzip cur*
+	 rm testnet.zip
+	 wget -6 -O testnet.zip http://setdown.sinovate.io/sinbeet-sytem/cur/testnet.zip
+	 unzip testnet*
 	 sleep 0.2
 	 chmod +x sin*
 	 echo "`date` forced to download" >> .sin/debug.log
@@ -198,9 +198,9 @@ down() {
 			echo "***************`date` updating node $curnodever..."
 			
 		
-			wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
+			wget -6 -O testnet.zip http://setdown.sinovate.io/sinbeet-sytem/cur/testnet.zip
 
-			if [ ! -f "cur.zip" ]; then 
+			if [ ! -f "testnet.zip" ]; then 
 			echo "`date` download node fail, will try later" >> .sin/debug.log
 			echo "`date` download node fail, will try later" >> status
 			echo "*************** `date` download node fail, will try later"
