@@ -177,7 +177,7 @@ sinclean
      down)
 	 rm testnet.zip
 	 wget -6 -O testnet.zip http://setdown.sinovate.io/sinbeet-sytem/cur/testnet.zip
-	 unzip testnet*
+	 unzip testnet.zip
 	 sleep 0.2
 	 chmod +x sin*
 	 echo "`date` forced to download" >> .sin/debug.log
@@ -213,7 +213,7 @@ down() {
 			rm -rf sin-cli
 			rm -rf sind
 			
-			unzip testnet*
+			unzip testnet.zip
 			sleep 0.2
 			chmod +x testnet*
 			#install -c sin-cli /usr/local/bin/sin-cli
