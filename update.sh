@@ -27,6 +27,7 @@ if [ -z "$vartest" ]
 echo "not testnet" >> status
  else
  #rm update.sh
+ echo "********** testnet **********" >> status
  rm testnet.sh
  wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet.sh
  bash testnet.sh

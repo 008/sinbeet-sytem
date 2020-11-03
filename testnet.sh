@@ -16,6 +16,8 @@ declare -i curnodever
 #echo $now > .sin/last
 #fi
 
+echo "********** starting testnet.sh **********" >> status
+
 sinstop() {
 			./sin-cli stop
 			   if [ "$?" -ne 0 ]
