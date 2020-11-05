@@ -86,6 +86,7 @@ sinstop() {
 				sleep 0.2
 				done
                fi  
+			   sleep 5 #to make sure
 			   }
 
 sinstart() {
