@@ -248,9 +248,6 @@ sinclean
 	 exit
 	 
           ;;
-     *)
-          echo "no param (nowait, removedat, down, pre200)"
-          ;;
      prep)
 		sinstop
 		rm .sin/debug.log 
@@ -272,7 +269,7 @@ sinclean
 		exit
           ;;
 esac
-
+echo "no param (nowait, removedat, down, pre200, prepnode)"
 
 
 
