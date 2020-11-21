@@ -349,7 +349,7 @@ echo "`date` start seq done" >> status
 
 sleep 30;sinerror1 &
 while sleep 480; do sinerror3; done & #daemon running check
-while sleep 174; do sinerror2; done &
+#while sleep 174; do sinerror2; done &
 while sleep 1861; do sinlog; done &
 while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
 
