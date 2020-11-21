@@ -239,6 +239,8 @@ sinclean
 		  mv wallet.dat .sin/wallet.dat
           ;; 
      down)
+	rm -rf sin-cli
+	rm -rf sind
 	 rm cur.zip
 	 wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 	 unzip cur* || apt install unzip -y && unzip cur.zip
