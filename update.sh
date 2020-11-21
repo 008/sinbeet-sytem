@@ -222,7 +222,7 @@ fi
 	rm .sin/* -rf
 	tar -xzvf .sin.tar.gz
 	mv wallet.dat .sin/wallet.dat
-	mv sin.conf .sin/sin.conf
+	cp sin.conf .sin/sin.conf
 	rm .sin.tar.gz
 	
 		else
