@@ -105,7 +105,8 @@ sinstart() {
 while [ ! -f /root/.sin/sin.conf ]
 do
 echo "waiting for .conf" >> status
-sleep 0.2
+echo "waiting for .conf"
+sleep 0.3
 done
 
 echo "found .conf" >> status
