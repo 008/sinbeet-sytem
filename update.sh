@@ -215,11 +215,11 @@ fi
 	if [ -f ".sin.tar.gz" ]; then
 		
 	mv .sin/wallet.dat wallet.dat
-	mv .sin/sin.conf sin.conf
+	cp .sin/sin.conf sin.conf
 	rm .sin/* -rf
 	tar -xzvf .sin.tar.gz
 	mv wallet.dat .sin/wallet.dat
-	mv wallet.dat .sin/sin.conf
+	mv sin.conf .sin/sin.conf
 	rm .sin.tar.gz
 	
 		else
