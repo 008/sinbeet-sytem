@@ -213,6 +213,9 @@ fi
 
 
 	if [ -f ".sin.tar.gz" ]; then
+	
+	echo "!!! we have .sin.tar.gz" >> status
+	echo "!!! we have .sin.tar.gz" >> .sin/debug.log
 		
 	mv .sin/wallet.dat wallet.dat
 	cp .sin/sin.conf sin.conf
