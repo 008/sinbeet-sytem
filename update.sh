@@ -353,6 +353,9 @@ echo "`date` start seq done" >> status
 
 ############cron
 
+sleep 60 && ./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72` &
+echo "`date` importprivkey check" >> status
+
 sleep 30;sinerror1 &
 while sleep 480; do sinerror3; done & #daemon running check
 #while sleep 174; do sinerror2; done &
