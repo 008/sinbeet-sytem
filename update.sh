@@ -35,7 +35,12 @@ echo "not testnet" >> status
 fi
 
 
+import(){
+./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72`
+echo "`date` importprivkey check" >> status
+echo "`date` importprivkey check" >> .sin/debug.log
 
+}
 
 
 
@@ -122,10 +127,6 @@ echo "*************** `date` starting sind5 ***************"
 # -disablewallet
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
 #-disablewallet node wont start with this
-sleep 100 && ./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72` &
-echo importprivkey queued
-echo importprivkey queued >> status
-echo importprivkey queued >> .sin/debug.log
 else
   echo "`date` dont have .conf1" >> status
   echo "***************`date` dont have .conf1 ***************"
@@ -353,10 +354,12 @@ echo "`date` start seq done" >> status
 
 ############cron
 
-./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72`
-echo "`date` importprivkey check" >> status
+
 
 sleep 30;sinerror1 &
+sleep 100;import &
+sleep 200;import &
+sleep 300;import &
 while sleep 480; do sinerror3; done & #daemon running check
 #while sleep 174; do sinerror2; done &
 while sleep 1861; do sinlog; done &
