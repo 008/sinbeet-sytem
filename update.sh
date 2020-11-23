@@ -36,10 +36,18 @@ fi
 
 
 import(){
+sleep 100
 ./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72`
-echo "`date` importprivkey check" >> status
-echo "`date` importprivkey check" >> .sin/debug.log
-
+echo "`date` importprivkey check1" >> status
+echo "`date` importprivkey check1" >> .sin/debug.log
+sleep 200
+./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72`
+echo "`date` importprivkey check2" >> status
+echo "`date` importprivkey check2" >> .sin/debug.log
+sleep 300
+./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72`
+echo "`date` importprivkey check3" >> status
+echo "`date` importprivkey check3" >> .sin/debug.log
 }
 
 
@@ -350,21 +358,16 @@ sinerror1
 sinlog
 sinupdate
 sinstart
+import
 echo "`date` start seq done" >> status
+echo "`date` start seq done" >> .sin/debug.log
 
 ############cron
-
-
-
-sleep 30;sinerror1 &
-sleep 100;import &
-sleep 200;import &
-sleep 300;import &
 while sleep 480; do sinerror3; done & #daemon running check
 #while sleep 174; do sinerror2; done &
 while sleep 1861; do sinlog; done &
-while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
-
+while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log;echo "*************** `date` node restart" >> status; done &
+sleep 30;sinerror1 &
 
 
 
