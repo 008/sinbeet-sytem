@@ -301,6 +301,7 @@ sinupdate() {
 	#fi
 	
 	    curnodever=$(cat .sin/cur)
+		sleep 0.2
 		wget -6 -O .sin/new http://setdown.sinovate.io/sinbeet-sytem/ver
 		
 		if [ -a ".sin/new" ]; then 
@@ -332,6 +333,7 @@ sinupdate() {
 	#exit
     else
 	echo "************** cur NOT exist **************"
+	sleep 0.2
 	wget -6 -O .sin/cur http://setdown.sinovate.io/sinbeet-sytem/ver
 	down
 	sinstart
