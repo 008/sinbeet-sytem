@@ -371,6 +371,10 @@ while sleep 1861; do sinlog; done &
 while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log;echo "*************** `date` node restart" >> status; done &
 sleep 30;sinerror1 &
 
+sleep 56;./sin-cli addnode seed1.sinovate.org &
+sleep 57;./sin-cli addnode seed2.sinovate.org &
+sleep 58;./sin-cli addnode seed3.sinovate.org &
+
 
 
 
