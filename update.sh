@@ -131,7 +131,7 @@ then
 echo "`date` starting sind5 " >> status
 echo "*************** `date` starting sind5 ***************"
 
-./sind -dbcache=4 -maxmempool=5 -mempoolexpiry=1 -whitelist=192.168.0.1/24 -masternode=0
+./sind -dbcache=20 -maxmempool=5 -mempoolexpiry=1 -whitelist=192.168.0.1/24 -masternode=0
 #-disablewallet
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
 #-disablewallet node wont start with this
