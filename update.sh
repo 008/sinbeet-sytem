@@ -131,7 +131,7 @@ then
 echo "`date` starting sind5 " >> status
 echo "*************** `date` starting sind5 ***************"
 
-./sind -dbcache=4 -maxmempool=5 -mempoolexpiry=1 -whitelist=192.168.0.1/24 
+./sind -dbcache=4 -maxmempool=5 -mempoolexpiry=1 -whitelist=192.168.0.1/24 -masternode=0
 #-disablewallet
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
 #-disablewallet node wont start with this
@@ -372,13 +372,13 @@ while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart
 sleep 30;sinerror1 &
 
 #golden nodes
-sleep 56;./sin-cli addnode seed1.sinovate.org add &
-sleep 58;./sin-cli addnode seed2.sinovate.org add &
-sleep 60;./sin-cli addnode seed3.sinovate.org add &
-sleep 62;./sin-cli addnode seedv01.sinovate.org add &
-sleep 64;./sin-cli addnode seedv02.sinovate.org add &
-sleep 66;./sin-cli addnode seedv03.sinovate.org add &
-sleep 68;./sin-cli addnode seedv04.sinovate.org add &
+#sleep 56;./sin-cli addnode seed1.sinovate.org add &
+#sleep 58;./sin-cli addnode seed2.sinovate.org add &
+#sleep 60;./sin-cli addnode seed3.sinovate.org add &
+#sleep 62;./sin-cli addnode seedv01.sinovate.org add &
+#sleep 64;./sin-cli addnode seedv02.sinovate.org add &
+#sleep 66;./sin-cli addnode seedv03.sinovate.org add &
+#sleep 68;./sin-cli addnode seedv04.sinovate.org add &
 
 
 
