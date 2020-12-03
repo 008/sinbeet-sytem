@@ -371,14 +371,14 @@ while sleep 1861; do sinlog; done &
 while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log;echo "*************** `date` node restart" >> status; done &
 sleep 30;sinerror1 &
 
-#if seeder down
-#sleep 56;./sin-cli addnode seed1.sinovate.org add &
-#sleep 58;./sin-cli addnode seed2.sinovate.org add &
-#sleep 60;./sin-cli addnode seed3.sinovate.org add &
-#sleep 62;./sin-cli addnode seedv01.sinovate.org add &
-#sleep 64;./sin-cli addnode seedv02.sinovate.org add &
-#sleep 66;./sin-cli addnode seedv03.sinovate.org add &
-#sleep 68;./sin-cli addnode seedv04.sinovate.org add &
+#golden nodes
+sleep 56;./sin-cli addnode seed1.sinovate.org add &
+sleep 58;./sin-cli addnode seed2.sinovate.org add &
+sleep 60;./sin-cli addnode seed3.sinovate.org add &
+sleep 62;./sin-cli addnode seedv01.sinovate.org add &
+sleep 64;./sin-cli addnode seedv02.sinovate.org add &
+sleep 66;./sin-cli addnode seedv03.sinovate.org add &
+sleep 68;./sin-cli addnode seedv04.sinovate.org add &
 
 
 
