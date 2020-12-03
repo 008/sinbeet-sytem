@@ -131,8 +131,7 @@ then
 echo "`date` starting sind5 " >> status
 echo "*************** `date` starting sind5 ***************"
 
-./sind -masternode=0
-# -dbcache=100 -maxmempool=5 -mempoolexpiry=1 -whitelist=192.168.0.1/24 -masternode=0
+./sind -dbcache=100 -maxmempool=5 -mempoolexpiry=1 -whitelist=192.168.0.1/24 -masternode=0
 #-disablewallet
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
 #-disablewallet node wont start with this
@@ -379,7 +378,7 @@ sleep 30;sinerror1 &
 #sleep 62;./sin-cli addnode seedv01.sinovate.org add &
 #sleep 64;./sin-cli addnode seedv02.sinovate.org add &
 #sleep 66;./sin-cli addnode seedv03.sinovate.org add &
-#sleep 68;./sin-cli addnode 95.217.223.196 add &
+#sleep 68;./sin-cli addnode seedv04.sinovate.org add &
 
 
 
