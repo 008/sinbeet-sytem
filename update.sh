@@ -194,6 +194,44 @@ fi
 }
 
 
+
+createblockmark() {
+apt install curl -y
+
+  if [ -f "currentnodeblock" ]; then
+        echo "************** currentnodeblock exist **************"
+        echo "************** currentnodeblock exist **************" >> status
+        else
+
+block=`./sin-cli infinitynode getrawblockcount`
+echo $block > currentnodeblock
+
+        echo "*********** rec currentnodeblock is $block ***********"
+        echo "*********** rec currentnodeblock is $block ***********" >> status
+        fi
+
+
+}
+
+sinerror4() {
+IP=`cat /root/.sin/sin.conf|grep externalip=|cut -c 12-72`
+currentnodeblock=`./sin-cli infinitynode getrawblockcount`
+IFS= read -r savednodeblock < currentnodeblock;
+
+if (( $savednodeblock < $currentnodeblock )); then
+    echo "blocks OK $savednodeblock / $currentnodeblock"
+	echo "`date` blocks OK" >> status
+	echo $currentnodeblock > currentnodeblock
+else
+curl -s -X POST https://api.telegram.org/bot850623372:AAGvyDrYQpAnlWD3n-4dh2Ea3kQbN7c3VVg/sendMessage -d chat_id=396043531 -d text="$savednodeblock $currentnodeblock $IP"
+    
+	echo "$savednodeblock $currentnodeblock ***************"
+    echo "blocks error FAIL $savednodeblock $currentnodeblock"
+	echo "`date` blocks error FAIL $savednodeblock $currentnodeblock" >> status
+fi
+}
+
+
 sinlog(){
 #check if log more then 1G
 GOAL=$(stat -c%s .sin/debug.log)
@@ -368,10 +406,12 @@ echo "`date` start seq done" >> .sin/debug.log
 
 ############cron
 while sleep 480; do sinerror3; done & #daemon running check
+while sleep 901; do sinerror4; done & #blockcount check
 #while sleep 174; do sinerror2; done &
 while sleep 1861; do sinlog; done &
 while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log;echo "*************** `date` node restart" >> status; done &
-sleep 30;sinerror1 &
+sleep 30 && sinerror1 &
+sleep 301 && createblockmark &
 
 #golden nodes
 #sleep 56;./sin-cli addnode seed1.sinovate.org add &
