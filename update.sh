@@ -400,7 +400,7 @@ sinerror1
 sinlog
 sinupdate
 sinstart
-import
+import &
 echo "`date` start seq done" >> status
 echo "`date` start seq done" >> .sin/debug.log
 
