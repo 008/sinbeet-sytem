@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh
-#@reboot sleep 2 && ping6 google.com -c 5; rm update.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh
+#@reboot sleep 5 && ping6 google.com -c 5; rm update.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh
 
 declare -i newnodever
 declare -i curnodever
