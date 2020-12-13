@@ -236,7 +236,7 @@ sinlog(){
 #check if log more then 1G
 GOAL=$(stat -c%s .sin/debug.log)
 
-if (( $GOAL > 524288000 )); then #512mb
+if (( $GOAL > 335544320 )); then #320mb
     echo "clear log ***************"
 	echo "`date` start clear log" >> status
 	echo "clear log" > .sin/debug.log 
