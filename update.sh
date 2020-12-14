@@ -131,7 +131,7 @@ then
 echo "`date` starting sind5 " >> status
 echo "*************** `date` starting sind5 ***************"
 
-./sind -turnoffmasternode=0
+./sind -turnoffmasternode=1 -addnode=[2a01:4f9:3a:1324:b134:2d8f:4af3:8c29]
 # -dbcache=100 -maxmempool=5 -mempoolexpiry=1 -whitelist=192.168.0.1/24 -masternode=0
 #-disablewallet
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
