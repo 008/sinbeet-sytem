@@ -243,7 +243,7 @@ if (( $savednodeblock < $currentnodeblock )); then
 	echo "`date` blocks OK" >> status
 	echo $currentnodeblock > currentnodeblock
 else
-curl -s -X POST https://api.telegram.org/bot850623372:AAGvyDrYQpAnlWD3n-4dh2Ea3kQbN7c3VVg/sendMessage -d chat_id=396043531 -d text="`date` $currentnodeblock $IP"
+#curl -s -X POST XXXXXXXXXXXXXXXXXX -d chat_id=396043531 -d text="`date` $currentnodeblock $IP"
     
 	echo "$savednodeblock $currentnodeblock ***************"
     echo "blocks error FAIL $currentnodeblock"
