@@ -148,7 +148,7 @@ echo "*************** `date` starting sind5 ***************"
 
 
 
-./sind -turnoffmasternode=1 -addnode=[2a01:4f9:3a:1324:b134:2d8f:4af3:8c29] -rpcthreads=8 -logips -par=4 -timeout=100
+./sind -turnoffmasternode=1 -rpcthreads=8 -par=4 -timeout=500
 # -dbcache=100 -maxmempool=5 -mempoolexpiry=1 -whitelist=192.168.0.1/24 -masternode=0
 #-disablewallet
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
@@ -429,7 +429,7 @@ while sleep 480; do sinerror3; done & #daemon running check
 while sleep 901; do sinerror4; done & #blockcount check
 #while sleep 174; do sinerror2; done &
 while sleep 298; do sinlog; done &
-while sleep 86399; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log;echo "*************** `date` node restart" >> status; done &
+#while sleep 86399; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log;echo "*************** `date` node restart" >> status; done &
 sleep 30 && sinerror1 &
 sleep 301 && createblockmark &
 
