@@ -36,6 +36,7 @@ fi
 
 
 import(){
+echo "`date` importprivkey check wait phase" >> status
 sleep 100
 ./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72`
 echo "`date` importprivkey check1" >> status
@@ -148,14 +149,16 @@ echo "*************** `date` starting sind5 ***************"
 
 
 rm .sin/peers.dat
-./sind -turnoffmasternode=1 -par=4 -timeout=1000 -debug=0
+
+./sind -turnoffmasternode=1 -dbcache=100 -maxmempool=20 -mempoolexpiry=3 -par=4 -timeout=1000 -debug=0
+
 #-maxconnections=32
 # -dbcache=100 -maxmempool=5 -mempoolexpiry=1 -whitelist=192.168.0.1/24 -masternode=0
 #-disablewallet
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
 #-disablewallet node wont start with this
 #./sind -rpcthreads=8 -logips -par=4 -timeout=500
-
+echo "`date` starting sind5 done" >> status
 
 else
   echo "`date` dont have .conf1" >> status
