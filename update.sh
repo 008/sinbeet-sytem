@@ -430,12 +430,12 @@ echo "`date` start seq done" >> .sin/debug.log
 
 ############cron
 while sleep 480; do sinerror3; done & #daemon running check
-while sleep 901; do sinerror4; done & #blockcount check
+#while sleep 901; do sinerror4; done & #blockcount check (and uncomment createblockmark down below)
 #while sleep 174; do sinerror2; done &
 while sleep 298; do sinlog; done &
 #while sleep 86399; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log;echo "*************** `date` node restart" >> status; done &
 sleep 30 && sinerror1 &
-sleep 301 && createblockmark &
+#sleep 301 && createblockmark &
 
 #golden nodes
 #sleep 56;./sin-cli addnode seed1.sinovate.org add &
