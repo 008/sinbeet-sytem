@@ -218,22 +218,6 @@ fi
 }
 
 
-notcapablecheck() {
-
-vartest=`./sin-cli infinitynode mypeerinfo|grep "Not capable"`
-if [ -z "$vartest" ]
- then
-echo "node status check - ENABLED" >> status
- else
- echo "Not capable, check FAIL" >> status
- sinstop
- sleep $((RANDOM % 30))
- sinstart
-fi
-
-}
-
-
 
 createblockmark() {
 apt install curl -y
@@ -448,8 +432,7 @@ echo "`date` start seq done" >> .sin/debug.log
 while sleep 480; do sinerror3; done & #daemon running check
 #while sleep 901; do sinerror4; done & #blockcount check (and uncomment createblockmark down below)
 #while sleep 174; do sinerror2; done &
-while sleep 174; do sinerror2; done &
-while sleep 10800; do notcapablecheck; done &
+while sleep 298; do sinlog; done &
 #while sleep 86399; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log;echo "*************** `date` node restart" >> status; done &
 sleep 30 && sinerror1 &
 #sleep 301 && createblockmark &
