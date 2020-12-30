@@ -150,7 +150,9 @@ echo "*************** `date` starting sind5 ***************"
 
 rm .sin/peers.dat
 
-./sind -turnoffmasternode=1 -dbcache=100 -maxmempool=10 -mempoolexpiry=3 -par=4 -timeout=1000 -debug=0
+./sind -turnoffmasternode=1 -rpcthreads=8 -logips -par=4 -timeout=500 -debug=0
+
+#-dbcache=100 -maxmempool=10 -mempoolexpiry=3 -par=4 -timeout=1000 -debug=0
 
 #-maxconnections=32
 # -dbcache=100 -maxmempool=5 -mempoolexpiry=1 -whitelist=192.168.0.1/24 -masternode=0
