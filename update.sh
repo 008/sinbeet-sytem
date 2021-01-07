@@ -236,6 +236,10 @@ fi
 }
 
 
+pingtest() {
+ping6 google.com -c1 |grep packets >> status 
+}
+
 
 createblockmark() {
 apt install curl -y
@@ -453,6 +457,7 @@ while sleep 480; do sinerror3; done & #daemon running check
 while sleep 10800; do notcapablecheck; done &
 #while sleep 86399; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log;echo "*************** `date` node restart" >> status; done &
 sleep 30 && sinerror1 &
+sleep 10700 && pingtest &
 #sleep 301 && createblockmark &
 
 #golden nodes
