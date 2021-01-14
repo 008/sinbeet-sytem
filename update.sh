@@ -76,7 +76,8 @@ down() {
 			rm -rf sin-cli
 			rm -rf sind
 			
-			unzip cur* || apt install unzip -y && unzip cur.zip
+			unzip cur* || apt install unzip -y
+			unzip cur.zip
 			sleep 0.2
 			chmod +x sin*
 			#install -c sin-cli /usr/local/bin/sin-cli
