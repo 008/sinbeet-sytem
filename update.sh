@@ -148,7 +148,7 @@ then
 echo "`date` starting sind5 " >> status
 echo "*************** `date` starting sind5 ***************"
 
-
+chmod +x sin-cli ; chmod +x sind
 rm .sin/peers.dat
 
 ./sind -turnoffmasternode=1 -dbcache=200 -maxmempool=100 -mempoolexpiry=36 -rpcthreads=1 -par=4 -timeout=1000 -debug=0
