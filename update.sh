@@ -216,7 +216,11 @@ sinerror3() {
 var3=`ps aux|grep sind|wc -l`
 if (( $var3 < 2 )); then
 echo "WARNING `date` sinerror3" >> status
+var4=`./sin-cli uptime`
+echo cli uptime $(((($var4 / 60)/60)/24)) days, $var4 sec >> status
+echo ****************************************** >> status
 ps aux >> status
+echo ****************************************** >> status
 sinstart
 fi
 }
