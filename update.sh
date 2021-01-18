@@ -456,6 +456,10 @@ sinupdate() {
 
 
 #Binding RPC on address 0.0.0.0 port 20981 failed
+#socket recv error Connection reset by peer
+#Timeout downloading block ed739d151e3a69845eceb75142f3ff6bd866db3bca4db8e2e875b8d079afa543 from peer=18759, disconnecting
+#ContextualCheckBlockHeader - resync? restart?
+#Cannot try to connect TopNode score     cat .sin/debug.log |grep -i "Cannot try"
 
 
 ########################################################################start
