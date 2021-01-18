@@ -309,6 +309,7 @@ fi
 #./sin-cli stop && bash update.sh
 #fi
 
+########################### bootstrap
 
 	if [ -f ".sin.tar.gz" ]; then
 	
@@ -323,12 +324,22 @@ fi
 	cp sin.conf .sin/sin.conf
 	rm .sin.tar.gz
 	
+#	elif [ -f "bootstrap.zip" ]; then
+	
+#	mv .sin/wallet.dat wallet.dat
+#	cp .sin/sin.conf sin.conf
+#	rm .sin/* -rf
+#	mv 
+#	mv wallet.dat .sin/wallet.dat
+#	cp sin.conf .sin/sin.conf
+#	rm .sin.tar.gz
+	
 		else
 			echo "no .sin.tar.gz" >> status
 			echo "no .sin.tar.gz" >> .sin/debug.log
 			echo "no .sin.tar.gz"
 		fi
-
+###########################
 
 case $1 in
      clean)      
