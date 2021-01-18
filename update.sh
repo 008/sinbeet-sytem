@@ -248,7 +248,6 @@ ping6 google.com -c1 |grep packets >> status
 
 
 createblockmark() {
-apt install curl -y
 
   if [ -f "currentnodeblock" ]; then
         echo "************** currentnodeblock exist **************"
@@ -266,19 +265,20 @@ echo $block > currentnodeblock
 }
 
 sinerror4() {
-IP=`cat /root/.sin/sin.conf|grep externalip=|cut -c 12-72`
+#IP=`cat /root/.sin/sin.conf|grep externalip=|cut -c 12-72`
+
 currentnodeblock=`./sin-cli infinitynode getrawblockcount`
 IFS= read -r savednodeblock < currentnodeblock;
 
 if (( $savednodeblock < $currentnodeblock )); then
     echo "blocks OK $savednodeblock / $currentnodeblock"
-	echo "`date` blocks OK" >> status
+	echo "`date` blocks $currentnodeblock OK" >> status
 	echo $currentnodeblock > currentnodeblock
 else
 #curl -s -X POST XXXXXXXXXXXXXXXXXX -d chat_id=396043531 -d text="`date` $currentnodeblock $IP"
     
 	echo "$savednodeblock $currentnodeblock ***************"
-    echo "blocks error FAIL $currentnodeblock"
+	echo "blocks error FAIL $currentnodeblock"
 	echo "`date` blocks error FAIL $currentnodeblock" >> status
 fi
 }
@@ -470,13 +470,13 @@ echo "`date` start seq done" >> .sin/debug.log
 
 ############cron
 while sleep 480; do sinerror3; done & #daemon running check
-#while sleep 901; do sinerror4; done & #blockcount check (and uncomment createblockmark down below)
+while sleep 3601; do sinerror4; done & #blockcount check (createblockmark fun dependent - here down below)
 #while sleep 174; do sinerror2; done & #AcceptBlockHeader
 while sleep 10800; do notcapablecheck; done &
 #while sleep 86399; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log;echo "*************** `date` node restart" >> status; done &
 sleep 30 && sinerror1 &
 sleep 10700 && pingtest &
-#sleep 301 && createblockmark &
+sleep 301 && createblockmark &
 
 #golden nodes
 #sleep 56;./sin-cli addnode seed1.sinovate.org add &
