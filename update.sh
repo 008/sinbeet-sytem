@@ -18,6 +18,18 @@ declare -i curnodever
 
 
 #Ubu18 is all we need.
+	
+
+#com helpers
+if [ ! -f info.sh ]; then 
+echo "./sin-cli infinitynode mypeerinfo" > info.sh
+echo "./sin-cli getbalance"  >> info.sh
+echo "./sin-cli getblockcount" >> info.sh
+echo "date" >> info.sh
+chmod +x info.sh
+fi
+
+
 
 
 
