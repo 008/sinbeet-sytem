@@ -201,6 +201,7 @@ var2=`tail .sin/debug.log -n500|grep "please fix it manually"`
 if [ -z "$var2" ]
  then
 echo "`date` NO error1"
+echo "`date` NO error1" >> .sin/debug.log 
  else
 echo "WARNING `date` sinerror1" >> status
 echo "`date` file error - please fix it manually" >> status
@@ -216,6 +217,7 @@ var2=`tail .sin/debug.log -n500|grep "is marked invalid"`
 if [ -z "$var2" ]
  then
 echo "`date` NO error2"
+echo "`date` NO error2" >> .sin/debug.log 
  else
  echo "WARNING `date` sinerror2" >> status
 echo "`date` AcceptBlockHeader" >> status
@@ -228,6 +230,7 @@ sinerror3() {
 var3=`ps aux|grep sind|wc -l`
 if (( $var3 < 2 )); then
 echo "WARNING `date` sinerror3" >> status
+echo "`date` WARNING error3" >> .sin/debug.log 
 var4=`./sin-cli uptime`
 echo cli uptime $(((($var4 / 60)/60)/24)) days, $var4 sec >> status
 echo ****************************************** >> status
@@ -292,8 +295,25 @@ else
 	echo "$savednodeblock $currentnodeblock ***************"
 	echo "blocks error FAIL $currentnodeblock"
 	echo "`date` blocks error FAIL $currentnodeblock" >> status
+	echo "`date` error4" >> .sin/debug.log 
 fi
 }
+
+
+
+sinerror5() {
+if tail .sin/debug.log -n500 |grep -q 'Timeout downloading block'
+then
+echo "`date` WARNING sinerror5 Timeout downloading block" >> status
+echo "`date` error5" >> .sin/debug.log 
+sinstop
+sinstart
+else
+echo "`date` NO error5" >> .sin/debug.log 
+fi
+}
+
+
 
 
 sinlog(){
@@ -470,7 +490,8 @@ sinupdate() {
 #Binding RPC on address 0.0.0.0 port 20981 failed
 #socket recv error Connection reset by peer
 #Timeout downloading block ed739d151e3a69845eceb75142f3ff6bd866db3bca4db8e2e875b8d079afa543 from peer=18759, disconnecting
-#ContextualCheckBlockHeader - resync? restart?
+#ERROR: Requesting unset send - OK
+#ContextualCheckBlockHeader - resync? restart? OK ?
 #Cannot try to connect TopNode score     cat .sin/debug.log |grep -i "Cannot try"
 
 
