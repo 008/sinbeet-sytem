@@ -231,9 +231,9 @@ notcapablecheck() {
 vartest=`./sin-cli infinitynode mypeerinfo|grep "Not capable"`
 if [ -z "$vartest" ]
  then
-echo "node status check - ENABLED" >> status
+echo "`date` node status check - ENABLED" >> status
  else
- echo "Not capable, check FAIL" >> status
+ echo "`date` Not capable, check FAIL" >> status
  sinstop
  sleep $((RANDOM % 30))
  sinstart
@@ -427,8 +427,8 @@ sinupdate() {
 			
 			
 		    if [ "$curnodever" -eq "$newnodever" ]; then
-			echo "`date` update check: not new" >> status
-			echo "*************** `date` update check: not new" >> .sin/debug.log
+			echo "`date` update check: no new" >> status
+			echo "*************** `date` update check: no new" >> .sin/debug.log
 			else
 			mv .sin/new .sin/cur
 			down
@@ -473,13 +473,13 @@ echo "`date` start seq done" >> status
 echo "`date` start seq done" >> .sin/debug.log
 
 ############cron
-while sleep 480; do sinerror3; done & #daemon running check
+while sleep 481; do sinerror3; done & #daemon running check
 while sleep 3601; do sinerror4; done & #blockcount check (createblockmark fun dependent - here down below)
 #while sleep 174; do sinerror2; done & #AcceptBlockHeader
-while sleep 10800; do notcapablecheck; done &
+while sleep 10801; do notcapablecheck; done &
 #while sleep 86399; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log;echo "*************** `date` node restart" >> status; done &
-sleep 30 && sinerror1 &
-sleep 10700 && pingtest &
+sleep 31 && sinerror1 &
+sleep 10701 && pingtest &
 sleep 301 && createblockmark &
 
 #golden nodes
