@@ -508,6 +508,7 @@ echo "`date` start seq done" >> .sin/debug.log
 ############cron
 while sleep 481; do sinerror3; done & #daemon running check
 while sleep 3601; do sinerror4; done & #blockcount check (createblockmark fun dependent - here down below)
+while sleep 250; do sinerror5; done &
 #while sleep 174; do sinerror2; done & #AcceptBlockHeader
 while sleep 10801; do notcapablecheck; done &
 #while sleep 86399; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log;echo "*************** `date` node restart" >> status; done &
