@@ -264,16 +264,16 @@ ping6 google.com -c1 |grep packets >> status
 
 createblockmark() {
 
-  if [ -f "currentnodeblock" ]; then
-        echo "************** currentnodeblock exist **************"
-        echo "************** currentnodeblock exist **************" >> status
+  if [ -f "savednodeblock" ]; then
+        echo "************** savednodeblock exist **************"
+        echo "************** savednodeblock exist **************" >> status
         else
 
 block=`./sin-cli infinitynode getrawblockcount`
-echo $block > currentnodeblock
+echo $block > savednodeblock
 
-        echo "*********** rec currentnodeblock is $block ***********"
-        echo "*********** rec currentnodeblock is $block ***********" >> status
+        echo "*********** rec savednodeblock is $block ***********"
+        echo "*********** rec savednodeblock is $block ***********" >> status
         fi
 
 
@@ -283,26 +283,27 @@ sinerror4() {
 #IP=`cat /root/.sin/sin.conf|grep externalip=|cut -c 12-72`
 
 currentnodeblock=`./sin-cli infinitynode getrawblockcount`
-IFS= read -r savednodeblock < currentnodeblock;
+IFS= read -r savednodeblock < savednodeblock;
 
 if echo "$savednodeblock" | grep -qE '^[0-9]+$'; then
-    echo "Valid number."
+    #echo "Valid number"
 
 	if (( $savednodeblock < $currentnodeblock )); then
     echo "blocks OK $savednodeblock / $currentnodeblock"
 	echo "`date` blocks $currentnodeblock OK" >> status
-	echo $currentnodeblock > currentnodeblock
+	echo $currentnodeblock > savednodeblock
 	else
 	#curl -s -X POST XXXXXXXXXXXXXXXXXX -d chat_id=396043531 -d text="`date` $currentnodeblock $IP"
     echo "$savednodeblock $currentnodeblock ***************"
 	echo "blocks error FAIL $currentnodeblock"
-	echo "`date` blocks error FAIL $currentnodeblock" >> status
+	echo "`date` blocks error FAIL $savednodeblock $currentnodeblock" >> status
 	echo "`date` error4" >> .sin/debug.log 
 	fi
 
 else
-    echo "Error: not a number."
-	echo $currentnodeblock > currentnodeblock #re-made if error
+    #echo "Error: cur blocks value not a number"
+	echo $currentnodeblock > savednodeblock #re-made if error
+	echo "`date` savednodeblock value fail - recreate" >> status
 fi
 
 
