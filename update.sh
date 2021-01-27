@@ -285,18 +285,31 @@ sinerror4() {
 currentnodeblock=`./sin-cli infinitynode getrawblockcount`
 IFS= read -r savednodeblock < currentnodeblock;
 
-if (( $savednodeblock < $currentnodeblock )); then
+if echo "$savednodeblock" | grep -qE '^[0-9]+$'; then
+    echo "Valid number."
+
+	if (( $savednodeblock < $currentnodeblock )); then
     echo "blocks OK $savednodeblock / $currentnodeblock"
 	echo "`date` blocks $currentnodeblock OK" >> status
 	echo $currentnodeblock > currentnodeblock
-else
-#curl -s -X POST XXXXXXXXXXXXXXXXXX -d chat_id=396043531 -d text="`date` $currentnodeblock $IP"
-    
-	echo "$savednodeblock $currentnodeblock ***************"
+	else
+	#curl -s -X POST XXXXXXXXXXXXXXXXXX -d chat_id=396043531 -d text="`date` $currentnodeblock $IP"
+    echo "$savednodeblock $currentnodeblock ***************"
 	echo "blocks error FAIL $currentnodeblock"
 	echo "`date` blocks error FAIL $currentnodeblock" >> status
 	echo "`date` error4" >> .sin/debug.log 
+	fi
+
+else
+    echo "Error: not a number."
+	echo $currentnodeblock > currentnodeblock #re-made if error
 fi
+
+
+
+
+
+
 }
 
 
