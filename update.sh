@@ -305,12 +305,6 @@ else
 	echo $currentnodeblock > savednodeblock #re-made if error
 	echo "`date` savednodeblock value fail - recreate" >> status
 fi
-
-
-
-
-
-
 }
 
 
