@@ -96,8 +96,9 @@ down() {
 			#install -c sind /usr/local/bin/sind
 			#service sind start || sind
 			#rm -rf .sin/*.dat
-			echo "`date` updating node DONE new ver $newnodever" >> .sin/debug.log
-			echo "*************** `date` updating node DONE new ver $newnodever" >> status
+			ver=`./sind -version|grep Daemon| cut -c 20-`
+			echo "`date` updating node DONE new ver $newnodever $ver" >> .sin/debug.log
+			echo "*************** `date` updating node DONE new ver $newnodever $ver" >> status
 }
 
 
