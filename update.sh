@@ -155,10 +155,11 @@ echo "found .conf" >> status
 echo "found .conf"
 #start sind only if .conf exist
 
+ver=`./sind -version|grep Daemon| cut -c 20-`
 if [ -a /root/.sin/sin.conf ]
 then 
-echo "`date` starting sind5 " >> status
-echo "*************** `date` starting sind5 ***************"
+echo "`date` starting $ver " >> status
+echo "*************** `date` starting $ver ***************"
 
 chmod +x sin-cli ; chmod +x sind
 rm .sin/peers.dat
@@ -173,7 +174,7 @@ rm .sin/peers.dat
 #-disablewallet node wont start with this
 #./sind -rpcthreads=8 -logips -par=4 -timeout=500
 
-echo "`date` starting sind5 done" >> status
+echo "`date` starting $ver done" >> status
 
 else
   echo "`date` dont have .conf1" >> status
