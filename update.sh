@@ -31,7 +31,7 @@ chmod +x info.sh
 fi
 
 if [ ! -f ver.sh ]; then 
-echo `./sind -version|grep Daemon| cut -c 20-` >> ver.sh
+echo "./sind -version|grep Daemon| cut -c 20-" >> ver.sh
 chmod +x ver.sh
 fi
 
