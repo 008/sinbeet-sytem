@@ -37,7 +37,7 @@ fi
 
 
 if [ ! -f safereboot.sh ]; then 
-echo "update.sh safereboot" >> safereboot.sh
+echo "bash update.sh safereboot" >> safereboot.sh
 chmod +x safereboot.sh
 fi
 
