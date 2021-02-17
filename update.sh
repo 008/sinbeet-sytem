@@ -404,6 +404,7 @@ sinclean
      safereboot)      
 sinstop
 reboot
+exit
 ;;
      nowait)      
           nowait=1
