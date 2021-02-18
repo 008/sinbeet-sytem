@@ -17,14 +17,14 @@ declare -i curnodever
 #fi
 
 
-alias st="cat status"
-alias ht="cat status"
-alias info="bash info.sh"
-alias re="wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz && reboot"
-alias st="cat status"
-alias t1="tail .sin/debug.log -f"
-alias t2="tail .sin/debug.log -n2000"
-alias reboot2="bash safereboot.sh "
+alias st="cat status" > .bashrc 
+alias ht="cat status" >> .bashrc 
+alias info="bash info.sh" >> .bashrc 
+alias re="wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz && reboot" >> .bashrc 
+alias st="cat status" >> .bashrc 
+alias t1="tail .sin/debug.log -f" >> .bashrc 
+alias t2="tail .sin/debug.log -n2000" >> .bashrc 
+alias reboot2="bash safereboot.sh " >> .bashrc
 
 #memos
 #Ubu18 is all we need. With U18 no additional libs install needed.
