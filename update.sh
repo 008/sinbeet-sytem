@@ -18,10 +18,9 @@ declare -i curnodever
 
 
 echo alias st=\"cat status\" > .bashrc 
-echo alias ht=\"cat status\" >> .bashrc 
-echo alias info=\"bash info.sh\" >> .bashrc 
+echo alias ht=\"htop\" >> .bashrc 
+echo alias z=\"bash info.sh\" >> .bashrc 
 echo alias re=\"wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz && reboot\" >> .bashrc 
-echo alias st=\"cat status\" >> .bashrc 
 echo alias t1=\"tail .sin/debug.log -f\" >> .bashrc 
 echo alias t2=\"tail .sin/debug.log -n2000\" >> .bashrc 
 echo alias reboot2=\"bash safereboot.sh\" >> .bashrc
