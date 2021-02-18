@@ -17,7 +17,19 @@ declare -i curnodever
 #fi
 
 
-#Ubu18 is all we need.
+alias st="cat status"
+alias ht="cat status"
+alias info="bash info.sh"
+alias re="wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz && reboot"
+alias st="cat status"
+alias t1="tail .sin/debug.log -f"
+alias t2="tail .sin/debug.log -n2000"
+alias reboot2="bash safereboot.sh "
+
+#memos
+#Ubu18 is all we need. With U18 no additional libs install needed.
+#valgrind --leak-check=full \--show-leak-kinds=all \--track-origins=yes \--verbose \--log-file=valgrind-out.txt \./sind -daemon
+#gdb --args ./sind -daemon
 	
 
 #com helpers
