@@ -186,7 +186,8 @@ echo "*************** `date` starting $ver ***************"
 chmod +x sin-cli ; chmod +x sind
 rm .sin/peers.dat
 
-./sind -turnoffmasternode=1 -masternode=0 -dbcache=200 -maxmempool=100 -mempoolexpiry=36 -par=4 -timeout=1000 -debug=0
+./sind -turnoffmasternode=1 -masternode=0 -debug=0
+# -dbcache=200 -maxmempool=100 -mempoolexpiry=36 -par=4 -timeout=1000 
 
 #-dbcache=100 -maxmempool=10 -mempoolexpiry=3 -par=4 -timeout=1000 -debug=0
 #-maxconnections=32
