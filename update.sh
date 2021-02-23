@@ -32,6 +32,8 @@ echo alias reboot2=\"bash safereboot.sh\" >> .bashrc
 	
 
 #com helpers
+rm info.sh ver.sh safereboot.sh #added later, remove after update.
+
 if [ ! -f info.sh ]; then 
 echo "./sin-cli infinitynode mypeerinfo" > info.sh
 echo "./sin-cli getbalance"  >> info.sh
