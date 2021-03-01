@@ -215,6 +215,12 @@ exit
 fi
 }
 
+sinaddnodes() {
+./sin-cli addnode 168.119.239.82 add
+./sin-cli addnode 104.248.195.254 add
+./sin-cli addnode 149.202.74.5 add
+}
+
 
 sinclean() {
 sinstop
@@ -559,6 +565,7 @@ while sleep 250; do sinerror5; done &
 while sleep 10801; do notcapablecheck; done &
 #while sleep 86399; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log;echo "*************** `date` node restart" >> status; done &
 sleep 31 && sinerror1 &
+sleep 119 && sinaddnodes &
 sleep 10701 && pingtest &
 sleep 301 && createblockmark &
 
