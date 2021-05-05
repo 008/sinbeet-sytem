@@ -69,10 +69,10 @@ if [ -z "$vartest" ]
 echo "not testnet" >> status
  else
  #rm update.sh
- echo "********** testnet **********" >> status
- rm testnet.sh
- wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet.sh
- bash testnet.sh
+ echo "********** testnet2 **********" >> status
+ rm testnet2.sh
+ wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet2.sh
+ bash testnet2.sh
  exit
 fi
 
@@ -474,6 +474,23 @@ exit
 		echo "removed"
 		exit
           ;;
+	testnet)
+	mkdir .bitcoin
+	touch .bitcoin/bitcoin.conf
+	
+	cat <<EOF > .bitcoin/bitcoin.conf
+testnet=1
+debug=1
+[test]
+addnode=51.195.174.64
+addnode=51.195.174.65
+addnode=51.195.174.66
+addnode=51.195.174.67
+EOF
+	
+	exit
+	;;
+		  
 esac
 echo "no param (nowait, removedat, down, pre200, prepnode)"
 
