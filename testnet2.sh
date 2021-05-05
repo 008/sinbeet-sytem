@@ -50,6 +50,7 @@ if [ -f .bitcoin/bitcoin.conf ]; then
 
 echo "`date` starting bitcoin " >> status
 echo "*************** `date` starting bitcoin ***************"
+chmod +x bitcoin*
 
 ./bitcoind -daemon --fallbackfee=0.25
 
