@@ -495,6 +495,9 @@ exit
 	cat <<EOF > .bitcoin/bitcoin.conf
 testnet=1
 debug=1
+#infinitynode=1
+#infinitynodeprivkey=
+#externalip=
 [test]
 addnode=51.195.174.64
 addnode=51.195.174.65
