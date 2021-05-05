@@ -69,6 +69,20 @@ if [ -z "$vartest" ]
 echo "not testnet" >> status
  else
  #rm update.sh
+ echo "********** testnet **********" >> status
+ rm testnet.sh
+ wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet.sh
+ bash testnet2.sh
+ exit
+fi
+
+
+vartest=`cat .bitcoin/bitcoin.conf|grep testnet=1`
+if [ -z "$vartest" ]
+ then
+echo "not testnet" >> status
+ else
+ #rm update.sh
  echo "********** testnet2 **********" >> status
  rm testnet2.sh
  wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet2.sh
