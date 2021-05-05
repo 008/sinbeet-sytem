@@ -487,7 +487,7 @@ addnode=51.195.174.65
 addnode=51.195.174.66
 addnode=51.195.174.67
 EOF
-	
+	bash testnet2.sh
 	exit
 	;;
 		  

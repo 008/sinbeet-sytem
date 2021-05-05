@@ -51,7 +51,7 @@ if [ -f .bitcoin/bitcoin.conf ]; then
 echo "`date` starting bitcoin " >> status
 echo "*************** `date` starting bitcoin ***************"
 
-./bitcoind
+./bitcoind -daemon --fallbackfee=0.25
 
  #-dbcache=4 -maxmempool=5 -mempoolexpiry=1 -whitelist=192.168.0.1/24
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
