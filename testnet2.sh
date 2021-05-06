@@ -256,7 +256,7 @@ echo "`date` start seq done" >> status
 
 
 
-    if [ -f ".sin/cur" ]; then 
+    if [ -f ".bitcoin/cur" ]; then 
 	echo "************** cur exist **************"
 	
 	if [ -z "$nowait" ]; then
@@ -264,11 +264,11 @@ echo "`date` start seq done" >> status
 	sleep $((RANDOM % 60))
 	fi
 	
-	    curnodever=$(cat .sin/cur)
-		wget -6 -O .sin/new http://setdown.sinovate.io/sinbeet-sytem/testver
+	    curnodever=$(cat .bitcoin/cur)
+		wget -6 -O .bitcoin/new http://setdown.sinovate.io/sinbeet-sytem/testver
 		
-		if [ -f ".sin/new" ]; then 
-		newnodever=$(cat .sin/new)
+		if [ -f ".bitcoin/new" ]; then 
+		newnodever=$(cat .bitcoin/new)
 		else
 			echo "`date` download fail" >> status
 			echo "`date` download fail" >> .bitcoin/testnet3/debug.log
@@ -289,13 +289,13 @@ echo "`date` start seq done" >> status
 			echo "`date` update check: not new" >> status
 			echo "*************** `date` update check: not new" >> .bitcoin/testnet3/debug.log
 			else
-			mv .sin/new .sin/cur
+			mv .bitcoin/new .bitcoin/cur
 			down
 			fi
 	exit
     else
 	echo "************** cur NOT exist **************"
-	wget -6 -O .sin/cur http://setdown.sinovate.io/sinbeet-sytem/testver
+	wget -6 -O .bitcoin/cur http://setdown.sinovate.io/sinbeet-sytem/testver
 	down
 	#crontab -l | { cat; echo "0 */3 * * * `pwd`/update.sh"; } | crontab -
     fi
