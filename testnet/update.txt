@@ -1,5 +1,7 @@
 rm bitco*
 rm sinov*
+rm daemon*   
+rm sinovate*.tar.gz
 wget $1
 tar -xvf sinovate.tar.gz||unzip daemon.zip
 chmod +x bit*
