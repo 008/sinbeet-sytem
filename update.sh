@@ -72,7 +72,7 @@ echo "not testnet" >> status
  echo "********** testnet **********" >> status
  rm testnet.sh
  wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet.sh
- bash testnet2.sh
+ bash testnet.sh
  exit
 fi
 
@@ -504,7 +504,10 @@ addnode=51.195.174.65
 addnode=51.195.174.66
 addnode=51.195.174.67
 EOF
-	bash testnet2.sh
+	#wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet2.sh
+	#sinstop
+	#bash testnet2.sh
+	reboot
 	exit
 	;;
 		  
