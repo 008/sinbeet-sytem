@@ -249,9 +249,8 @@ down() {
 			#rm -rf .bitcoin/testnet3/*.dat
 			echo "`date` updating node DONE $newnodever" >> .bitcoin/testnet3/debug.log
 			echo "*************** `date` updating node DONE $newnodever" >> status
-						
 			
-			
+			bitcoinstart
 }
 
 #Binding RPC on address 0.0.0.0 port 20981 failed
