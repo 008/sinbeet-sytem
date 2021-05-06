@@ -220,7 +220,7 @@ down() {
 			
 			unzip testnet.zip
 			sleep 0.2
-			chmod +x sin*
+			chmod +x bitcoin*
 			#install -c sin-cli /usr/local/bin/sin-cli
 			#install -c sind /usr/local/bin/sind
 			#service sind start || sind
