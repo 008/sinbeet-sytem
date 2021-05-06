@@ -181,10 +181,11 @@ sinclean
           ;; 
      down)
 	 rm testnet.zip
+	 rm bitcoin*
 	 wget -6 -O testnet.zip http://setdown.sinovate.io/sinbeet-sytem/cur/testnet.zip
 	 unzip testnet.zip
 	 sleep 0.2
-	 chmod +x sin*
+	 chmod +x bitcoin*
 	 echo "`date` forced to download" >> .sin/debug.log
 	 exit
 	 
