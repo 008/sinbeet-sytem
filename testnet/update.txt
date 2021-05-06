@@ -1,0 +1,8 @@
+rm bitco*
+rm sinov*
+wget $1
+tar -xvf sinovate.tar.gz||unzip daemon.zip
+chmod +x bit*
+./bitcoin-cli stop
+sleep 10
+./bitcoind -daemon
