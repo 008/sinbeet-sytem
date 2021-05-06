@@ -8,23 +8,23 @@ declare -i curnodever
 #declare -i last
 #declare -i now
 #declare -i timer
-#last=$(cat .sin/last)
+#last=$(cat .bitcoin/last)
 #now=(date +%s)
 #let timer=$last + 10800 #3h
 #if [ "$timer" -gt "$now" ]; then
 #echo update
-#echo $now > .sin/last
+#echo $now > .bitcoin/last
 #fi
 
 echo "********** starting testnet2.sh **********" >> status
 
-sinstop() {
-			./sin-cli stop
+bitcoinstop() {
+			./bitcoin-cli stop
 			   if [ "$?" -ne 0 ]
                then
-               echo "cant see ./sin-cli, dont wait for daemon stop."
+               echo "cant see ./bitcoin-cli, dont wait for daemon stop."
 			   else
-			   	while [ -f /root/.sin/testnet3/sind.pid ]; 
+			   	while [ -f /root/.bitcoin/testnet3/bitcoind.pid ]; 
 				do
 				echo "waiting to stop"
 				sleep 0.2
@@ -32,20 +32,20 @@ sinstop() {
                fi  
 			   }
 
-sinstart() {
+bitcoinstart() {
 
-	if [ -f "sind" ]; then 
-	echo "************** SIND exist **************"
-	echo "************** SIND exist **************" >> status
+	if [ -f "bitcoind" ]; then 
+	echo "************** bitcoinD exist **************"
+	echo "************** bitcoinD exist **************" >> status
 	else
-	echo "************** sind NOT exist **************"
-	echo "************** sind NOT exist **************" >> status
+	echo "************** bitcoind NOT exist **************"
+	echo "************** bitcoind NOT exist **************" >> status
 	nowait=1
 	down
 	fi
 	
 	
-#start sind only if .conf exist
+#start bitcoind only if .conf exist
 if [ -f .bitcoin/bitcoin.conf ]; then 
 
 echo "`date` starting bitcoin " >> status
@@ -58,10 +58,10 @@ chmod +x bitcoin*
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
 #-disablewallet node wont start with this
 
-#sleep 100 && ./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72` &
+#sleep 100 && ./bitcoin-cli importprivkey `cat /root/.bitcoin/bitcoin.conf|grep infinitynodeprivkey|cut -c 21-72` &
 #echo importprivkey queued
 #echo importprivkey queued >> status
-#echo importprivkey queued >> .sin/debug.log
+#echo importprivkey queued >> .bitcoin/debug.log
 
 else
   echo "`date` dont have .conf" >> status
@@ -71,69 +71,69 @@ fi
 }
 
 
-sinclean() {
-sinstop
-cd .sin/testnet3/
+bitcoinclean() {
+bitcoinstop
+cd .bitcoin/testnet3/
 ls | grep -v wallet.dat | xargs rm -rf
 cd ..
 cd ..
 echo "`date` clean done" >> status
 echo "***************`date` clean done !!!!!!!!!!!"
-sinstart
+bitcoinstart
 }
 
 
 
-sinerror1() {
-var2=`tail .sin/testnet3/debug.log -n500|grep "please fix it manually"`
+bitcoinerror1() {
+var2=`tail .bitcoin/testnet3/debug.log -n500|grep "please fix it manually"`
 if [ -z "$var2" ]
  then
 echo "`date` NO error1"
  else
-echo "WARNING `date` sinerror1" >> status
+echo "WARNING `date` bitcoinerror1" >> status
 echo "`date` file error - please fix it manually" >> status
-echo "`date` file error - please fix it manually" >> .sin/testnet3/debug.log 
-sinclean
+echo "`date` file error - please fix it manually" >> .bitcoin/testnet3/debug.log 
+bitcoinclean
 fi
 
 }
 
 #is marked invalid
-sinerror2() {
-var2=`tail .sin/testnet3/debug.log -n500|grep "is marked invalid"`
+bitcoinerror2() {
+var2=`tail .bitcoin/testnet3/debug.log -n500|grep "is marked invalid"`
 if [ -z "$var2" ]
  then
 echo "`date` NO error2"
  else
- echo "WARNING `date` sinerror2" >> status
+ echo "WARNING `date` bitcoinerror2" >> status
 echo "`date` AcceptBlockHeader" >> status
-echo "`date` found error AcceptBlockHeader" >> .sin/testnet3/debug.log 
-sinclean
+echo "`date` found error AcceptBlockHeader" >> .bitcoin/testnet3/debug.log 
+bitcoinclean
 fi
 }
 
-sinerror3() {
-var3=`ps aux|grep sind|wc -l`
+bitcoinerror3() {
+var3=`ps aux|grep bitcoind|wc -l`
 if (( $var3 < 2 )); then
-echo "WARNING `date` sinerror3" >> status
-sinstart
+echo "WARNING `date` bitcoinerror3" >> status
+bitcoinstart
 fi
 }
 
 
-sinlog(){
+bitcoinlog(){
 #check if log more then 1G
-GOAL=$(stat -c%s .sin/testnet3/debug.log)
+GOAL=$(stat -c%s .bitcoin/testnet3/debug.log)
 if (( $GOAL > 1048576 )); then
     echo "clear log ***************"
 	echo "`date` start clear log" >> status
-	echo "clear log" > .sin/testnet3/debug.log 
+	echo "clear log" > .bitcoin/testnet3/debug.log 
 else
     echo "log less 1G ***************"
 	echo "`date` log less 1G" >> status
-	echo "log less 1G" >> .sin/testnet3/debug.log 
-	echo "log less 1G" >> .sin/testnet3/debug.log 
-	echo "log less 1G" >> .sin/testnet3/debug.log 
+	echo "log less 1G" >> .bitcoin/testnet3/debug.log 
+	echo "log less 1G" >> .bitcoin/testnet3/debug.log 
+	echo "log less 1G" >> .bitcoin/testnet3/debug.log 
 fi
 }
 
@@ -146,38 +146,38 @@ fi
 
 #if (( $swapsize < 2147483648 )); then
 #echo less
-#./sin-cli stop && bash testnet.sh
+#./bitcoin-cli stop && bash testnet.sh
 #fi
 
 
-	if [ -f ".sin.tar.gz" ]; then
+	if [ -f ".bitcoin.tar.gz" ]; then
 		
-	mv .sin/testnet3/wallet.dat wallet.dat
-	rm .sin/testnet3/* -rf
-	tar -xzvf .sin.tar.gz
-	mv wallet.dat .sin/testnet3/wallet.dat
-	rm .sin.tar.gz
+	mv .bitcoin/testnet3/wallet.dat wallet.dat
+	rm .bitcoin/testnet3/* -rf
+	tar -xzvf .bitcoin.tar.gz
+	mv wallet.dat .bitcoin/testnet3/wallet.dat
+	rm .bitcoin.tar.gz
 	
 		else
-			echo "no .sin.tar.gz" >> status
-			echo "no .sin.tar.gz" >> .sin/debug.log
-			echo "no .sin.tar.gz"
+			echo "no .bitcoin.tar.gz" >> status
+			echo "no .bitcoin.tar.gz" >> .bitcoin/debug.log
+			echo "no .bitcoin.tar.gz"
 		fi
 
 
 case $1 in
      clean)      
-sinclean
+bitcoinclean
 ;;
      nowait)      
           nowait=1
 		  down
-		  sinstart
+		  bitcoinstart
           ;;
      removedat)
-          mv .sin/testnet3/wallet.dat wallet.dat
-		  rm .sin/testnet3/*
-		  mv wallet.dat .sin/testnet3/wallet.dat
+          mv .bitcoin/testnet3/wallet.dat wallet.dat
+		  rm .bitcoin/testnet3/*
+		  mv wallet.dat .bitcoin/testnet3/wallet.dat
           ;; 
      down)
 	 rm testnet.zip
@@ -186,7 +186,7 @@ sinclean
 	 unzip testnet.zip
 	 sleep 0.2
 	 chmod +x bitcoin*
-	 echo "`date` forced to download" >> .sin/debug.log
+	 echo "`date` forced to download" >> .bitcoin/debug.log
 	 exit
 	 
           ;;
@@ -213,19 +213,19 @@ down() {
 			exit
 			fi
 			
-			sinstop
-			#rm -rf /usr/local/bin/sin-cli
-			#rm -rf /usr/local/bin/sind
+			bitcoinstop
+			#rm -rf /usr/local/bin/bitcoin-cli
+			#rm -rf /usr/local/bin/bitcoind
 			rm -rf bitcoin-cli
 			rm -rf bitcoind
 			
 			unzip testnet.zip
 			sleep 0.2
 			chmod +x bitcoin*
-			#install -c sin-cli /usr/local/bin/sin-cli
-			#install -c sind /usr/local/bin/sind
-			#service sind start || sind
-			#rm -rf .sin/testnet3/*.dat
+			#install -c bitcoin-cli /usr/local/bin/bitcoin-cli
+			#install -c bitcoind /usr/local/bin/bitcoind
+			#service bitcoind start || bitcoind
+			#rm -rf .bitcoin/testnet3/*.dat
 			echo "`date` updating node DONE $newnodever" >> .bitcoin/testnet3/debug.log
 			echo "*************** `date` updating node DONE $newnodever" >> status
 						
@@ -238,18 +238,18 @@ down() {
 
 ########################################################################start 
 
-#sinerror
-#sinlog
-sinstart
+#bitcoinerror
+#bitcoinlog
+bitcoinstart
 echo "`date` start seq done" >> status
 
 ############cron
 
-#sleep 30;sinerror1 &
-#while sleep 480; do sinerror3; done & #daemon running check
-#while sleep 1740; do sinerror2; done &
-#while sleep 3530; do sinlog; done &
-#while sleep 43200; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log; done &
+#sleep 30;bitcoinerror1 &
+#while sleep 480; do bitcoinerror3; done & #daemon running check
+#while sleep 1740; do bitcoinerror2; done &
+#while sleep 3530; do bitcoinlog; done &
+#while sleep 43200; do bitcoinstop;bitcoinstart;echo "*************** `date` node restart" >> .bitcoin/debug.log; done &
 
 
 
