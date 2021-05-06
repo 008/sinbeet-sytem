@@ -5,16 +5,37 @@
 
 declare -i newnodever
 declare -i curnodever
-#declare -i last
-#declare -i now
-#declare -i timer
-#last=$(cat .bitcoin/last)
-#now=(date +%s)
-#let timer=$last + 10800 #3h
-#if [ "$timer" -gt "$now" ]; then
-#echo update
-#echo $now > .bitcoin/last
-#fi
+
+
+echo "   " > .bashrc
+echo "   " >> .bashrc
+echo "   " >> .bashrc
+echo "   " >> .bashrc
+echo alias st=\"cat status\" >> .bashrc
+echo alias ht=\"htop\" >> .bashrc 
+echo alias z=\"bash info.sh\" >> .bashrc 
+echo alias re=\"wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz\" >> .bashrc 
+echo alias t1=\"tail .bitcoin/debug.log -f\" >> .bashrc 
+echo alias t2=\"tail .bitcoin/debug.log -n2000\" >> .bashrc 
+echo alias reboot2=\"bash safereboot.sh\" >> .bashrc
+echo "   " >> .bashrc
+echo "   " >> .bashrc
+echo "   " >> .bashrc
+echo "   " >> .bashrc
+echo "cat /root/.bashrc" >> .bashrc
+
+rm info.sh ver.sh safereboot.sh #added later, remove after update.
+
+if [ ! -f info.sh ]; then 
+echo "./bitcoin-cli infinitynode mypeerinfo" > info.sh
+echo "./bitcoin-cli getbalance"  >> info.sh
+echo "./bitcoin-cli getblockcount" >> info.sh
+echo "date" >> info.sh
+echo "./bitcoind -version|grep Daemon| cut -c 20-" >> info.sh
+chmod +x info.sh
+fi
+
+
 
 echo "********** starting testnet2.sh **********" >> status
 
