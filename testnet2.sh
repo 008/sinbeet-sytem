@@ -253,6 +253,7 @@ down() {
 
 nodeprepare(){
 sleep 20 && ./bitcoin-cli createwallet 01 &
+sleep 40 && ./bitcoin-cli loadwallet 01 &
 }
 #Binding RPC on address 0.0.0.0 port 20981 failed
 
