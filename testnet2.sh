@@ -79,7 +79,7 @@ chmod +x bitcoin*
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
 #-disablewallet node wont start with this
 
-#sleep 100 && ./bitcoin-cli importprivkey `cat /root/.bitcoin/bitcoin.conf|grep infinitynodeprivkey|cut -c 21-72` &
+sleep 100 && ./bitcoin-cli importprivkey `cat /root/.bitcoin/bitcoin.conf|grep infinitynodeprivkey|cut -c 21-72` &
 #echo importprivkey queued
 #echo importprivkey queued >> status
 #echo importprivkey queued >> .bitcoin/debug.log
@@ -253,6 +253,9 @@ down() {
 			bitcoinstart
 }
 
+nodeprepare(){
+sleep 20 && ./bitcoin-cli createwallet 01 &
+}
 #Binding RPC on address 0.0.0.0 port 20981 failed
 
 
@@ -261,6 +264,7 @@ down() {
 #bitcoinerror
 #bitcoinlog
 bitcoinstart
+nodeprepare
 echo "`date` start seq done" >> status
 
 ############cron
