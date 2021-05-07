@@ -12,6 +12,7 @@ echo "   " >> .bashrc
 echo "   " >> .bashrc
 echo "   " >> .bashrc
 echo alias st=\"cat status\" >> .bashrc
+echo alias conf=\"cat .bitcoin/bitcoin.conf \" >> .bashrc
 echo alias ht=\"htop\" >> .bashrc 
 echo alias z=\"bash info.sh\" >> .bashrc 
 echo alias re=\"wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz\" >> .bashrc 
