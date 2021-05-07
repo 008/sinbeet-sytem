@@ -26,14 +26,12 @@ echo "cat /root/.bashrc" >> .bashrc
 
 rm info.sh ver.sh safereboot.sh #added later, remove after update.
 
-if [ ! -f info.sh ]; then 
 echo "./bitcoin-cli infinitynode mypeerinfo" > info.sh
 echo "./bitcoin-cli getbalance"  >> info.sh
 echo "./bitcoin-cli getblockcount" >> info.sh
 echo "date" >> info.sh
 echo "./bitcoind -version|grep Daemon| cut -c 20-" >> info.sh
 chmod +x info.sh
-fi
 
 
 
