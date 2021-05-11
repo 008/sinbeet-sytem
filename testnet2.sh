@@ -3,6 +3,8 @@
 ##wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet.sh
 #rm testnet.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet.sh; bash testnet.sh
 
+echo "************** `date` testnet2.sh started **************" >> status
+
 declare -i newnodever
 declare -i curnodever
 
