@@ -51,7 +51,9 @@ bitcoinstop() {
 				echo "waiting to stop"
 				sleep 0.2
 				done
+				echo "************** daemon stop **************"
                fi  
+			   
 			   }
 
 bitcoinstart() {
