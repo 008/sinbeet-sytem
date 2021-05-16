@@ -249,6 +249,18 @@ echo "***************`date` clean done !!!!!!!!!!!"
 sinstart
 }
 
+sinautobootstrap() {
+sinstop
+echo "`date` sinautobootstrap started" >> status
+echo "***************`date` sinautobootstrap started"
+rm .sin.tar.gz
+wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz || exit && echo "`date` WGET FAIL" >> status
+echo "`date` sinautobootstrap done - rebooting in 1 min" >> status
+echo "***************`date` sinautobootstrap done - rebooting in 1 min"
+sleep 60
+reboot
+}
+
 sinerror1() {
 var2=`tail .sin/debug.log -n500|grep "please fix it manually"`
 if [ -z "$var2" ]
@@ -259,9 +271,10 @@ echo "`date` NO error1" >> .sin/debug.log
 echo "WARNING `date` sinerror1" >> status
 echo "`date` file error - please fix it manually" >> status
 echo "`date` file error - please fix it manually" >> .sin/debug.log 
-sinclean
+echo "`date` starting sinautobootstrap" >> status
+echo "`date` starting sinautobootstrap" >> .sin/debug.log 
+sinautobootstrap
 fi
-
 }
 
 #is marked invalid
