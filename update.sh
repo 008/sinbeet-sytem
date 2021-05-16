@@ -21,7 +21,7 @@ echo "   " > .bashrc
 echo "   " >> .bashrc
 echo "   " >> .bashrc
 echo "   " >> .bashrc
-echo alias st=\"cat status\" >> .bashrc
+echo alias st=\"tail -n300 status\" >> .bashrc
 echo alias ht=\"htop\" >> .bashrc 
 echo alias z=\"bash info.sh\" >> .bashrc 
 echo alias re=\"wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz\" >> .bashrc 
