@@ -255,11 +255,15 @@ sinstop
 echo "`date` sinautobootstrap started" >> status
 echo "***************`date` sinautobootstrap started"
 rm .sin.tar.gz
-wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz || exit && echo "`date` WGET FAIL" >> status
-echo "`date` sinautobootstrap done - rebooting in 1 min" >> status
-echo "***************`date` sinautobootstrap done - rebooting in 1 min"
-sleep 60
-reboot
+if wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz ; then
+	echo "`date` sinautobootstrap done - rebooting in 60 sec" >> status
+	echo "***************`date` sinautobootstrap done - rebooting in 60 sec"
+	sleep 60
+    reboot
+else
+    echo "`date` sinautobootstrap WGET FAIL" >> status
+	echo "***************`date` sinautobootstrap WGET FAIL"
+fi
 }
 
 sinerror1() {
