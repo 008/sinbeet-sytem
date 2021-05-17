@@ -6,6 +6,7 @@ echo "************** starting script **************" >> status
 
 declare -i newnodever
 declare -i curnodever
+declare -i loading
 #declare -i last
 #declare -i now
 #declare -i timer
@@ -250,6 +251,12 @@ echo "***************`date` clean done !!!!!!!!!!!"
 sinstart
 }
 
+sinloading () {
+#init message: Loading block index...
+#Rewinding blocks
+#tail -n5000 .sin/debug.log |grep "Loading block index"
+}
+
 sinautobootstrap() {
 sinstop
 echo "`date` sinautobootstrap started" >> status
@@ -265,6 +272,11 @@ if wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz ; then
 	sleep 300 && /sbin/reboot --force
 	fi
 }
+
+
+
+
+
 
 sinerror1() {
 var2=`tail .sin/debug.log -n500|grep "please fix it manually"`
@@ -282,6 +294,24 @@ echo "`date` starting sinautobootstrap" >> .sin/debug.log
 sinautobootstrap
 fi
 }
+
+sinerror11() {
+var11=`tail .sin/debug.log -n500|grep "Corrupted block database detected"`
+if [ -z "$var11" ]
+ then
+echo "`date` NO error11"
+echo "`date` NO error11" >> .sin/debug.log 
+echo "`date` NO error11" >> status
+ else
+echo "WARNING `date` sinerror11" >> status
+echo "`date` file error - Corrupted db" >> status
+echo "`date` file error - Corrupted db" >> .sin/debug.log 
+echo "`date` starting sinautobootstrap" >> status
+echo "`date` starting sinautobootstrap" >> .sin/debug.log 
+sinautobootstrap
+fi
+}
+
 
 #is marked invalid
 sinerror2() {
@@ -304,6 +334,7 @@ if (( $var3 < 2 )); then
 echo "WARNING `date` sinerror3 daemon offline?" >> status
 echo "`date` WARNING error3 daemon offline?" >> .sin/debug.log 
 sinerror1
+sinerror11
 var4=`./sin-cli uptime`
 echo cli uptime $(((($var4 / 60)/60)/24)) days, $var4 sec >> status
 echo ****************************************** >> status
