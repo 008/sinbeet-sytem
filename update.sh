@@ -604,7 +604,7 @@ sinupdate() {
 
 ########################################################################start
 
-sinerror1
+#sinerror1
 sinlog
 sinupdate
 sinstart
