@@ -335,6 +335,9 @@ echo ****************************************** >> status
 ps aux >> status
 echo ****************************************** >> status
 sinstart
+#	else
+#	echo "`date` NO sinerror3" >> status
+#	echo "`date` NO error3" >> .sin/debug.log 
 fi
 }
 
