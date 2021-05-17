@@ -2,7 +2,7 @@
 
 ##wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh
 #@reboot sleep 6 && ping6 google.com -c 5; rm update.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh
-echo "`date` starting script" >> status
+echo "************** starting script **************" >> status
 
 declare -i newnodever
 declare -i curnodever
