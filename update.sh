@@ -272,6 +272,7 @@ if [ -z "$var2" ]
  then
 echo "`date` NO error1"
 echo "`date` NO error1" >> .sin/debug.log 
+echo "`date` NO error1" >> status
  else
 echo "WARNING `date` sinerror1" >> status
 echo "`date` file error - please fix it manually" >> status
@@ -290,7 +291,7 @@ if [ -z "$var2" ]
 echo "`date` NO error2"
 echo "`date` NO error2" >> .sin/debug.log 
  else
- echo "WARNING `date` sinerror2" >> status
+ echo "WARNING `date` sinerror2 " >> status
 echo "`date` AcceptBlockHeader" >> status
 echo "`date` found error AcceptBlockHeader" >> .sin/debug.log 
 sinclean
@@ -300,8 +301,8 @@ fi
 sinerror3() {
 var3=`ps aux|grep sind|wc -l`
 if (( $var3 < 2 )); then
-echo "WARNING `date` sinerror3" >> status
-echo "`date` WARNING error3" >> .sin/debug.log 
+echo "WARNING `date` sinerror3 daemon offline?" >> status
+echo "`date` WARNING error3 daemon offline?" >> .sin/debug.log 
 var4=`./sin-cli uptime`
 echo cli uptime $(((($var4 / 60)/60)/24)) days, $var4 sec >> status
 echo ****************************************** >> status
