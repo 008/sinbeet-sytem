@@ -258,11 +258,11 @@ rm .sin.tar.gz
 if wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz ; then
 	echo "`date` sinautobootstrap done - rebooting in 60 sec" >> status
 	echo "***************`date` sinautobootstrap done - rebooting in 60 sec"
-	sleep 60
-    reboot
+	sleep 60 && reboot
 else
     echo "`date` sinautobootstrap WGET FAIL" >> status
-	echo "***************`date` sinautobootstrap WGET FAIL"
+	echo "***************`date` sinautobootstrap WGET FAIL reboot in 300 sec"
+	sleep 300 && reboot
 fi
 }
 
