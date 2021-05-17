@@ -76,7 +76,7 @@ echo "`date` starting bitcoin " >> status
 echo "*************** `date` starting bitcoin ***************"
 chmod +x bitcoin*
 
-./bitcoind -daemon --fallbackfee=0.25
+./bitcoind -daemon -fallbackfee=0.025 -paytxfee=0.025
 
  #-dbcache=4 -maxmempool=5 -mempoolexpiry=1 -whitelist=192.168.0.1/24
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
@@ -257,8 +257,9 @@ down() {
 }
 
 nodeprepare(){
-sleep 30 && ./bitcoin-cli createwallet 01 && echo "`date` createwallet done" >> status &
+sleep 40 && ./bitcoin-cli createwallet 01 && echo "`date` createwallet done" >> status &
 sleep 50 && ./bitcoin-cli loadwallet 01 && echo "`date` loadwallet done" >> status &
+sleep 60 && ./bitcoin-cli settxfee 0.025 && echo "`date` settxfee 0.025 done" >> status &
 }
 #Binding RPC on address 0.0.0.0 port 20981 failed
 
