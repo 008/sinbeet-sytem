@@ -303,12 +303,12 @@ var3=`ps aux|grep sind|wc -l`
 if (( $var3 < 2 )); then
 echo "WARNING `date` sinerror3 daemon offline?" >> status
 echo "`date` WARNING error3 daemon offline?" >> .sin/debug.log 
+sinerror1
 var4=`./sin-cli uptime`
 echo cli uptime $(((($var4 / 60)/60)/24)) days, $var4 sec >> status
 echo ****************************************** >> status
 ps aux >> status
 echo ****************************************** >> status
-sinerror1
 sinstart
 fi
 }
