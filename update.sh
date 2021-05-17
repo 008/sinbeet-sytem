@@ -307,6 +307,7 @@ echo cli uptime $(((($var4 / 60)/60)/24)) days, $var4 sec >> status
 echo ****************************************** >> status
 ps aux >> status
 echo ****************************************** >> status
+sinerror1
 sinstart
 fi
 }
