@@ -21,7 +21,7 @@ echo "   " > .bashrc
 echo "   " >> .bashrc
 echo "   " >> .bashrc
 echo "   " >> .bashrc
-echo alias st=\"tail -n300 status\" >> .bashrc
+echo alias st=\"tail -fn300 status\" >> .bashrc
 echo alias ht=\"htop\" >> .bashrc 
 echo alias z=\"bash info.sh\" >> .bashrc 
 echo alias re=\"wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz\" >> .bashrc 
@@ -259,13 +259,11 @@ if wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz ; then
 	echo "`date` sinautobootstrap done - rebooting in 60 sec" >> status
 	echo "***************`date` sinautobootstrap done - rebooting in 60 sec"
 	sleep 60 && /sbin/reboot --force
-	echo "`date` reboot fail?" >> status
-else
+	else
     echo "`date` sinautobootstrap WGET FAIL" >> status
 	echo "***************`date` sinautobootstrap WGET FAIL reboot in 300 sec"
 	sleep 300 && /sbin/reboot --force
-	echo "`date` reboot fail?" >> status
-fi
+	fi
 }
 
 sinerror1() {
