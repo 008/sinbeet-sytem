@@ -251,12 +251,6 @@ echo "***************`date` clean done !!!!!!!!!!!"
 sinstart
 }
 
-sinloading () {
-#init message: Loading block index...
-#Rewinding blocks
-#tail -n5000 .sin/debug.log |grep "Loading block index"
-}
-
 sinautobootstrap() {
 sinstop
 echo "`date` sinautobootstrap started" >> status
