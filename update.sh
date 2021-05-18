@@ -566,9 +566,13 @@ fi
 	
 	echo "!!! we have bootstrap.7z" >> status
 	echo "!!! we have bootstrap.7z" >> .sin/debug.log
+	sinstop
 	sinclean
 	
-	apt update -y ; apt install p7zip-full -y
+	apt update -y
+	apt-get install tar -y
+	apt install p7zip-full -y
+	
 	7z x /root/bootstrap.7z -o.sin
 	mv .sin/bootstrap/* .sin/
 	rm .sin/bootstrap -rf
