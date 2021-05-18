@@ -569,6 +569,7 @@ fi
 	sinstop
 	sinclean
 	
+	dpkg --configure -a
 	apt update -y
 	apt-get install tar -y
 	apt install p7zip-full -y
