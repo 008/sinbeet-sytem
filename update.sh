@@ -152,7 +152,6 @@ mv .sin/wallet.dat wallet.dat
 cp .sin/sin.conf sin.conf
 cp .sin/sin.conf sin.conf.back
 rm .sin/* -rf
-fi
 }
 
 sinstop() {
@@ -492,7 +491,7 @@ fi
 	mv wallet.dat .sin/wallet.dat
 	cp sin.conf .sin/sin.conf
 	rm .sin.tar.gz
-
+	fi
 ###################################################
 
 
@@ -511,7 +510,7 @@ fi
 	
 	mv wallet.dat .sin/wallet.dat
 	cp sin.conf .sin/sin.conf
-	
+	fi
 
 
 
