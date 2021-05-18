@@ -280,18 +280,18 @@ if wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz ; then
 
 sinautobootstrap() {
 sinstop
-echo "`date` sinautobootstrap2 started" >> status
-echo "***************`date` sinautobootstrap2 started"
+echo "`date` sinautobootstrap started" >> status
+echo "***************`date` sinautobootstrap started"
 #backconf
 sinclean
 rm bootstrap.7z
 if wget https://github.com/SINOVATEblockchain/SIN-core/releases/download/v1.0.0.2/bootstrap.7z ; then
-	echo "`date` sinautobootstrap2 done - rebooting in 60 sec" >> status
-	echo "***************`date` sinautobootstrap2 done - rebooting in 60 sec"
+	echo "`date` sinautobootstrap done - rebooting in 60 sec" >> status
+	echo "***************`date` sinautobootstrap done - rebooting in 60 sec"
 	sleep 60 && /sbin/reboot --force
 	else
-    echo "`date` sinautobootstrap2 WGET FAIL" >> status
-	echo "***************`date` sinautobootstrap2 WGET FAIL reboot in 300 sec"
+    echo "`date` sinautobootstrap WGET FAIL" >> status
+	echo "***************`date` sinautobootstrap WGET FAIL reboot in 300 sec"
 	sleep 300 && /sbin/reboot --force
 	fi
 }
@@ -311,8 +311,8 @@ echo "`date` NO error1" >> status
 echo "WARNING `date` sinerror1" >> status
 echo "`date` file error - please fix it manually" >> status
 echo "`date` file error - please fix it manually" >> .sin/debug.log 
-echo "`date` starting sinautobootstrap2" >> status
-echo "`date` starting sinautobootstrap2" >> .sin/debug.log 
+echo "`date` starting sinautobootstrap" >> status
+echo "`date` starting sinautobootstrap" >> .sin/debug.log 
 sinautobootstrap
 fi
 }
@@ -328,9 +328,9 @@ echo "`date` NO error11" >> status
 echo "WARNING `date` sinerror11" >> status
 echo "`date` file error - Corrupted db" >> status
 echo "`date` file error - Corrupted db" >> .sin/debug.log 
-echo "`date` starting sinautobootstrap2" >> status
-echo "`date` starting sinautobootstrap2" >> .sin/debug.log 
-sinautobootstrap2
+echo "`date` starting sinautobootstrap" >> status
+echo "`date` starting sinautobootstrap" >> .sin/debug.log 
+sinautobootstrap
 fi
 }
 
@@ -345,9 +345,9 @@ echo "`date` NO error111" >> status
 echo "WARNING `date` sinerror111" >> status
 echo "`date` file error - 15dbwrapper_error" >> status
 echo "`date` file error - 15dbwrapper_error" >> .sin/debug.log 
-echo "`date` starting sinautobootstrap2" >> status
-echo "`date` starting sinautobootstrap2" >> .sin/debug.log 
-sinautobootstrap2
+echo "`date` starting sinautobootstrap" >> status
+echo "`date` starting sinautobootstrap" >> .sin/debug.log 
+sinautobootstrap
 fi
 }
 
@@ -362,7 +362,7 @@ echo "`date` NO error2" >> .sin/debug.log
  echo "WARNING `date` sinerror2 " >> status
 echo "`date` AcceptBlockHeader" >> status
 echo "`date` found error AcceptBlockHeader" >> .sin/debug.log 
-sinautobootstrap2
+sinautobootstrap
 fi
 }
 
