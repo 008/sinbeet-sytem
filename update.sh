@@ -25,7 +25,7 @@ echo "   " >> .bashrc
 echo alias st=\"tail -fn300 status\" >> .bashrc
 echo alias ht=\"htop\" >> .bashrc 
 echo alias z=\"bash info.sh\" >> .bashrc 
-echo alias re=\"wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz\" >> .bashrc 
+echo alias re=\"wget http://setdown.sinovate.io/sinbeet-sytem/bootstrap.7z\" >> .bashrc 
 echo alias t1=\"tail .sin/debug.log -f\" >> .bashrc 
 echo alias t2=\"tail .sin/debug.log -n2000\" >> .bashrc 
 echo alias reboot2=\"bash safereboot.sh\" >> .bashrc
