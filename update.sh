@@ -351,6 +351,24 @@ sinautobootstrap
 fi
 }
 
+
+sinerror1112() {
+var1112=`tail .sin/debug.log -n500|grep -a "Please restart with"`
+if [ -z "$var1112" ]
+ then
+echo "`date` NO error1112"
+echo "`date` NO error1112" >> .sin/debug.log 
+echo "`date` NO error1112" >> status
+ else
+echo "WARNING `date` sinerror1112" >> status
+echo "`date` file error - reindex wanted" >> status
+echo "`date` file error - reindex wanted" >> .sin/debug.log 
+echo "`date` starting sinautobootstrap" >> status
+echo "`date` starting sinautobootstrap" >> .sin/debug.log 
+sinautobootstrap
+fi
+}
+
 #is marked invalid
 sinerror2() {
 var2=`tail .sin/debug.log -n500|grep -a "is marked invalid"`
@@ -380,6 +398,7 @@ else
 sinerror1
 sinerror11
 sinerror111
+sinerror1112
 fi
 
 var4=`./sin-cli uptime`
