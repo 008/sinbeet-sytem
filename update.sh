@@ -216,6 +216,7 @@ echo "*************** `date` starting $ver ***************"
 chmod +x sin-cli ; chmod +x sind
 rm .sin/peers.dat
 
+cd /root/
 if [ -f "bootstrap.7z" ]; then
 echo "daemon start wait for bootstrap.7z removed" >> status
 echo "daemon start wait for bootstrap.7z removed"
@@ -256,7 +257,6 @@ mv cur ..
 ls | grep -v wallet.dat | xargs rm -rf
 mv ../sin.conf . 
 mv ../cur .
-cd ..
 cd ..
 echo "`date` clean done" >> status
 echo "***************`date` clean done !!!!!!!!!!!"
