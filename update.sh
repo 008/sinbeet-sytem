@@ -92,6 +92,12 @@ echo "not testnet" >> status
  exit
 fi
 
+backconf() {
+mv .sin/wallet.dat wallet.dat
+cp .sin/sin.conf sin.conf
+cp .sin/sin.conf sin.conf.back
+rm .sin/* -rf
+}
 
 import(){
 echo "`date` importprivkey check wait phase" >> status
@@ -145,13 +151,6 @@ down() {
 			ver=`./sind -version|grep Daemon| cut -c 20-`
 			echo "`date` updating node DONE new ver $newnodever $ver" >> .sin/debug.log
 			echo "*************** `date` updating node DONE new ver $newnodever $ver" >> status
-}
-
-backconf() {
-mv .sin/wallet.dat wallet.dat
-cp .sin/sin.conf sin.conf
-cp .sin/sin.conf sin.conf.back
-rm .sin/* -rf
 }
 
 sinstop() {
@@ -254,7 +253,6 @@ cd ..
 cd ..
 echo "`date` clean done" >> status
 echo "***************`date` clean done !!!!!!!!!!!"
-sinstart
 }
 
 sinautobootstrapOLD() {
@@ -505,8 +503,9 @@ fi
 	
 	echo "!!! we have bootstrap.7z" >> status
 	echo "!!! we have bootstrap.7z" >> .sin/debug.log
-		
-	apt install p7zip-full -y
+	sinclean
+	
+	apt update ; apt install p7zip-full -y
 	7z x bootstrap.7z -o.sin
 	mv .sin/bootstrap/* .sin/
 	rm .sin/bootstrap -rf
@@ -514,6 +513,7 @@ fi
 	
 	mv wallet.dat .sin/wallet.dat
 	cp sin.conf .sin/sin.conf
+	sinstart
 	fi
 	
 ###########################
