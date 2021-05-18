@@ -279,7 +279,7 @@ echo "`date` sinautobootstrap2 started" >> status
 echo "***************`date` sinautobootstrap2 started"
 backconf
 rm bootstrap.7z
-if wget http://setdown.sinovate.io/sinbeet-sytem/bootstrap.7z ; then
+if wget https://github.com/SINOVATEblockchain/SIN-core/releases/download/v1.0.0.2/bootstrap.7z ; then
 	echo "`date` sinautobootstrap2 done - rebooting in 60 sec" >> status
 	echo "***************`date` sinautobootstrap2 done - rebooting in 60 sec"
 	sleep 60 && /sbin/reboot --force
