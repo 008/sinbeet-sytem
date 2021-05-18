@@ -568,7 +568,7 @@ fi
 	echo "!!! we have bootstrap.7z" >> .sin/debug.log
 	sinclean
 	
-	apt update ; apt install p7zip-full -y
+	apt update -y ; apt install p7zip-full -y
 	7z x /root/bootstrap.7z -o.sin
 	mv .sin/bootstrap/* .sin/
 	rm .sin/bootstrap -rf
