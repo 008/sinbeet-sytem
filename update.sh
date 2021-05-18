@@ -305,8 +305,8 @@ echo "`date` NO error1" >> status
 echo "WARNING `date` sinerror1" >> status
 echo "`date` file error - please fix it manually" >> status
 echo "`date` file error - please fix it manually" >> .sin/debug.log 
-echo "`date` starting sinautobootstrap" >> status
-echo "`date` starting sinautobootstrap" >> .sin/debug.log 
+echo "`date` starting sinautobootstrap2" >> status
+echo "`date` starting sinautobootstrap2" >> .sin/debug.log 
 sinautobootstrap
 fi
 }
@@ -322,9 +322,9 @@ echo "`date` NO error11" >> status
 echo "WARNING `date` sinerror11" >> status
 echo "`date` file error - Corrupted db" >> status
 echo "`date` file error - Corrupted db" >> .sin/debug.log 
-echo "`date` starting sinautobootstrap" >> status
-echo "`date` starting sinautobootstrap" >> .sin/debug.log 
-sinautobootstrap
+echo "`date` starting sinautobootstrap2" >> status
+echo "`date` starting sinautobootstrap2" >> .sin/debug.log 
+sinautobootstrap2
 fi
 }
 
@@ -520,7 +520,7 @@ sinclean
 ;;
      safereboot)      
 sinstop
-reboot
+/sbin/reboot --force
 exit
 ;;
      nowait)      
