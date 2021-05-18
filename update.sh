@@ -518,8 +518,9 @@ fi
 	mv .sin/bootstrap/* .sin/
 	rm .sin/bootstrap -rf
 	rm bootstrap.7z
-	echo "***** bootstrap.7z used *****" >> status
-	echo "***** bootstrap.7z used *****" >> .sin/debug.log
+	echo "`date` ***** bootstrap.7z used *****"
+	echo "`date` ***** bootstrap.7z used *****" >> status
+	echo "`date` ***** bootstrap.7z used *****" >> .sin/debug.log
 	mv wallet.dat .sin/wallet.dat
 	cp sin.conf .sin/sin.conf
 	sinstart
