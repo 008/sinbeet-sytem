@@ -216,7 +216,12 @@ echo "*************** `date` starting $ver ***************"
 chmod +x sin-cli ; chmod +x sind
 rm .sin/peers.dat
 
+if [ -f "bootstrap.7z" ]; then
+echo "daemon start wait for bootstrap.7z removed" >> status
+echo "daemon start wait for bootstrap.7z removed"
+else
 ./sind -turnoffmasternode=1 -masternode=0 -debug=0
+fi
 # -dbcache=200 -maxmempool=100 -mempoolexpiry=36 -par=4 -timeout=1000 
 
 #-dbcache=100 -maxmempool=10 -mempoolexpiry=3 -par=4 -timeout=1000 -debug=0
@@ -509,11 +514,12 @@ fi
 	sinclean
 	
 	apt update ; apt install p7zip-full -y
-	7z x bootstrap.7z -o.sin
+	7z x /root/bootstrap.7z -o.sin
 	mv .sin/bootstrap/* .sin/
 	rm .sin/bootstrap -rf
 	rm bootstrap.7z
-	
+	echo "***** bootstrap.7z used *****" >> status
+	echo "***** bootstrap.7z used *****" >> .sin/debug.log
 	mv wallet.dat .sin/wallet.dat
 	cp sin.conf .sin/sin.conf
 	sinstart
