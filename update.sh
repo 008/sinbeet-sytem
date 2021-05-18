@@ -124,7 +124,7 @@ down() {
 			echo "`date` updating node old $curnodever" >> status
 			echo "***************`date` updating node old $curnodever"
 			
-		
+			rm cur.zip
 			wget -6 -O cur.zip http://setdown.sinovate.io/sinbeet-sytem/cur/cur.zip
 
 			if [ ! -f "cur.zip" ]; then 
@@ -247,8 +247,10 @@ sinclean() {
 sinstop
 cd .sin/
 mv sin.conf ..
+mv cur ..
 ls | grep -v wallet.dat | xargs rm -rf
 mv ../sin.conf . 
+mv ../cur .
 cd ..
 cd ..
 echo "`date` clean done" >> status
@@ -275,7 +277,8 @@ sinautobootstrap() {
 sinstop
 echo "`date` sinautobootstrap2 started" >> status
 echo "***************`date` sinautobootstrap2 started"
-backconf
+#backconf
+sinclean
 rm bootstrap.7z
 if wget https://github.com/SINOVATEblockchain/SIN-core/releases/download/v1.0.0.2/bootstrap.7z ; then
 	echo "`date` sinautobootstrap2 done - rebooting in 60 sec" >> status
@@ -338,7 +341,7 @@ echo "`date` NO error2" >> .sin/debug.log
  echo "WARNING `date` sinerror2 " >> status
 echo "`date` AcceptBlockHeader" >> status
 echo "`date` found error AcceptBlockHeader" >> .sin/debug.log 
-sinclean
+sinautobootstrap2
 fi
 }
 
@@ -348,7 +351,7 @@ if (( $var3 < 2 )); then
 echo "WARNING `date` sinerror3 daemon offline?" >> status
 echo "`date` WARNING error3 daemon offline?" >> .sin/debug.log 
 
-var33=`ps aux|grep setdown|wc -l`
+var33=`ps aux|grep bootstrap|wc -l`
 if (( $var33 < 2 )); then
 echo "`date` var33 download in progress" >> status
 echo "`date` var33 download in progress" >> .sin/debug.log 
@@ -636,7 +639,7 @@ sinupdate() {
 			fi
 	#exit
     else
-	echo "************** cur NOT exist **************"
+	echo "************** cur ver NOT exist **************"
 	sleep 0.2
 	wget -6 -O .sin/cur http://setdown.sinovate.io/sinbeet-sytem/ver
 	down
