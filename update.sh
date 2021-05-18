@@ -334,6 +334,22 @@ sinautobootstrap2
 fi
 }
 
+sinerror111() {
+var111=`tail .sin/debug.log -n500|grep "EXCEPTION: 15dbwrapper_error"`
+if [ -z "$var111" ]
+ then
+echo "`date` NO error111"
+echo "`date` NO error111" >> .sin/debug.log 
+echo "`date` NO error111" >> status
+ else
+echo "WARNING `date` sinerror111" >> status
+echo "`date` file error - 15dbwrapper_error" >> status
+echo "`date` file error - 15dbwrapper_error" >> .sin/debug.log 
+echo "`date` starting sinautobootstrap2" >> status
+echo "`date` starting sinautobootstrap2" >> .sin/debug.log 
+sinautobootstrap2
+fi
+}
 
 #is marked invalid
 sinerror2() {
@@ -363,6 +379,7 @@ echo "`date` var33 download in progress" >> .sin/debug.log
 else
 sinerror1
 sinerror11
+sinerror111
 fi
 
 var4=`./sin-cli uptime`
