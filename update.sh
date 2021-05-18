@@ -301,7 +301,7 @@ if wget https://github.com/SINOVATEblockchain/SIN-core/releases/download/v1.0.0.
 
 
 sinerror1() {
-var2=`tail .sin/debug.log -n500|grep "please fix it manually"`
+var2=`tail .sin/debug.log -n500|grep -a "please fix it manually"`
 if [ -z "$var2" ]
  then
 echo "`date` NO error1"
@@ -318,7 +318,7 @@ fi
 }
 
 sinerror11() {
-var11=`tail .sin/debug.log -n500|grep "Corrupted block database detected"`
+var11=`tail .sin/debug.log -n500|grep -a "Corrupted block database detected"`
 if [ -z "$var11" ]
  then
 echo "`date` NO error11"
@@ -353,7 +353,7 @@ fi
 
 #is marked invalid
 sinerror2() {
-var2=`tail .sin/debug.log -n500|grep "is marked invalid"`
+var2=`tail .sin/debug.log -n500|grep -a "is marked invalid"`
 if [ -z "$var2" ]
  then
 echo "`date` NO error2"
