@@ -373,7 +373,7 @@ echo "WARNING `date` sinerror3 daemon offline?" >> status
 echo "`date` WARNING error3 daemon offline?" >> .sin/debug.log 
 
 var33=`ps aux|grep bootstrap|wc -l`
-if (( $var33 < 2 )); then
+if (( $var33 > 1 )); then
 echo "`date` var33 download in progress" >> status
 echo "`date` var33 download in progress" >> .sin/debug.log 
 else
