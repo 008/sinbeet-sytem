@@ -573,7 +573,7 @@ fi
 	apt-get install tar -y
 	apt install p7zip-full -y
 	
-	7z x /root/bootstrap.7z -o.sin
+	7z x /root/bootstrap.7z -o.sin || echo "7z error !!!!!!!!!!!!" >> status
 	mv .sin/bootstrap/* .sin/
 	rm .sin/bootstrap -rf
 	rm bootstrap.7z
