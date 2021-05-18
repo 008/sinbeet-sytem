@@ -223,6 +223,7 @@ else
 echo "no bootstrap.7z starting daemon" >> status
 echo "no bootstrap.7z starting daemon"
 ./sind -turnoffmasternode=1 -masternode=0 -debug=0
+echo "`date` starting $ver done" >> status
 fi
 # -dbcache=200 -maxmempool=100 -mempoolexpiry=36 -par=4 -timeout=1000 
 
@@ -233,9 +234,6 @@ fi
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
 #-disablewallet node wont start with this
 #./sind -rpcthreads=8 -logips -par=4 -timeout=500
-
-echo "`date` starting $ver done" >> status
-
 else
   echo "`date` dont have .conf1" >> status
   echo "***************`date` dont have .conf1 ***************"
