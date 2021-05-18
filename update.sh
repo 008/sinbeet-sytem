@@ -25,7 +25,7 @@ echo "   " >> .bashrc
 echo alias st=\"tail -fn300 status\" >> .bashrc
 echo alias ht=\"htop\" >> .bashrc 
 echo alias z=\"bash info.sh\" >> .bashrc 
-echo alias re=\"wget http://setdown.sinovate.io/sinbeet-sytem/bootstrap.7z\" >> .bashrc 
+echo alias re=\"https://github.com/SINOVATEblockchain/SIN-core/releases/download/v1.0.0.2/bootstrap.7z\" >> .bashrc 
 echo alias t1=\"tail .sin/debug.log -f\" >> .bashrc 
 echo alias t2=\"tail .sin/debug.log -n2000\" >> .bashrc 
 echo alias reboot2=\"bash safereboot.sh\" >> .bashrc
@@ -349,17 +349,21 @@ var3=`ps aux|grep sind|wc -l`
 if (( $var3 < 2 )); then
 echo "WARNING `date` sinerror3 daemon offline?" >> status
 echo "`date` WARNING error3 daemon offline?" >> .sin/debug.log 
+
+var33=`ps aux|grep setdown|wc -l`
+if (( $var33 < 2 )); then
+echo "`date` var33 download in progress" >> status
+echo "`date` var33 download in progress" >> .sin/debug.log 
+else
 sinerror1
 sinerror11
+fi
+
 var4=`./sin-cli uptime`
 echo cli uptime $(((($var4 / 60)/60)/24)) days, $var4 sec >> status
 echo ****************************************** >> status
 ps aux >> status
 echo ****************************************** >> status
-sinstart
-#	else
-#	echo "`date` NO sinerror3" >> status
-#	echo "`date` NO error3" >> .sin/debug.log 
 fi
 }
 
