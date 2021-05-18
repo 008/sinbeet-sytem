@@ -147,6 +147,13 @@ down() {
 			echo "*************** `date` updating node DONE new ver $newnodever $ver" >> status
 }
 
+backconf() {
+mv .sin/wallet.dat wallet.dat
+cp .sin/sin.conf sin.conf
+cp .sin/sin.conf sin.conf.back
+rm .sin/* -rf
+fi
+}
 
 sinstop() {
 			./sin-cli stop
@@ -251,7 +258,7 @@ echo "***************`date` clean done !!!!!!!!!!!"
 sinstart
 }
 
-sinautobootstrap() {
+sinautobootstrapOLD() {
 sinstop
 echo "`date` sinautobootstrap started" >> status
 echo "***************`date` sinautobootstrap started"
@@ -267,6 +274,22 @@ if wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz ; then
 	fi
 }
 
+sinautobootstrap() {
+sinstop
+echo "`date` sinautobootstrap2 started" >> status
+echo "***************`date` sinautobootstrap2 started"
+backconf
+rm bootstrap.7z
+if wget http://setdown.sinovate.io/sinbeet-sytem/bootstrap.7z ; then
+	echo "`date` sinautobootstrap2 done - rebooting in 60 sec" >> status
+	echo "***************`date` sinautobootstrap2 done - rebooting in 60 sec"
+	sleep 60 && /sbin/reboot --force
+	else
+    echo "`date` sinautobootstrap2 WGET FAIL" >> status
+	echo "***************`date` sinautobootstrap2 WGET FAIL reboot in 300 sec"
+	sleep 300 && /sbin/reboot --force
+	fi
+}
 
 
 
@@ -469,7 +492,29 @@ fi
 	mv wallet.dat .sin/wallet.dat
 	cp sin.conf .sin/sin.conf
 	rm .sin.tar.gz
+
+###################################################
+
+
+
+
+	if [ -f "bootstrap.7z" ]; then
 	
+	echo "!!! we have bootstrap.7z" >> status
+	echo "!!! we have bootstrap.7z" >> .sin/debug.log
+		
+	apt install p7zip-full -y
+	7z x bootstrap.7z -o.sin
+	mv .sin/bootstrap/* .sin/
+	rm .sin/bootstrap -rf
+	rm bootstrap.7z
+	
+	mv wallet.dat .sin/wallet.dat
+	cp sin.conf .sin/sin.conf
+	
+
+
+
 #	elif [ -f "bootstrap.zip" ]; then
 	
 #	mv .sin/wallet.dat wallet.dat
