@@ -335,7 +335,7 @@ fi
 }
 
 sinerror111() {
-var111=`tail .sin/debug.log -n500|grep "EXCEPTION: 15dbwrapper_error"`
+var111=`tail .sin/debug.log -n500|grep -a "EXCEPTION: 15dbwrapper_error"`
 if [ -z "$var111" ]
  then
 echo "`date` NO error111"
