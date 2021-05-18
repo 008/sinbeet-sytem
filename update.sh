@@ -369,6 +369,24 @@ sinautobootstrap
 fi
 }
 
+
+sinerror7() {
+var7=`tail .sin/debug.log -n500|grep -a "failed to flush state"`
+if [ -z "$var7" ]
+ then
+echo "`date` NO error7"
+echo "`date` NO error7" >> .sin/debug.log 
+echo "`date` NO error7" >> status
+ else
+echo "WARNING `date` sinerror7" >> status
+echo "WARNING `date` sinerror7" >> .sin/debug.log 
+echo "`date` file error - starting daemon" >> status
+echo "`date` file error - starting daemon" >> .sin/debug.log 
+sinstart
+fi
+}
+
+
 #is marked invalid
 sinerror2() {
 var2=`tail .sin/debug.log -n500|grep -a "is marked invalid"`
@@ -399,6 +417,7 @@ sinerror1
 sinerror11
 sinerror111
 sinerror1112
+sinerror7
 fi
 
 var4=`./sin-cli uptime`
