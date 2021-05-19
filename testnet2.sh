@@ -27,10 +27,6 @@ echo "   " >> .bashrc
 echo "   " >> .bashrc
 echo "cat /root/.bashrc" >> .bashrc
 
-
-rm /root/.bashrc
-touch /root/.bashrc
-
 rm info.sh ver.sh safereboot.sh #added later, remove after update.
 
 echo "./bitcoin-cli infinitynode mypeerinfo" > info.sh
