@@ -284,8 +284,9 @@ echo "`date` sinautobootstrap started" >> status
 echo "***************`date` sinautobootstrap started"
 #backconf
 sinclean
+apt install curl
 rm bootstrap.7z
-if wget https://github.com/SINOVATEblockchain/SIN-core/releases/download/v1.0.0.2/bootstrap.7z ; then
+if curl -J -O https://bootstrap.sinovate.io/index.php/s/tdqOuaXAYPgKx9d/download ; then
 	echo "`date` sinautobootstrap done - rebooting in 60 sec" >> status
 	echo "***************`date` sinautobootstrap done - rebooting in 60 sec"
 	sleep 60 && /sbin/reboot --force
