@@ -65,7 +65,7 @@ chmod +x safereboot.sh
 fi
 
 
-vartest=`cat .sin/sin.conf|grep testnet=1`
+#vartest=`cat .sin/sin.conf|grep testnet=1`
 if [ -z "$vartest" ]
  then
 echo "not testnet" >> status
