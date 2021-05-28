@@ -79,7 +79,7 @@ echo "not testnet" >> status
 fi
 
 
-vartest=`cat .bitcoin/bitcoin.conf|grep testnet=1`
+vartest=`cat .sin/sin.conf|grep testnet=1`
 if [ -z "$vartest" ]
  then
 echo "not testnet" >> status
@@ -639,10 +639,10 @@ exit
 		exit
           ;;
 	testnet)
-	mkdir .bitcoin
-	touch .bitcoin/bitcoin.conf
+	mkdir .sin
+	touch .sin/sin.conf
 	
-	cat <<EOF > .bitcoin/bitcoin.conf
+	cat <<EOF > .sin/sin.conf
 testnet=1
 debug=1
 #infinitynode=1
