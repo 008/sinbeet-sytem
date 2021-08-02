@@ -581,6 +581,7 @@ fi
 	mv .sin/p1/* .sin/
 	rm .sin/p1
 	rm p1.7z
+	echo "`date` ***** p1 done *****" >> status
 	
 	#p2
 	curl -J -O https://bootstrap.sinovate.io/index.php/s/Aq5rMOnaZTNOnL2/download
@@ -588,6 +589,7 @@ fi
 	mv .sin/p2/blocks/* .sin/blocks/
 	rm .sin/p2
 	rm p2.7z
+	echo "`date` ***** p2 done *****" >> status
 	
 	#p3
 	curl -J -O https://bootstrap.sinovate.io/index.php/s/T4l5ZPSqgBrn7FX/download
@@ -595,6 +597,7 @@ fi
 	mv .sin/p3/* .sin/
 	rm .sin/p3
 	rm p3.7z
+	echo "`date` ***** p3 done *****" >> status
 	
 	rm bpart.7z
 	echo "`date` ***** bpart.7z used *****"
