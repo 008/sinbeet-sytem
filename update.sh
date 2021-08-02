@@ -823,7 +823,7 @@ sleep 301 && createblockmark &
 
 
 
-
+echo "`date` <<<<<<<<<<<< done script >>>>>>>>>>>" >> status
 
 
 
