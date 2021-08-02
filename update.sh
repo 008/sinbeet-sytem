@@ -29,7 +29,7 @@ echo alias st=\"tail -fn300 status\" >> .bashrc
 echo alias ht=\"htop\" >> .bashrc 
 echo alias z=\"bash info.sh\" >> .bashrc 
 echo alias re=\"wget https://github.com/SINOVATEblockchain/SIN-core/releases/download/v1.0.0.2/bootstrap.7z\" >> .bashrc 
-echo alias rew=\"touch bpart.7z\" >> .bashrc
+echo alias rew=\"touch bpart.zip\" >> .bashrc
 echo alias t1=\"tail .sin/debug.log -f\" >> .bashrc 
 echo alias t2=\"tail .sin/debug.log -n2000\" >> .bashrc 
 echo alias reboot2=\"bash safereboot.sh\" >> .bashrc
@@ -566,8 +566,8 @@ fi
 	fi
 ###################################################
 
-	#touch bpart.7z
-	if [ -f "bpart.7z" ]; then
+	#touch bpart.zip
+	if [ -f "bpart.zip" ]; then
 	
 	echo "!!! we have bpart.7z" >> status
 	echo "!!! we have bpart.7z" >> .sin/debug.log
