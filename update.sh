@@ -26,6 +26,7 @@ echo alias st=\"tail -fn300 status\" >> .bashrc
 echo alias ht=\"htop\" >> .bashrc 
 echo alias z=\"bash info.sh\" >> .bashrc 
 echo alias re=\"wget https://github.com/SINOVATEblockchain/SIN-core/releases/download/v1.0.0.2/bootstrap.7z\" >> .bashrc 
+echo alias rew=\"touch bpart.7z\" >> .bashrc
 echo alias t1=\"tail .sin/debug.log -f\" >> .bashrc 
 echo alias t2=\"tail .sin/debug.log -n2000\" >> .bashrc 
 echo alias reboot2=\"bash safereboot.sh\" >> .bashrc
