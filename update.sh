@@ -565,8 +565,8 @@ fi
 
 	if [ -f "bpart.7z" ]; then
 	
-	echo "!!! we have bPART.7z" >> status
-	echo "!!! we have bPART.7z" >> .sin/debug.log
+	echo "!!! we have bpart.7z" >> status
+	echo "!!! we have bpart.7z" >> .sin/debug.log
 	sinstop
 	sinclean
 	
