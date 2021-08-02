@@ -562,7 +562,7 @@ fi
 	fi
 ###################################################
 
-
+	#touch bpart.7z
 	if [ -f "bpart.7z" ]; then
 	
 	echo "!!! we have bpart.7z" >> status
