@@ -578,7 +578,9 @@ fi
 	#apt install curl -y
 	#https://bugs.launchpad.net/ubuntu/+source/ansible/+bug/1833013
 	UCF_FORCE_CONFOLD=1 DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -qq -y install curl
+	apt install curl -y
 	apt install unzip -y
+	
 	
 	#p1
 	echo "`date` ***** curl p1 ... *****" >> status
