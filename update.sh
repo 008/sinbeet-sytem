@@ -573,8 +573,11 @@ fi
 	
 	dpkg --configure -a
 	apt update -y
-	apt-get install curl -y
+	#apt-get install curl -y
 	apt install p7zip-full -y
+	#yes | apt-get -y install curl
+	#apt-get --assume-yes install curl
+	DEBIAN_FRONTEND=noninteractive apt-get install -qq curl < /dev/null > /dev/null
 	
 	#p1
 	curl -J -O https://bootstrap.sinovate.io/index.php/s/R0kxsaR8OcMf72c/download
