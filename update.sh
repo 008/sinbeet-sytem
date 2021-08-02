@@ -288,7 +288,7 @@ echo "`date` sinautobootstrap started" >> status
 echo "***************`date` sinautobootstrap started"
 #backconf
 sinclean
-apt install curl
+apt install curl -y
 rm bootstrap.7z
 if curl -J -O https://bootstrap.sinovate.io/index.php/s/tdqOuaXAYPgKx9d/download ; then
 	echo "`date` sinautobootstrap done - rebooting in 60 sec" >> status
@@ -575,10 +575,12 @@ fi
 	sinclean
 	
 	apt update -y
-	apt install curl -y
+	#apt install curl -y
+	UCF_FORCE_CONFOLD=1 DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -qq -y install curl
 	apt install unzip -y
 	
 	#p1
+	echo "`date` ***** curl p1 ... *****" >> status
 	curl -J -O https://bootstrap.sinovate.io/index.php/s/6D3QkArPlAeoqRa/download
 	unzip p1.zip || echo "p1.zip error !!!!!!!!!!!!" >> status
 	
@@ -588,6 +590,7 @@ fi
 	echo "`date` ***** p1 done *****" >> status
 	
 	#p2
+	echo "`date` ***** curl p2 ... *****" >> status
 	curl -J -O https://bootstrap.sinovate.io/index.php/s/RdQWQQBiKRM8UWd/download
 	unzip p2.zip || echo "p2.zip error !!!!!!!!!!!!" >> status
 	mv p2/blocks/* .sin/blocks/
@@ -596,6 +599,7 @@ fi
 	echo "`date` ***** p2 done *****" >> status
 	
 	#p3
+	echo "`date` ***** curl p3 ... *****" >> status
 	curl -J -O https://bootstrap.sinovate.io/index.php/s/IQnBvVtWI9C35u9/download
 	unzip p3.zip || echo "p3.zip error !!!!!!!!!!!!" >> status
 	mv p3/* .sin/
