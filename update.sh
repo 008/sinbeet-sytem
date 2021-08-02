@@ -563,6 +563,53 @@ fi
 ###################################################
 
 
+	if [ -f "bpart.7z" ]; then
+	
+	echo "!!! we have bPART.7z" >> status
+	echo "!!! we have bPART.7z" >> .sin/debug.log
+	sinstop
+	sinclean
+	
+	dpkg --configure -a
+	apt update -y
+	apt-get install curl -y
+	apt install p7zip-full -y
+	
+	#p1
+	curl -J -O https://bootstrap.sinovate.io/index.php/s/R0kxsaR8OcMf72c/download
+	7z x /root/p1.7z -o.sin || echo "7z p1 error !!!!!!!!!!!!" >> status
+	mv .sin/p1/* .sin/
+	rm .sin/p1
+	rm p1.7z
+	
+	#p2
+	curl -J -O https://bootstrap.sinovate.io/index.php/s/Aq5rMOnaZTNOnL2/download
+	7z x /root/p2.7z -o.sin || echo "7z p2 error !!!!!!!!!!!!" >> status
+	mv .sin/p2/blocks/* .sin/blocks/
+	rm .sin/p2
+	rm p2.7z
+	
+	#p3
+	curl -J -O https://bootstrap.sinovate.io/index.php/s/T4l5ZPSqgBrn7FX/download
+	7z x /root/p3.7z -o.sin || echo "7z p3 error !!!!!!!!!!!!" >> status
+	mv .sin/p3/* .sin/
+	rm .sin/p3
+	rm p3.7z
+	
+	rm bpart.7z
+	echo "`date` ***** bpart.7z used *****"
+	echo "`date` ***** bpart.7z used *****" >> status
+	echo "`date` ***** bpart.7z used *****" >> .sin/debug.log
+	sinstart
+	fi
+
+
+
+
+
+
+
+
 
 
 	if [ -f "bootstrap.7z" ]; then
