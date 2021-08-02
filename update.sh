@@ -18,6 +18,9 @@ declare -i loading
 #echo $now > .sin/last
 #fi
 
+systemctl disable syslog
+systemctl disable rsyslog
+
 echo "   " > .bashrc
 echo "   " >> .bashrc
 echo "   " >> .bashrc
@@ -110,7 +113,7 @@ sleep 300
 ./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72`
 echo "`date` importprivkey check2" >> status
 echo "`date` importprivkey check2" >> .sin/debug.log
-sleep 600
+sleep 1200
 ./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72`
 echo "`date` importprivkey check3" >> status
 echo "`date` importprivkey check3" >> .sin/debug.log
@@ -571,42 +574,39 @@ fi
 	sinstop
 	sinclean
 	
-	dpkg --configure -a
 	apt update -y
-	#apt-get install curl -y
-	apt install p7zip-full -y
-	#yes | apt-get -y install curl
-	#apt-get --assume-yes install curl
-	DEBIAN_FRONTEND=noninteractive apt-get install -qq curl < /dev/null > /dev/null
+	apt install curl -y
+	apt install unzip -y
 	
 	#p1
-	curl -J -O https://bootstrap.sinovate.io/index.php/s/R0kxsaR8OcMf72c/download
-	7z x /root/p1.7z -o.sin || echo "7z p1 error !!!!!!!!!!!!" >> status
-	mv .sin/p1/* .sin/
-	rm .sin/p1
-	rm p1.7z
+	curl -J -O https://bootstrap.sinovate.io/index.php/s/6D3QkArPlAeoqRa/download
+	unzip p1.zip || echo "p1.zip error !!!!!!!!!!!!" >> status
+	
+	mv p1/* .sin/
+	rm p1 -rf
+	rm p1.zip
 	echo "`date` ***** p1 done *****" >> status
 	
 	#p2
-	curl -J -O https://bootstrap.sinovate.io/index.php/s/Aq5rMOnaZTNOnL2/download
-	7z x /root/p2.7z -o.sin || echo "7z p2 error !!!!!!!!!!!!" >> status
-	mv .sin/p2/blocks/* .sin/blocks/
-	rm .sin/p2
-	rm p2.7z
+	curl -J -O https://bootstrap.sinovate.io/index.php/s/RdQWQQBiKRM8UWd/download
+	unzip p2.zip || echo "p2.zip error !!!!!!!!!!!!" >> status
+	mv p2/blocks/* .sin/blocks/
+	rm p2 -rf
+	rm p2.zip
 	echo "`date` ***** p2 done *****" >> status
 	
 	#p3
-	curl -J -O https://bootstrap.sinovate.io/index.php/s/T4l5ZPSqgBrn7FX/download
-	7z x /root/p3.7z -o.sin || echo "7z p3 error !!!!!!!!!!!!" >> status
-	mv .sin/p3/* .sin/
-	rm .sin/p3
-	rm p3.7z
+	curl -J -O https://bootstrap.sinovate.io/index.php/s/IQnBvVtWI9C35u9/download
+	unzip p3.zip || echo "p3.zip error !!!!!!!!!!!!" >> status
+	mv p3/* .sin/
+	rm p3 -rf
+	rm p3.zip
 	echo "`date` ***** p3 done *****" >> status
 	
-	rm bpart.7z
-	echo "`date` ***** bpart.7z used *****"
-	echo "`date` ***** bpart.7z used *****" >> status
-	echo "`date` ***** bpart.7z used *****" >> .sin/debug.log
+	rm bpart.zip
+	echo "`date` ***** bpart.zip used *****"
+	echo "`date` ***** bpart.zip used *****" >> status
+	echo "`date` ***** bpart.zip used *****" >> .sin/debug.log
 	sinstart
 	fi
 
