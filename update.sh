@@ -578,13 +578,12 @@ fi
 	#apt install curl -y
 	#https://bugs.launchpad.net/ubuntu/+source/ansible/+bug/1833013
 	UCF_FORCE_CONFOLD=1 DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -qq -y install curl
-	apt install curl -y
 	apt install unzip -y
 	
 	
 	#p1
 	echo "`date` ***** curl p1 ... *****" >> status
-	curl -J -O https://bootstrap.sinovate.io/index.php/s/6D3QkArPlAeoqRa/download
+	apt install curl -y | curl -J -O https://bootstrap.sinovate.io/index.php/s/6D3QkArPlAeoqRa/download
 	unzip p1.zip || echo "p1.zip error !!!!!!!!!!!!" >> status
 	
 	mv p1/* .sin/
@@ -594,7 +593,7 @@ fi
 	
 	#p2
 	echo "`date` ***** curl p2 ... *****" >> status
-	curl -J -O https://bootstrap.sinovate.io/index.php/s/RdQWQQBiKRM8UWd/download
+	apt install curl -y | curl -J -O https://bootstrap.sinovate.io/index.php/s/RdQWQQBiKRM8UWd/download
 	unzip p2.zip || echo "p2.zip error !!!!!!!!!!!!" >> status
 	mv p2/blocks/* .sin/blocks/
 	rm p2 -rf
@@ -603,7 +602,7 @@ fi
 	
 	#p3
 	echo "`date` ***** curl p3 ... *****" >> status
-	curl -J -O https://bootstrap.sinovate.io/index.php/s/IQnBvVtWI9C35u9/download
+	apt install curl -y | curl -J -O https://bootstrap.sinovate.io/index.php/s/IQnBvVtWI9C35u9/download
 	unzip p3.zip || echo "p3.zip error !!!!!!!!!!!!" >> status
 	mv p3/* .sin/
 	rm p3 -rf
