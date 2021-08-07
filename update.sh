@@ -1,7 +1,4 @@
 #!/bin/bash
-
-##wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh
-#@reboot sleep 6 && ping6 google.com -c 5; rm update.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh
 echo "`date` <<<<<<<<<<<< starting script >>>>>>>>>>>" >> status
 
 declare -i newnodever
@@ -47,6 +44,9 @@ echo "cat /root/.bashrc" >> .bashrc
 
 #com helpers
 rm info.sh ver.sh safereboot.sh #added later, remove after update.
+
+echo "@reboot sleep 11 && ping6 google.com -c 3; rm update.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh" > cron
+crontab cron
 
 if [ ! -f info.sh ]; then 
 echo "./sin-cli infinitynode mypeerinfo" > info.sh
