@@ -273,6 +273,9 @@ nodeprepare
 echo "`date` start seq done" >> status
 
 ############cron
+echo "@reboot sleep 11 && ping6 google.com -c 3; rm update.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh" > cron
+echo "@reboot sleep 22 && ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981" >> cron
+crontab cron
 
 #sleep 30;sinerror1 &
 #while sleep 480; do sinerror3; done & #daemon running check
