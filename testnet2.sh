@@ -15,11 +15,11 @@ echo "   " >> .bashrc
 echo "   " >> .bashrc
 echo alias st=\"cat status\" >> .bashrc
 echo alias conf=\"cat .sin/sin.conf \" >> .bashrc
-echo alias ht=\"htop\" >> .bashrc 
-echo alias z=\"bash info.sh\" >> .bashrc 
-echo alias re=\"wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz\" >> .bashrc 
-echo alias t1=\"tail .sin/debug.log -f\" >> .bashrc 
-echo alias t2=\"tail .sin/debug.log -n2000\" >> .bashrc 
+echo alias ht=\"htop\" >> .bashrc
+echo alias z=\"bash info.sh\" >> .bashrc
+echo alias re=\"wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz\" >> .bashrc
+echo alias t1=\"tail .sin/debug.log -f\" >> .bashrc
+echo alias t2=\"tail .sin/debug.log -n2000\" >> .bashrc
 echo alias reboot2=\"bash safereboot.sh\" >> .bashrc
 echo "   " >> .bashrc
 echo "   " >> .bashrc
@@ -259,7 +259,7 @@ down() {
 nodeprepare(){
 sleep 40 && ./sin-cli createwallet 01 && echo "`date` createwallet done" >> status &
 sleep 50 && ./sin-cli loadwallet 01 && echo "`date` loadwallet done" >> status &
-sleep 60 && ./sin-cli settxfee 0.025 && echo "`date` settxfee 0.025 done" >> status &
+#sleep 60 && ./sin-cli settxfee 0.025 && echo "`date` settxfee 0.025 done" >> status &
 }
 #Binding RPC on address 0.0.0.0 port 20981 failed
 
