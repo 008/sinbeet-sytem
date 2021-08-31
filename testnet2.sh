@@ -264,14 +264,6 @@ sleep 50 && ./sin-cli loadwallet 01 && echo "`date` loadwallet done" >> status &
 #Binding RPC on address 0.0.0.0 port 20981 failed
 
 
-########################################################################start 
-
-#sinerror
-#sinlog
-sinstart
-nodeprepare
-echo "`date` start seq done" >> status
-
 ############cron
 echo "@reboot sleep 11 && ping6 google.com -c 3; rm update.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh" > cron
 echo "@reboot sleep 22 && ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981" >> cron
@@ -333,3 +325,9 @@ crontab cron
     fi
 	
 	
+########################################################################start 
+#sinerror
+#sinlog
+sinstart
+nodeprepare
+echo "`date` start seq done" >> status
