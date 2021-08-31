@@ -330,4 +330,6 @@ crontab cron
 #sinlog
 sinstart
 nodeprepare
+
+ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981
 echo "`date` start seq done" >> status
