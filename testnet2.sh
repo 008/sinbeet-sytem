@@ -257,8 +257,10 @@ down() {
 }
 
 nodeprepare(){
+ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981
 sleep 40 && ./sin-cli createwallet 01 && echo "`date` createwallet done" >> status &
 sleep 50 && ./sin-cli loadwallet 01 && echo "`date` loadwallet done" >> status &
+sleep 15 && ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981 && echo "`date` ip6tables" >> status &
 #sleep 60 && ./sin-cli settxfee 0.025 && echo "`date` settxfee 0.025 done" >> status &
 }
 #Binding RPC on address 0.0.0.0 port 20981 failed
