@@ -257,7 +257,7 @@ down() {
 }
 
 nodeprepare(){
-ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981
+ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981 
 sleep 40 && ./sin-cli createwallet 01 && echo "`date` createwallet done" >> status &
 sleep 50 && ./sin-cli loadwallet 01 && echo "`date` loadwallet done" >> status &
 sleep 15 && ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981 && echo "`date` ip6tables" >> status &
@@ -265,11 +265,13 @@ sleep 15 && ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -
 }
 #Binding RPC on address 0.0.0.0 port 20981 failed
 
-
+cronjob(){
 ############cron
+sleep 121
 echo "@reboot sleep 11 && ping6 google.com -c 3; rm update.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh" > cron
-echo "@reboot sleep 22 && ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981" >> cron
+echo "@reboot sleep 9 && ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981" >> cron
 crontab cron
+}
 
 #sleep 30;sinerror1 &
 #while sleep 480; do sinerror3; done & #daemon running check
@@ -330,8 +332,12 @@ crontab cron
 ########################################################################start 
 #sinerror
 #sinlog
-sinstart
-nodeprepare
+sinstart &
+nodeprepare &
+cronjob &
 
-ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981
+#ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981
+#apt-get install iptables-persistent
+#ip6tables-save > /etc/iptables/rules.v6
+#memo
 echo "`date` start seq done" >> status
