@@ -289,7 +289,7 @@ crontab cron
 	
 	if [ -z "$nowait" ]; then
 	echo "************** rand wait  **************"
-	sleep $((RANDOM % 60))
+	sleep $((RANDOM % 10))
 	fi
 	
 	    curnodever=$(cat .sin/cur)
