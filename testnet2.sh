@@ -320,7 +320,7 @@ crontab cron
 			mv .sin/new .sin/cur
 			down
 			fi
-	exit
+	#exit
     else
 	echo "************** cur NOT exist **************"
 	wget -6 -O .sin/cur http://setdown.sinovate.io/sinbeet-sytem/testver
