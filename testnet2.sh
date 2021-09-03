@@ -93,6 +93,8 @@ else
   echo "***************`date` dont have .conf ***************"
 exit
 fi
+
+echo "*************** `date` starting sin done **********"
 }
 
 
