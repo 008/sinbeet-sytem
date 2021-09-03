@@ -3,7 +3,8 @@
 ##wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet.sh
 #rm testnet.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet.sh; bash testnet.sh
 
-echo "************** `date` testnet2.sh started **************" >> status
+echo "TESTNET TESTNET TESTNET TESTNET TESTNET TESTNET TESTNET TESTNET " >> status
+echo "************** `date` testnet2.sh **************" >> status
 
 declare -i newnodever
 declare -i curnodever
@@ -38,7 +39,7 @@ chmod +x info.sh
 
 
 
-echo "********** starting testnet2.sh **********" >> status
+#echo "********** starting testnet2.sh **********" >> status
 
 sinstop() {
 			./sin-cli stop
