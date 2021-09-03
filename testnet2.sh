@@ -257,6 +257,7 @@ down() {
 }
 
 nodeprepare(){
+echo "`date` start nodeprepare" >> status
 ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981 
 sleep 10 && ./sin-cli createwallet 01 && echo "`date` createwallet done" >> status
 sleep 10 && ./sin-cli loadwallet 01 && echo "`date` loadwallet done" >> status
