@@ -247,6 +247,7 @@ fi
 }
 
 sinaddnodes() {
+./sin-cli addnode seederdns.suqa.org add
 ./sin-cli addnode 168.119.239.82 add
 ./sin-cli addnode 104.248.195.254 add
 ./sin-cli addnode 149.202.74.5 add
