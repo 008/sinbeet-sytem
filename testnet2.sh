@@ -340,6 +340,7 @@ sinstart &
 nodeprepare &
 cronjob &
 
+
 #ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981
 #apt-get install iptables-persistent
 #ip6tables-save > /etc/iptables/rules.v6
