@@ -813,9 +813,11 @@ while sleep 3601; do sinerror4; done & #blockcount check (createblockmark fun de
 while sleep 250; do sinerror5; done &
 #while sleep 174; do sinerror2; done & #AcceptBlockHeader
 while sleep 10801; do notcapablecheck; done &
+#Potential stale, resolving by notcapablecheck(3h)
 #while sleep 86399; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log;echo "*************** `date` node restart" >> status; done &
 sleep 31 && sinerror1 &
 sleep 119 && sinaddnodes &
+sleep 1199 && sinaddnodes &
 sleep 10701 && pingtest &
 sleep 301 && createblockmark &
 
