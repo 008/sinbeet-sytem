@@ -520,6 +520,18 @@ fi
 }
 
 
+sinerror6() {
+if tail .sin/debug.log -n500 |grep -q 'Potential stale tip detected'
+then
+echo "`date` WARNING Potential stale tip detected" >> status
+echo "`date` error6" >> .sin/debug.log 
+reboot
+else
+echo "`date` NO error6" >> .sin/debug.log 
+fi
+}
+
+
 
 
 sinlog(){
@@ -813,6 +825,7 @@ echo "`date` start seq done" >> .sin/debug.log
 while sleep 481; do sinerror3; done & #daemon running check
 while sleep 3601; do sinerror4; done & #blockcount check (createblockmark fun dependent - here down below)
 while sleep 250; do sinerror5; done &
+while sleep 3599; do sinerror6; done &
 #while sleep 174; do sinerror2; done & #AcceptBlockHeader
 while sleep 10801; do notcapablecheck; done &
 #Potential stale, resolving by notcapablecheck(3h)
