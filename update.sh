@@ -493,6 +493,8 @@ if echo "$savednodeblock" | grep -qE '^[0-9]+$'; then
 	echo "`date` blocks error FAIL $savednodeblock $currentnodeblock" >> status
 	echo "`date` blocks error FAIL will try to start daemon" >> status
 	echo "`date` error4" >> .sin/debug.log 
+	sinstop
+	sleep 15
 	sinstart
 	fi
 
