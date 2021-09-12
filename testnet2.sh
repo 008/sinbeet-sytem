@@ -19,8 +19,8 @@ echo alias conf=\"cat .sin/sin.conf \" >> .bashrc
 echo alias ht=\"htop\" >> .bashrc
 echo alias z=\"bash info.sh\" >> .bashrc
 echo alias re=\"wget http://setdown.sinovate.io/sinbeet-sytem/.sin.tar.gz\" >> .bashrc
-echo alias t1=\"tail .sin/testnet/debug.log -f\" >> .bashrc
-echo alias t2=\"tail .sin/testnet/debug.log -n2000\" >> .bashrc
+echo alias t1=\"tail .sin/testnet3/debug.log -f\" >> .bashrc
+echo alias t2=\"tail .sin/testnet3/debug.log -n2000\" >> .bashrc
 echo alias reboot2=\"bash safereboot.sh\" >> .bashrc
 echo "   " >> .bashrc
 echo "   " >> .bashrc
