@@ -509,7 +509,7 @@ fi
 
 
 sinerror5() {
-if tail .sin/debug.log -n500 |grep -q 'Timeout downloading block'
+if tail .sin/debug.log -n500 |grep -i 'Timeout downloading block'
 then
 echo "`date` WARNING sinerror5 Timeout downloading block" >> status
 echo "`date` error5" >> .sin/debug.log 
@@ -522,7 +522,7 @@ fi
 
 
 sinerror6() {
-if tail .sin/debug.log -n500 |grep -q 'Potential stale tip detected'
+if tail .sin/debug.log -n500 |grep -i 'Potential stale tip detected'
 then
 echo "`date` WARNING Potential stale tip detected" >> status
 echo "`date` error6" >> .sin/debug.log 
