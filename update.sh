@@ -538,7 +538,14 @@ echo "`date` NO error6" >> .sin/debug.log
 fi
 }
 
-
+dnscheck(){
+echo "nameserver 2606:4700:4700::64" >> /etc/resolv.conf
+echo "nameserver 2606:4700:4700::1111" >> /etc/resolv.conf
+echo "nameserver 2606:4700:4700::1001" >> /etc/resolv.conf
+echo "nameserver 2606:4700:4700::1001" >> /etc/resolv.conf
+echo "nameserver 1.1.1.1" >> /etc/resolv.conf
+echo "nameserver 1.0.0.1" >> /etc/resolv.conf
+}
 
 
 sinlog(){
@@ -830,6 +837,7 @@ echo "`date` start seq done" >> status
 echo "`date` start seq done" >> .sin/debug.log
 
 ############cron
+dnscheck
 while sleep 481; do sinerror3; done & #daemon running check
 while sleep 3601; do sinerror4; done & #blockcount check (createblockmark fun dependent - here down below)
 while sleep 250; do sinerror5; done &
