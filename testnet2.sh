@@ -195,6 +195,7 @@ fi
 case $1 in
      clean)      
 sinclean
+exit
 ;;
      nowait)      
           nowait=1
