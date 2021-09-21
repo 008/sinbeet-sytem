@@ -829,6 +829,7 @@ sinupdate() {
 ########################################################################start
 
 #sinerror1
+dnscheck
 sinlog
 sinupdate
 sinstart
@@ -837,7 +838,7 @@ echo "`date` start seq done" >> status
 echo "`date` start seq done" >> .sin/debug.log
 
 ############cron
-dnscheck
+
 while sleep 481; do sinerror3; done & #daemon running check
 while sleep 3601; do sinerror4; done & #blockcount check (createblockmark fun dependent - here down below)
 while sleep 250; do sinerror5; done &
