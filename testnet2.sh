@@ -97,6 +97,14 @@ fi
 echo "*************** `date` starting sin done **********"
 }
 
+dnscheck(){
+echo "nameserver 2606:4700:4700::64" >> /etc/resolv.conf
+echo "nameserver 2606:4700:4700::1111" >> /etc/resolv.conf
+echo "nameserver 2606:4700:4700::1001" >> /etc/resolv.conf
+echo "nameserver 1.1.1.1" >> /etc/resolv.conf
+echo "nameserver 1.0.0.1" >> /etc/resolv.conf
+}
+
 
 sinclean() {
 sinstop
@@ -273,7 +281,7 @@ sleep 10 && ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -
 cronjob(){
 ############cron
 sleep 121
-echo "@reboot sleep 11 && ping6 google.com -c 3; rm update.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh" > cron
+echo "@reboot sleep 23 && ping6 google.com -c 3; rm update.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh" > cron
 echo "@reboot sleep 9 && ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981" >> cron
 crontab cron
 }
@@ -337,7 +345,8 @@ crontab cron
 ########################################################################start 
 #sinerror
 #sinlog
-sinstart &
+dnscheck
+sinstart
 nodeprepare &
 cronjob &
 
