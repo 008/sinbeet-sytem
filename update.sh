@@ -163,6 +163,7 @@ sinstop() {
 			   if [ "$?" -ne 0 ]
                then
                echo "cant see ./sin-cli, dont wait for daemon stop."
+			   echo "`date` cant see ./sin-cli, dont wait for daemon stop." >> status
 			   else
 			   	while [ -f /root/.sin/sind.pid ]; 
 				do
@@ -171,6 +172,7 @@ sinstop() {
 				done
                fi  
 			   sleep 5 #to make sure
+			   echo "`date` daemon stop'ed" >> status
 			   }
 
 sinstart() {
@@ -499,6 +501,8 @@ a=$(cat errcount)
 b=$(( a + 1 ))
 echo $b > errcount
 echo "`date` errcount $a+1" >> .sin/debug.log
+echo "`date` errcount $a+1" >> status
+
 	sinstop
 	sleep 25
 	sinstart
