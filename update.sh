@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "`date` <<<<<<<<<<<< starting script >>>>>>>>>>>" >> status
+rm errcount
 
 declare -i newnodever
 declare -i curnodever
@@ -294,14 +295,15 @@ echo "***************`date` sinautobootstrap started"
 sinclean
 apt install curl -y
 rm bootstrap.7z
+echo "`date` curl bootstrap.7z" >> status
 if curl -J -O https://bootstrap.sinovate.io/index.php/s/tdqOuaXAYPgKx9d/download ; then
-	echo "`date` sinautobootstrap done - rebooting in 60 sec" >> status
-	echo "***************`date` sinautobootstrap done - rebooting in 60 sec"
-	sleep 60 && /sbin/reboot --force
+	echo "`date` curl bootstrap done - rebooting in 30 sec" >> status
+	echo "***************`date` sinautobootstrap done - rebooting in 30 sec"
+	sleep 30 && /sbin/reboot --force
 	else
-    echo "`date` sinautobootstrap WGET FAIL" >> status
-	echo "***************`date` sinautobootstrap WGET FAIL reboot in 300 sec"
-	sleep 300 && /sbin/reboot --force
+    echo "`date` bootstrap curl FAIL" >> status
+	echo "***************`date` sinautobootstrap curl FAIL reboot in 90 sec"
+	sleep 90 && /sbin/reboot --force
 	fi
 }
 
@@ -657,7 +659,7 @@ fi
 
 
 
-
+bootstrap(){
 	if [ -f "bootstrap.7z" ]; then
 	
 	echo "!!! we have bootstrap.7z" >> status
@@ -681,7 +683,7 @@ fi
 	cp sin.conf .sin/sin.conf
 	sinstart
 	fi
-	
+}
 ###########################
 
 case $1 in
@@ -832,6 +834,7 @@ sinupdate() {
 ########################################################################start
 
 #sinerror1
+bootstrap #check if exist
 dnscheck
 sinlog
 sinupdate
