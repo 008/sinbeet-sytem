@@ -505,6 +505,10 @@ echo $b > errcount
 echo "`date` errcount $a+1" >> .sin/debug.log
 echo "`date` errcount $a+1" >> status
 
+	if (( $b > 3 )); then
+	echo "`date` time to rew ?" >> status
+	fi
+
 	sinstop
 	sleep 25
 	sinstart
