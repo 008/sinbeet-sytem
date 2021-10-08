@@ -440,20 +440,20 @@ fi
 }
 
 
-notcapablecheck() {
-
-vartest=`./sin-cli infinitynode mypeerinfo|grep "Not capable"`
-if [ -z "$vartest" ]
- then
-echo "`date` node status check - ENABLED" >> status
- else
- echo "`date` Not capable, check FAIL" >> status
- sinstop
- sleep $((RANDOM % 30))
- sinstart
-fi
-
-}
+#notcapablecheck() {
+#
+#vartest=`./sin-cli infinitynode mypeerinfo|grep "Not capable"`
+#if [ -z "$vartest" ]
+# then
+# echo "`date` Not capable, check FAIL" >> status
+# else
+# echo "`date` node status check - ENABLED" >> status
+# sinstop
+# sleep $((RANDOM % 30))
+# sinstart
+#fi
+#
+#}
 
 
 pingtest() {
@@ -854,7 +854,7 @@ while sleep 3601; do sinerror4; done & #blockcount check (createblockmark fun de
 while sleep 250; do sinerror5; done &
 while sleep 3599; do sinerror6; done &
 #while sleep 174; do sinerror2; done & #AcceptBlockHeader
-while sleep 10801; do notcapablecheck; done &
+#while sleep 10801; do notcapablecheck; done &
 #Potential stale, resolving by notcapablecheck(3h)
 #while sleep 86399; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log;echo "*************** `date` node restart" >> status; done &
 sleep 31 && sinerror1 &
