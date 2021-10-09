@@ -478,10 +478,11 @@ echo $block > savednodeblock
 
 }
 
-sinerror4() {
+blockerror() {
 #IP=`cat /root/.sin/sin.conf|grep externalip=|cut -c 12-72`
 
-currentnodeblock=`./sin-cli infinitynode getrawblockcount`
+#currentnodeblock=`./sin-cli infinitynode getrawblockcount`
+currentnodeblock=`./sin-cli getblockcount`
 IFS= read -r savednodeblock < savednodeblock;
 
 if echo "$savednodeblock" | grep -qE '^[0-9]+$'; then
@@ -622,7 +623,8 @@ fi
 	
 	#p1
 	echo "`date` ***** curl p1 ... *****" >> status
-	apt install curl -y | curl -J -O https://bootstrap.sinovate.io/index.php/s/6D3QkArPlAeoqRa/download
+	#apt install curl -y | curl -J -O https://bootstrap.sinovate.io/index.php/s/6D3QkArPlAeoqRa/download
+	wget https://github.com/008/sinbeet-sytem/releases/download/boot/p1.zip
 	unzip p1.zip || echo "p1.zip error !!!!!!!!!!!!" >> status
 	
 	mv p1/* .sin/
@@ -632,7 +634,8 @@ fi
 	
 	#p2
 	echo "`date` ***** curl p2 ... *****" >> status
-	apt install curl -y | curl -J -O https://bootstrap.sinovate.io/index.php/s/RdQWQQBiKRM8UWd/download
+	#apt install curl -y | curl -J -O https://bootstrap.sinovate.io/index.php/s/RdQWQQBiKRM8UWd/download
+	wget https://github.com/008/sinbeet-sytem/releases/download/boot/p2.zip
 	unzip p2.zip || echo "p2.zip error !!!!!!!!!!!!" >> status
 	mv p2/blocks/* .sin/blocks/
 	rm p2 -rf
@@ -641,7 +644,8 @@ fi
 	
 	#p3
 	echo "`date` ***** curl p3 ... *****" >> status
-	apt install curl -y | curl -J -O https://bootstrap.sinovate.io/index.php/s/IQnBvVtWI9C35u9/download
+	#apt install curl -y | curl -J -O https://bootstrap.sinovate.io/index.php/s/IQnBvVtWI9C35u9/download
+	wget https://github.com/008/sinbeet-sytem/releases/download/boot/p3.zip
 	unzip p3.zip || echo "p3.zip error !!!!!!!!!!!!" >> status
 	mv p3/* .sin/
 	rm p3 -rf
@@ -849,15 +853,16 @@ echo "`date` start seq done" >> .sin/debug.log
 
 ############cron
 
-while sleep 481; do sinerror3; done & #daemon running check
-while sleep 3601; do sinerror4; done & #blockcount check (createblockmark fun dependent - here down below)
-while sleep 250; do sinerror5; done &
-while sleep 3599; do sinerror6; done &
+#while sleep 481; do sinerror3; done & #daemon running check
+while sleep 3601; do blockerror; done & #blockcount check (createblockmark fun dependent - here down below)
+#while sleep 250; do sinerror5; done &
+#while sleep 3599; do sinerror6; done &
 #while sleep 174; do sinerror2; done & #AcceptBlockHeader
 #while sleep 10801; do notcapablecheck; done &
 #Potential stale, resolving by notcapablecheck(3h)
 #while sleep 86399; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log;echo "*************** `date` node restart" >> status; done &
-sleep 31 && sinerror1 &
+
+#sleep 31 && sinerror1 &
 sleep 119 && sinaddnodes &
 sleep 1199 && sinaddnodes &
 sleep 10701 && pingtest &
