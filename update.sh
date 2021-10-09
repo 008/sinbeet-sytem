@@ -507,7 +507,7 @@ echo "`date` errcount $a+1" >> .sin/debug.log
 echo "`date` errcount $a+1" >> status
 
 	if (( $b > 3 )); then
-	echo "`date` time to rew ?" >> status
+	echo "`date` time to rew ? errcount = $b " >> status
 	fi
 
 	sinstop
@@ -604,6 +604,8 @@ fi
 	rm .sin.tar.gz
 	fi
 ###################################################
+
+
 
 	#touch bpart.zip
 	if [ -f "bpart.zip" ]; then
