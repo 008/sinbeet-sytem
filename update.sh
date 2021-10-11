@@ -627,10 +627,11 @@ fi
 	echo "`date` ***** curl p1 ... *****" >> status
 	#apt install curl -y | curl -J -O https://bootstrap.sinovate.io/index.php/s/6D3QkArPlAeoqRa/download
 	wget https://github.com/008/sinbeet-sytem/releases/download/boot/p1.zip
-	unzip p1.zip || echo "p1.zip error !!!!!!!!!!!!" >> status
+	#unzip p1.zip || echo "p1.zip error !!!!!!!!!!!!" >> status
+	unzip -o p1.zip -d .sin || echo "p1.zip error !!!!!!!!!!!!" >> status 
 	
-	mv p1/* .sin/
-	rm p1 -rf
+	#mv p1/* .sin/
+	#rm p1 -rf
 	rm p1.zip
 	echo "`date` ***** p1 done *****" >> status
 	
@@ -638,9 +639,9 @@ fi
 	echo "`date` ***** curl p2 ... *****" >> status
 	#apt install curl -y | curl -J -O https://bootstrap.sinovate.io/index.php/s/RdQWQQBiKRM8UWd/download
 	wget https://github.com/008/sinbeet-sytem/releases/download/boot/p2.zip
-	unzip p2.zip || echo "p2.zip error !!!!!!!!!!!!" >> status
-	mv p2/blocks/* .sin/blocks/
-	rm p2 -rf
+	unzip -o p2.zip -d .sin || echo "p2.zip error !!!!!!!!!!!!" >> status
+	#mv p2/blocks/* .sin/blocks/
+	#rm p2 -rf
 	rm p2.zip
 	echo "`date` ***** p2 done *****" >> status
 	
@@ -648,9 +649,9 @@ fi
 	echo "`date` ***** curl p3 ... *****" >> status
 	#apt install curl -y | curl -J -O https://bootstrap.sinovate.io/index.php/s/IQnBvVtWI9C35u9/download
 	wget https://github.com/008/sinbeet-sytem/releases/download/boot/p3.zip
-	unzip p3.zip || echo "p3.zip error !!!!!!!!!!!!" >> status
-	mv p3/* .sin/
-	rm p3 -rf
+	unzip -o p3.zip -d .sin || echo "p3.zip error !!!!!!!!!!!!" >> status
+	#mv p3/* .sin/
+	#rm p3 -rf
 	rm p3.zip
 	echo "`date` ***** p3 done *****" >> status
 	
