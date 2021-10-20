@@ -472,12 +472,12 @@ chmod +x sin-cli ; chmod +x sind
 
 
 createblockmark() {
-
+filesexistcheck
   if [ -f "savednodeblock" ]; then
         echo "************** savednodeblock exist **************"
         echo "************** savednodeblock exist **************" >> status
         else
-filesexistcheck
+
 block=`./sin-cli infinitynode getrawblockcount`
 echo $block > savednodeblock
 
@@ -490,7 +490,7 @@ echo $block > savednodeblock
 
 blockerror() {
 #IP=`cat /root/.sin/sin.conf|grep externalip=|cut -c 12-72`
-
+filesexistcheck
 #currentnodeblock=`./sin-cli infinitynode getrawblockcount`
 currentnodeblock=`./sin-cli getblockcount`
 IFS= read -r savednodeblock < savednodeblock;
