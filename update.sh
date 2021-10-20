@@ -460,6 +460,16 @@ pingtest() {
 ping6 google.com -c1 |grep packets >> status 
 }
 
+filesexistcheck(){
+	if [ -f "sin-cli" ]; then
+	unzip -n cur.zip || echo "`date` filesexistcheck: unzip cli FAIL" >> status
+	fi
+	if [ -f "sind" ]; then
+	unzip -n cur.zip || echo "`date` filesexistcheck: unzip d FAIL" >> status
+	fi
+chmod +x sin-cli ; chmod +x sind
+}
+
 
 createblockmark() {
 
@@ -467,7 +477,7 @@ createblockmark() {
         echo "************** savednodeblock exist **************"
         echo "************** savednodeblock exist **************" >> status
         else
-
+filesexistcheck
 block=`./sin-cli infinitynode getrawblockcount`
 echo $block > savednodeblock
 
@@ -518,7 +528,7 @@ echo "`date` errcount $a+1" >> status
 
 else
     #echo "Error: cur blocks value not a number"
-	echo $currentnodeblock > savednodeblock #re-made if error
+	echo $currentnodeblock > savednodeblock #re-made if error #check files exist
 	echo "`date` savednodeblock value fail - recreate" >> status
 fi
 }
