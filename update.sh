@@ -632,6 +632,7 @@ fi
 	apt install unzip -y
 	#apt install zip -y
 	
+	rm p1.* p2.* p3.* p4.* p5.* p6.* p7.* p8.*
 	
 	#p1
 	echo "`date` ***** curl p1 ... *****" >> status
@@ -666,9 +667,9 @@ fi
 	echo "`date` ***** p3 done *****" >> status
 	
 	rm bpart.zip
-	echo "`date` ***** bpart.zip used *****"
-	echo "`date` ***** bpart.zip used *****" >> status
-	echo "`date` ***** bpart.zip used *****" >> .sin/debug.log
+	echo "`date` ***** bpart.zip use done *****"
+	echo "`date` ***** bpart.zip use done *****" >> status
+	echo "`date` ***** bpart.zip use done *****" >> .sin/debug.log
 	sinstart
 	fi
 
