@@ -516,11 +516,11 @@ if echo "$savednodeblock" | grep -qE '^[0-9]+$'; then
 	echo "`date` blocks error FAIL" >> status
 	#echo "`date` error4" >> .sin/debug.log 
 	
-a=$(cat errcount)
-b=$(( a + 1 ))
-echo $b > errcount
-echo "`date` errcount $a+1" >> .sin/debug.log
-echo "`date` errcount $a+1" >> status
+	a=$(cat errcount)
+	b=$(( a + 1 ))
+	echo $b > errcount
+	echo "`date` errcount $a+1" >> .sin/debug.log
+	echo "`date` errcount $a+1" >> status
 
 	if (( $b > 5 )); then
 	echo "`date` time to rew ? errcount = $b safe limit is 5" >> status
@@ -538,7 +538,7 @@ echo "`date` errcount $a+1" >> status
 else
     #echo "Error: cur blocks value not a number"
 	echo $currentnodeblock > savednodeblock #re-made if error #check files exist
-	echo "`date` savednodeblock value fail - recreate" >> status
+	echo "`date` savednodeblock value FAIL - recreate?" >> status
 fi
 }
 
