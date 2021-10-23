@@ -322,8 +322,9 @@ echo "`date` NO error1" >> status
 echo "WARNING `date` sinerror1" >> status
 echo "`date` file error - please fix it manually" >> status
 echo "`date` file error - please fix it manually" >> .sin/debug.log 
-echo "`date` starting sinautobootstrap" >> status
-echo "`date` starting sinautobootstrap" >> .sin/debug.log 
+echo "`date` starting bootstrapgit" >> status
+echo "`date` starting bootstrapgit" >> .sin/debug.log 
+touch bpart.zip
 bootstrapgit
 fi
 }
