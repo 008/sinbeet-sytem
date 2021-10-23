@@ -324,7 +324,7 @@ echo "`date` file error - please fix it manually" >> status
 echo "`date` file error - please fix it manually" >> .sin/debug.log 
 echo "`date` starting sinautobootstrap" >> status
 echo "`date` starting sinautobootstrap" >> .sin/debug.log 
-sinautobootstrap
+bootstrapgit
 fi
 }
 
@@ -616,6 +616,9 @@ fi
 ###################################################
 
 bootstrapgit(){
+echo "`date` bootstrapgit started" >> status
+echo "***************`date` bootstrapgit started" >> .sin/debug.log
+
 sinstop
 
 	#touch bpart.zip
