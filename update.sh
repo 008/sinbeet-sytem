@@ -31,7 +31,7 @@ echo alias rew=\"touch bpart.zip\" >> .bashrc
 echo alias t1=\"tail .sin/debug.log -f\" >> .bashrc 
 echo alias t2=\"tail .sin/debug.log -n2000\" >> .bashrc 
 echo alias reboot2=\"bash safereboot.sh\" >> .bashrc
-echo "#ver001   " >> .bashrc
+echo "#ver002  autobootstrap " >> .bashrc
 echo "   " >> .bashrc
 echo "   " >> .bashrc
 echo "   " >> .bashrc
@@ -342,7 +342,8 @@ echo "`date` file error - Corrupted db" >> status
 echo "`date` file error - Corrupted db" >> .sin/debug.log 
 echo "`date` starting sinautobootstrap" >> status
 echo "`date` starting sinautobootstrap" >> .sin/debug.log 
-sinautobootstrap
+touch bpart.zip
+bootstrapgit
 fi
 }
 
@@ -359,7 +360,8 @@ echo "`date` file error - 15dbwrapper_error" >> status
 echo "`date` file error - 15dbwrapper_error" >> .sin/debug.log 
 echo "`date` starting sinautobootstrap" >> status
 echo "`date` starting sinautobootstrap" >> .sin/debug.log 
-sinautobootstrap
+touch bpart.zip
+bootstrapgit
 fi
 }
 
@@ -377,7 +379,8 @@ echo "`date` file error - reindex wanted" >> status
 echo "`date` file error - reindex wanted" >> .sin/debug.log 
 echo "`date` starting sinautobootstrap" >> status
 echo "`date` starting sinautobootstrap" >> .sin/debug.log 
-sinautobootstrap
+touch bpart.zip
+bootstrapgit
 fi
 }
 
@@ -410,7 +413,8 @@ echo "`date` NO error2" >> .sin/debug.log
  echo "WARNING `date` sinerror2 " >> status
 echo "`date` AcceptBlockHeader" >> status
 echo "`date` found error AcceptBlockHeader" >> .sin/debug.log 
-sinautobootstrap
+touch bpart.zip
+bootstrapgit
 fi
 }
 
@@ -503,13 +507,14 @@ if echo "$savednodeblock" | grep -qE '^[0-9]+$'; then
     echo "blocks OK $savednodeblock / $currentnodeblock"
 	echo "`date` blocks $currentnodeblock OK" >> status
 	echo $currentnodeblock > savednodeblock
+	echo 0 > errcount
 	else
 	#curl -s -X POST XXXXXXXXXXXXXXXXXX -d chat_id=396043531 -d text="`date` $currentnodeblock $IP"
-    echo "$savednodeblock $currentnodeblock ***************"
-	echo "blocks error FAIL $currentnodeblock"
+    #echo "$savednodeblock $currentnodeblock ***************"
+	#echo "blocks error FAIL $currentnodeblock"
 	echo "`date` blocks error FAIL $savednodeblock $currentnodeblock" >> status
-	echo "`date` blocks error FAIL will try to start daemon" >> status
-	echo "`date` error4" >> .sin/debug.log 
+	echo "`date` blocks error FAIL" >> status
+	#echo "`date` error4" >> .sin/debug.log 
 	
 a=$(cat errcount)
 b=$(( a + 1 ))
@@ -517,13 +522,16 @@ echo $b > errcount
 echo "`date` errcount $a+1" >> .sin/debug.log
 echo "`date` errcount $a+1" >> status
 
-	if (( $b > 3 )); then
-	echo "`date` time to rew ? errcount = $b " >> status
+	if (( $b > 5 )); then
+	echo "`date` time to rew ? errcount = $b safe limit is 5" >> status
+	echo "`date` starting rew !!! errcount = $b " >> status
+	touch bpart.zip
+	bootstrapgit
 	fi
 
-	sinstop
-	sleep 25
-	sinstart
+	#sinstop
+	#sleep 25
+	#sinstart
 	
 	fi
 
