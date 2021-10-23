@@ -620,7 +620,7 @@ bootstrapgit(){
 echo "`date` bootstrapgit started" >> status
 echo "***************`date` bootstrapgit started" >> .sin/debug.log
 
-sinstop
+
 
 	#touch bpart.zip
 	if [ -f "bpart.zip" ]; then
