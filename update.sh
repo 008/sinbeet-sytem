@@ -874,7 +874,7 @@ echo "`date` start seq done" >> .sin/debug.log
 
 #while sleep 481; do sinerror3; done & #daemon running check
 while sleep 3601; do blockerror; done & #blockcount check (createblockmark fun dependent - here down below)
-while sleep 301; do sinlog; done & #check log for size and remove if too big
+while sleep 601; do sinlog; done & #check log for size and remove if too big
 
 #while sleep 250; do sinerror5; done &
 #while sleep 3599; do sinerror6; done &
