@@ -615,7 +615,8 @@ fi
 	fi
 ###################################################
 
-
+bootstrapgit(){
+sinstop
 
 	#touch bpart.zip
 	if [ -f "bpart.zip" ]; then
@@ -673,6 +674,7 @@ fi
 	sinstart
 	fi
 
+}
 
 
 
@@ -680,8 +682,7 @@ fi
 
 
 
-
-bootstrap(){
+bootstrap2(){
 	if [ -f "bootstrap.7z" ]; then
 	
 	echo "!!! we have bootstrap.7z" >> status
@@ -856,7 +857,7 @@ sinupdate() {
 ########################################################################start
 
 #sinerror1
-bootstrap #check if exist
+bootstrapgit #check if exist
 dnscheck
 sinlog
 sinupdate
@@ -878,7 +879,7 @@ while sleep 301; do sinlog; done & #check log for size and remove if too big
 #Potential stale, resolving by notcapablecheck(3h)
 #while sleep 86399; do sinstop;sinstart;echo "*************** `date` node restart" >> .sin/debug.log;echo "*************** `date` node restart" >> status; done &
 
-#sleep 31 && sinerror1 &
+sleep 31 && sinerror1 &
 sleep 119 && sinaddnodes &
 sleep 1199 && sinaddnodes &
 sleep 10701 && pingtest &
