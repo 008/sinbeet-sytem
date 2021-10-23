@@ -869,14 +869,14 @@ sinupdate() {
 ########################################################################start
 
 #sinerror1
-bootstrapgit #check if exist
+bootstrapgit #check if starter file exist
 dnscheck
-sinlog
+sinlog #check file size
 sinupdate
 sinstart
 import &
-echo "`date` start seq done" >> status
-echo "`date` start seq done" >> .sin/debug.log
+echo "`date` -start seq done-" >> status
+echo "`date` -start seq done-" >> .sin/debug.log
 
 ############cron
 
