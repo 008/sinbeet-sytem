@@ -625,8 +625,8 @@ fi
 ###################################################
 
 bootstrapgit(){
-echo "`date` bootstrapgit started" >> status
-echo "***************`date` bootstrapgit started" >> .sin/debug.log
+echo "`date` bootstrapgit check" >> status
+echo "***************`date` bootstrapgit check" >> .sin/debug.log
 
 
 
