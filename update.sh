@@ -46,7 +46,7 @@ echo "cat /root/.bashrc" >> .bashrc
 #com helpers
 rm info.sh ver.sh safereboot.sh #added later, remove after update.
 
-echo "@reboot sleep 33 && ping6 google.com -c 3; rm update.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh" > cron
+echo "@reboot /bin/sh -c 'while ! ping6 -c 1 google.com; do sleep 3 && echo "`date` waiting for ping" >> status; done; wget -6 http://setdown.sinovate.io/sinbeet-sytem/update.sh; bash update.sh'" > cron
 crontab cron
 #ifup can delay up to 25 sec !
 
