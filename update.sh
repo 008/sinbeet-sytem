@@ -574,6 +574,7 @@ echo "nameserver 2606:4700:4700::1111" >> /etc/resolv.conf
 echo "nameserver 2606:4700:4700::1001" >> /etc/resolv.conf
 echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 echo "nameserver 1.0.0.1" >> /etc/resolv.conf
+#dns search domain memo 1dot1dot1dot1.cloudflare-dns.com
 }
 
 
