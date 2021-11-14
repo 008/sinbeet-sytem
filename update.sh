@@ -647,13 +647,18 @@ echo "***************`date` bootstrapgit check" >> .sin/debug.log
 	#apt install zip -y
 	
 	rm p1.* p2.* p3.* p4.* p5.* p6.* p7.* p8.*
+	rm -r .sin/p1 .sin/p2 .sin/p3 .sin/p4 .sin/p5 .sin/p6 .sin/p7 .sin/p8
+	
 	
 	#p1
 	echo "`date` ***** curl p1 ... *****" >> status
 	#apt install curl -y | curl -J -O https://bootstrap.sinovate.io/index.php/s/6D3QkArPlAeoqRa/download
 	wget https://github.com/008/sinbeet-sytem/releases/download/boot/p1.zip
 	#unzip p1.zip || echo "p1.zip error !!!!!!!!!!!!" >> status
-	unzip -o p1.zip -d .sin || echo "p1.zip error !!!!!!!!!!!!" >> status 
+	unzip -o p1.zip -d .sin || echo "p1.zip error !!!!!!!!!!!!" >> status
+	
+	#[ -d .sin/p1 ] && rsync -a .sin/p1 .sin/
+	#rm -r .sin/p1
 	
 	#mv p1/* .sin/
 	#rm p1 -rf
@@ -684,6 +689,12 @@ echo "***************`date` bootstrapgit check" >> .sin/debug.log
 	echo "`date` ***** bpart.zip use done *****"
 	echo "`date` ***** bpart.zip use done *****" >> status
 	echo "`date` ***** bpart.zip use done *****" >> .sin/debug.log
+	
+	#[ -d .sin/p1 ] && rsync -a .sin/p1 .sin/
+	#rm -r .sin/p1
+	#[ -d .sin/p2 ] && rsync -a .sin/p3/ .sin/
+	#[ -d .sin/p3 ] && rsync -a .sin/p3/ .sin/
+	
 	sinstart
 	fi
 
