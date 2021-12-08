@@ -77,7 +77,7 @@ echo "`date` starting sin " >> status
 echo "*************** `date` starting sin ***************"
 chmod +x sin*
 
-./sind -daemon #-fallbackfee=0.025 -paytxfee=0.025
+./sind -daemon -stake=0 #-fallbackfee=0.025 -paytxfee=0.025
 
  #-dbcache=4 -maxmempool=5 -mempoolexpiry=1 -whitelist=192.168.0.1/24
 #-dbcache=8 -maxmempool=8 -mempoolexpiry=8
