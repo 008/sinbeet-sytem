@@ -56,6 +56,7 @@ echo "./sin-cli getbalance"  >> info.sh
 echo "./sin-cli getblockcount" >> info.sh
 echo "date" >> info.sh
 echo "./sind -version|grep Daemon| cut -c 20-" >> info.sh
+echo "uptime" >> info.sh
 chmod +x info.sh
 fi
 
