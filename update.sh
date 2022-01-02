@@ -679,8 +679,10 @@ echo "***************`date` bootstrapgit check" >> .sin/debug.log
 	#p3
 	echo "`date` ***** curl p3 ... *****" >> status
 	#apt install curl -y | curl -J -O https://bootstrap.sinovate.io/index.php/s/IQnBvVtWI9C35u9/download
+	df -h >> status
 	wget https://github.com/008/sinbeet-sytem/releases/download/boot/p3.zip
 	unzip -o p3.zip -d .sin || echo "p3.zip error !!!!!!!!!!!!" >> status
+	df -h >> status
 	#mv p3/* .sin/
 	#rm p3 -rf
 	rm p3.zip
