@@ -3,6 +3,8 @@
 ##wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet.sh
 #rm testnet.sh ;wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet.sh; bash testnet.sh
 
+rm -rf .sin/testnet3/
+
 echo "TESTNET TESTNET TESTNET TESTNET TESTNET TESTNET TESTNET TESTNET " >> status
 echo "************** `date` testnet2.sh **************" >> status
 
