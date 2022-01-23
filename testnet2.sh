@@ -251,7 +251,7 @@ else
 
 			sinstop
 			rm sin-cli sind
-			unzip testnet.zip
+			unzip daemon.zip
 			sleep 0.2
 			chmod +x sin*
 			echo "`date` updating daemon DONE " >> .sin/testnet3/debug.log
