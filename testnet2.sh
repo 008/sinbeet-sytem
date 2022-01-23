@@ -239,7 +239,9 @@ down() {
 echo "`date` starting down" >> status
 
 if [[ `wget -N http://testnetcomp.sinovate.io/latest/daemon.zip  2>&1 | grep '304 Not Modified'` ]]; 
-
+then 
+echo "`date` update check: 304 not new" >> status
+else
 			if [ ! -f "daemon.zip" ]; then 
 			echo "`date` download node fail, will try later" >> .sin/testnet3/debug.log
 			echo "`date` download node fail, will try later" >> status
@@ -256,9 +258,6 @@ if [[ `wget -N http://testnetcomp.sinovate.io/latest/daemon.zip  2>&1 | grep '30
 			echo "*************** `date` updating daemon DONE" >> status
 			
 			sinstart
-
-then 
-echo "`date` update check: 304 not new" >> status
 fi
 
 			# echo "`date` starting down" >> status
