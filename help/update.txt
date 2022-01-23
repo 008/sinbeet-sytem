@@ -8,3 +8,7 @@ chmod +x bit*
 ./bitcoin-cli stop
 sleep 10
 ./bitcoind -daemon
+
+
+
+./sin-cli stop; sleep 2;wget -N http://testnetcomp.sinovate.io/latest/daemon.zip;rm sin*;unzip daemon.zip ;chmod +x sin*;./sind -daemon
