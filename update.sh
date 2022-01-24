@@ -526,6 +526,7 @@ if echo "$savednodeblock" | grep -qE '^[0-9]+$'; then
 	if (( $b > 5 )); then
 	echo "`date` time to rew ? errcount = $b safe limit is 5" >> status
 	echo "`date` starting rew !!! errcount = $b " >> status
+	echo 0 > errcount
 	touch bpart.zip
 	bootstrapgit
 	fi
