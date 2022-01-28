@@ -40,6 +40,23 @@ echo "./sind -version|grep Daemon| cut -c 20-" >> info.sh
 chmod +x info.sh
 
 
+cat << EOF > send
+
+for ((n=0;n<$4;n++))
+do
+./sin-cli sendtoaddress $1 $2
+sleep $3
+done
+
+echo
+echo "usage: <address> <ammount> <sleep> <repeat>"
+
+EOF
+
+chmod +x send
+
+
+
 
 #echo "********** starting testnet2.sh **********" >> status
 
