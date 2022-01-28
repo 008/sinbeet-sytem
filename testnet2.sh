@@ -40,18 +40,14 @@ echo "./sind -version|grep Daemon| cut -c 20-" >> info.sh
 chmod +x info.sh
 
 
-cat << EOF > send
+echo 'for ((n=0;n<$4;n++))' > send
+echo 'do' >> send
+echo './sin-cli sendtoaddress $1 $2' >> send
+echo 'sleep $3' >> send
+echo 'done' >> send
 
-for ((n=0;n<$4;n++))
-do
-./sin-cli sendtoaddress $1 $2
-sleep $3
-done
+echo 'echo "usage: <address> <ammount> <sleep> <repeat>"' >> send
 
-echo
-echo "usage: <address> <ammount> <sleep> <repeat>"
-
-EOF
 
 chmod +x send
 
