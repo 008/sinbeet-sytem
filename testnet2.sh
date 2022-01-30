@@ -44,7 +44,6 @@ chmod +x info.sh
 
 
 
-
 #echo "********** starting testnet2.sh **********" >> status
 
 sinstop() {
@@ -215,26 +214,23 @@ exit
           nowait=1
 		  down
 		  sinstart
-          ;;
+;;
      removedat)
           mv .sin/testnet3/wallet.dat wallet.dat
 		  rm .sin/testnet3/*
 		  mv wallet.dat .sin/testnet3/wallet.dat
-          ;; 
+;; 
      down)
-	 rm testnet.zip
-	 rm sin*
-	 wget -6 -O testnet.zip http://setdown.sinovate.io/sinbeet-sytem/cur/testnet.zip
-	 unzip testnet.zip
-	 sleep 0.2
-	 chmod +x sin*
-	 echo "`date` forced to download" >> .sin/debug.log
+	down
 	 exit
-	 
-          ;;
+;;
+     reindex)
+	 sinstop
+	 ./sind -reindex
+;;
      *)
-          echo no param
-          ;;
+        echo no param
+;;
 esac
 
 
