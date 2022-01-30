@@ -40,13 +40,7 @@ echo "./sind -version|grep Daemon| cut -c 20-" >> info.sh
 chmod +x info.sh
 
 
-echo 'for ((n=0;n<1111;n++))' > send
-echo 'do' >> send
-echo './sin-cli sendtoaddress SfGLjM4PaUmrV5Jq6ec9GKbnCECcC859AV 5' >> send
-echo 'sleep 0.25' >> send
-echo 'done' >> send
 
-chmod +x send
 
 
 
