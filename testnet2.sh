@@ -238,7 +238,7 @@ esac
 down() {
 echo "`date` starting down" >> status
 
-if [[ `wget -N http://testnetcomp.sinovate.io/latest/daemon.zip  2>&1 | grep '304 Not Modified'` ]]; 
+if [[ `wget -N https://service.sinovate.io/testnet/latest/daemon.zip  2>&1 | grep '304 Not Modified'` ]]; 
 then 
 echo "`date` update check: 304 not new" >> status
 else
