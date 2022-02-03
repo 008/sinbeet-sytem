@@ -92,7 +92,7 @@ if [ -z "$vartest" ]
 echo "not testnet" >> status
  else
  #rm update.sh
- echo "********** testnet2 **********" >> status
+ echo "********** forward to testnet2 **********" >> status
  rm testnet2.sh
  wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet2.sh
  bash testnet2.sh

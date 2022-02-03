@@ -6,6 +6,7 @@
 rm -rf .sin/testnet3/
 
 echo "TESTNET TESTNET TESTNET TESTNET TESTNET TESTNET TESTNET TESTNET " >> status
+echo "TESTNET TESTNET TESTNET TESTNET TESTNET TESTNET TESTNET TESTNET " >> status
 echo "************** `date` testnet2.sh **************" >> status
 
 declare -i newnodever
