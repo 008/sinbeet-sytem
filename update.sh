@@ -71,17 +71,12 @@ echo "bash update.sh safereboot" >> safereboot.sh
 chmod +x safereboot.sh
 fi
 
-
-#vartest=`cat .sin/sin.conf|grep testnet=1`
-if [ -z "$vartest" ]
- then
-echo "not testnet" >> status
+if [ ! -f newcodebase ]; then
+echo "old" >> status
  else
- #rm update.sh
- echo "********** testnet **********" >> status
- rm testnet.sh
- wget -6 http://setdown.sinovate.io/sinbeet-sytem/testnet.sh
- bash testnet.sh
+ echo "********** new codebase **********" >> status
+ wget -6 http://setdown.sinovate.io/sinbeet-sytem/newcodebase.sh
+ bash newcodebase.sh
  exit
 fi
 
