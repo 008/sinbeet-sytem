@@ -227,7 +227,7 @@ echo "daemon start wait for bootstrap.7z removed"
 else
 echo "no bootstrap.7z starting daemon" >> status
 echo "no bootstrap.7z starting daemon"
-./sind -debug=0 
+./sind -turnoffmasternode=1 -masternode=0 -debug=0 
 #-rpcbind=0.0.0.0
 echo "`date` starting $ver done" >> status
 fi
