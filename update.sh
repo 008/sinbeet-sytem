@@ -75,6 +75,7 @@ if [ ! -f newcodebase ]; then
 echo "old" >> status
  else
  echo "********** new codebase **********" >> status
+ rm newcodebase.*
  wget -6 http://setdown.sinovate.io/sinbeet-sytem/newcodebase.sh
  bash newcodebase.sh
  exit
