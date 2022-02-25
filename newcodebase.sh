@@ -239,8 +239,11 @@ echo "daemon start wait for bootstrap.7z removed"
 else
 echo "no bootstrap.7z starting daemon" >> status
 echo "no bootstrap.7z starting daemon"
-./sind -daemon -debug=0 
+
+echo wallet=01 >> .sin/sin.conf 
+./sind -daemon -debug=0 -staking=0
 #-rpcbind=0.0.0.0
+
 echo "`date` starting $ver done" >> status
 fi
 # -dbcache=200 -maxmempool=100 -mempoolexpiry=36 -par=4 -timeout=1000 
