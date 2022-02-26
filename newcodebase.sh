@@ -240,7 +240,15 @@ else
 echo "no bootstrap.7z starting daemon" >> status
 echo "no bootstrap.7z starting daemon"
 
-echo wallet=01 >> .sin/sin.conf 
+vartest=`cat .sin/sin.conf|grep wallet=01`
+if [ -z "$vartest" ]
+ then
+ echo "wallet=0" >> status
+ else
+ echo wallet=01 >> .sin/sin.conf 
+fi
+
+
 ./sind -daemon -debug=0 -staking=0 -rpcbind=0.0.0.0
 
 echo "`date` starting $ver done" >> status
