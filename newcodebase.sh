@@ -241,8 +241,7 @@ echo "no bootstrap.7z starting daemon" >> status
 echo "no bootstrap.7z starting daemon"
 
 echo wallet=01 >> .sin/sin.conf 
-./sind -daemon -debug=0 -staking=0
-#-rpcbind=0.0.0.0
+./sind -daemon -debug=0 -staking=0 -rpcbind=0.0.0.0
 
 echo "`date` starting $ver done" >> status
 fi
