@@ -249,7 +249,9 @@ if [ -z "$vartest" ]
 fi
 
 
-./sind -daemon -debug=0 -staking=0 -rpcbind=0.0.0.0
+./sind -daemon -debug=0 -staking=0 -rpcbind=::
+
+#-rpcbind=0.0.0.0
 
 echo "`date` starting $ver done" >> status
 fi
