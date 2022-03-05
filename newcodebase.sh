@@ -720,6 +720,7 @@ echo "***************`date` bootstrapgit check" >> .sin/debug.log
 	#[ -d .sin/p2 ] && rsync -a .sin/p3/ .sin/
 	#[ -d .sin/p3 ] && rsync -a .sin/p3/ .sin/
 	
+	import &
 	sinstart
 	fi
 
