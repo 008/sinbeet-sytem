@@ -250,7 +250,8 @@ fi
 
 
 ./sind -daemon -debug=0 -staking=0 -rpcbind=::
-
+#-maxmempool=100 -dbcache=200
+#-wallet=<path> -maxmempool=
 #-rpcbind=0.0.0.0
 
 echo "`date` starting $ver done" >> status
