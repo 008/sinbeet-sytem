@@ -250,7 +250,7 @@ fi
 
 
 ./sind -daemon -debug=0 -staking=0 -rpcbind=::
-#-maxmempool=100 -dbcache=200
+#-maxmempool=100 -dbcache=200 -wallet=01
 #-wallet=<path> -maxmempool=
 #-rpcbind=0.0.0.0
 
@@ -285,9 +285,12 @@ sinstop
 cd .sin/
 mv sin.conf ..
 mv cur ..
+mv 01/wallet.dat ..
 ls | grep -v wallet.dat | xargs rm -rf
 mv ../sin.conf . 
 mv ../cur .
+mkdir 01
+mv ../wallet.dat ./01/wallet.dat
 cd ..
 echo "`date` clean done" >> status
 echo "***************`date` clean done !!!!!!!!!!!"
