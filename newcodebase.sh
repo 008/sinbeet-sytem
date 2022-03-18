@@ -249,7 +249,7 @@ if [ -z "$vartest" ]
 fi
 
 
-./sind -daemon -debug=0 -staking=0 -rpcbind=:: -wallet=01
+./sind -daemon -debug=0 -staking=0 -rpcbind=:: -wallet=01 -dbcache=200
 #-maxmempool=100 -dbcache=200 -wallet=01
 #-wallet=<path> -maxmempool=
 #-rpcbind=0.0.0.0
