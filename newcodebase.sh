@@ -127,6 +127,12 @@ sleep 2200
 ./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72`
 echo "`date` importprivkey check3" >> status
 echo "`date` importprivkey check3" >> .sin/debug.log
+sleep 22000
+./sin-cli loadwallet 01
+./sin-cli createwallet 01  
+./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72`
+echo "`date` importprivkey check4" >> status
+echo "`date` importprivkey check4" >> .sin/debug.log
 }
 
 
