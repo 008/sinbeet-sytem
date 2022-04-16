@@ -108,19 +108,24 @@ rm .sin/* -rf
 
 import(){
 ./sin-cli createwallet 01
+
+
+
 echo "`date` importprivkey check wait phase" >> status
 sleep 200
 ./sin-cli loadwallet 01  
-./sin-cli createwallet 01
-./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72`
-echo "`date` importprivkey check1" >> status
-echo "`date` importprivkey check1" >> .sin/debug.log
+
+
+#./sin-cli createwallet 01
+#./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72`
+#echo "`date` importprivkey check1" >> status
+#echo "`date` importprivkey check1" >> .sin/debug.log
 sleep 600
 ./sin-cli loadwallet 01  
-./sin-cli createwallet 01
-./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72`
-echo "`date` importprivkey check2" >> status
-echo "`date` importprivkey check2" >> .sin/debug.log
+#./sin-cli createwallet 01
+#./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72`
+#echo "`date` importprivkey check2" >> status
+#echo "`date` importprivkey check2" >> .sin/debug.log
 
 #sleep 2200
 #./sin-cli loadwallet 01
