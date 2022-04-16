@@ -256,7 +256,13 @@ if [ -z "$vartest" ]
 fi
 
 export MALLOC_ARENA_MAX=1
-./sind -daemon -debug=0 -staking=0 -rpcbind=:: -wallet=01 -dbcache=100 -maxmempool=50 -mempoolexpiry=2 -rpcthreads=1 -maxconnections=4
+./sind -daemon -debug=0 -staking=0 -rpcbind=:: -wallet=01 -dbcache=100 -maxmempool=50 -mempoolexpiry=4 -rpcthreads=1
+# -maxconnections=4
+
+
+
+
+
 # -dbcache=200 -wallet=01
 #-wallet=<path> -maxmempool=
 #-rpcbind=0.0.0.0
