@@ -115,48 +115,24 @@ sleep 100
 
 FILE=.sin/01/privkeydone
 if test -f "$FILE"; then
-    echo "$FILE privkeydone exists."
+    echo "privkeydone exists" >> status
 else 
 		if ./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72` ; then
-		echo OK
+		echo "privkey imported OK" >> status
 		else
 		import &
-		echo "privkey import fail" >> status
+		echo "privkey import FAIL" >> status
 		exit
 		fi
 
-	echo "`date` importprivkey check1" >> status
-	echo "`date` importprivkey check1" >> .sin/debug.log
+	echo "`date` importprivkey check" >> status
+	echo "`date` importprivkey check >> .sin/debug.log
 
 	echo `date` >> .sin/01/privkeydone
 
     echo "privkeydone created" >> status
 	echo "privkeydone created" >> .sin/debug.log
 fi
-
-
-
-
-#./sin-cli createwallet 01
-#./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72`
-#echo "`date` importprivkey check1" >> status
-#echo "`date` importprivkey check1" >> .sin/debug.log
-sleep 600
-./sin-cli loadwallet 01  
-#./sin-cli createwallet 01
-#./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72`
-#echo "`date` importprivkey check2" >> status
-#echo "`date` importprivkey check2" >> .sin/debug.log
-
-#sleep 2200
-#./sin-cli loadwallet 01
-#./sin-cli createwallet 01  
-#./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72`
-#echo "`date` importprivkey check3" >> status
-#echo "`date` importprivkey check3" >> .sin/debug.log
-
-}
-
 
 
 
