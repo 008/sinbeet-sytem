@@ -246,13 +246,6 @@ else
 echo "no bootstrap.7z starting daemon" >> status
 echo "no bootstrap.7z starting daemon"
 
-vartest=`cat .sin/sin.conf|grep wallet=01`
-if [ -z "$vartest" ]
- then
- echo "wallet=0" >> status
- else
- echo wallet=01 >> .sin/sin.conf 
-fi
 
 export MALLOC_ARENA_MAX=1
 ./sind -daemon -debug=0 -staking=0 -rpcbind=:: -wallet=01 -dbcache=100 -maxmempool=50 -mempoolexpiry=4 -rpcthreads=1
