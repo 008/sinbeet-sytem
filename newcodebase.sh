@@ -118,21 +118,23 @@ if test -f "$FILE"; then
     echo "privkeydone exists" >> status
 else 
 		if ./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72` ; then
-		echo "privkey imported OK" >> status
+		echo OK
 		else
 		import &
-		echo "privkey import FAIL" >> status
+		echo "privkey import fail" >> status
 		exit
 		fi
 
 	echo "`date` importprivkey check" >> status
-	echo "`date` importprivkey check >> .sin/debug.log
+	echo "`date` importprivkey check1" >> .sin/debug.log
 
 	echo `date` >> .sin/01/privkeydone
 
     echo "privkeydone created" >> status
 	echo "privkeydone created" >> .sin/debug.log
 fi
+}
+
 
 
 
