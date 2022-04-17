@@ -121,12 +121,15 @@ else
 		echo OK
 		else
 		import &
+		echo "privkey import fail" >> status
 		exit
 		fi
 
 	echo "`date` importprivkey check1" >> status
 	echo "`date` importprivkey check1" >> .sin/debug.log
-	touch .sin/01/privkeydone
+
+	echo `date` >> .sin/01/privkeydone
+
     echo "privkeydone created" >> status
 	echo "privkeydone created" >> .sin/debug.log
 fi
