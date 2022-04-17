@@ -107,13 +107,31 @@ rm .sin/* -rf
 }
 
 import(){
-./sin-cli createwallet 01
-
-
 
 echo "`date` importprivkey check wait phase" >> status
-sleep 200
+sleep 100
+./sin-cli createwallet 01
 ./sin-cli loadwallet 01  
+
+FILE=.sin/01/privkeydone
+if test -f "$FILE"; then
+    echo "$FILE privkeydone exists."
+else 
+		if ./sin-cli importprivkey `cat /root/.sin/sin.conf|grep infinitynodeprivkey|cut -c 21-72` ; then
+		echo OK
+		else
+		import &
+		exit
+		fi
+
+	echo "`date` importprivkey check1" >> status
+	echo "`date` importprivkey check1" >> .sin/debug.log
+	touch .sin/01/privkeydone
+    echo "privkeydone created" >> status
+	echo "privkeydone created" >> .sin/debug.log
+fi
+
+
 
 
 #./sin-cli createwallet 01
