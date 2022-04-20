@@ -110,6 +110,8 @@ import(){
 
 echo "`date` importprivkey check wait phase" >> status
 sleep 100
+
+
 ./sin-cli createwallet 01
 ./sin-cli loadwallet 01  
 
@@ -943,6 +945,10 @@ sleep 119 && sinaddnodes &
 sleep 1199 && sinaddnodes &
 sleep 10701 && pingtest &
 sleep 301 && createblockmark &
+
+sleep 900 && import &
+sleep 3600 && import &
+
 
 #golden nodes
 #sleep 56;./sin-cli addnode seed1.sinovate.org add &
