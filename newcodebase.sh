@@ -123,7 +123,7 @@ else
 		echo OK
 		else
 		import &
-		echo "privkey import fail" >> status
+		echo "`date` privkey import fail" >> status
 		exit
 		fi
 
@@ -132,8 +132,8 @@ else
 
 	echo `date` >> .sin/01/privkeydone
 
-    echo "privkeydone created" >> status
-	echo "privkeydone created" >> .sin/debug.log
+    echo "`date` privkeydone created" >> status
+	echo "`date` privkeydone created" >> .sin/debug.log
 fi
 }
 
