@@ -115,13 +115,14 @@ sleep 100
 ./sin-cli createwallet 01
 ./sin-cli loadwallet 01  
 
-var51=`tail .sin/debug.log -n200|grep -a "Still rescanning"`
+var51=`tail .sin/debug.log -n50|grep -a "Still rescanning"`
 if [ -z "$var51" ]
  then
 echo "`date` NO rescanning detected"
  else
 echo "`date` rescanning detected abort loop" >> status
 echo "`date` rescanning detected abort loop" >> .sin/debug.log 
+echo `date` >> .sin/01/privkeydone
 exit
 fi
 
