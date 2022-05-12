@@ -115,6 +115,13 @@ sleep 100
 ./sin-cli createwallet 01
 ./sin-cli loadwallet 01  
 
+
+
+
+
+
+
+
 FILE=.sin/01/privkeydone
 if test -f "$FILE"; then
     echo "privkeydone exists" >> status
@@ -250,7 +257,7 @@ echo "no bootstrap.7z starting daemon"
 
 
 export MALLOC_ARENA_MAX=1
-./sind -daemon -debug=0 -staking=0 -rpcbind=:: -wallet=01 -dbcache=100 -maxmempool=50 -mempoolexpiry=4 -rpcthreads=2
+./sind -daemon -debug=0 -staking=0 -rpcbind=:: -wallet=01 -dbcache=50 -maxmempool=50 -mempoolexpiry=4 -rpcthreads=2
 # -maxconnections=4
 
 
