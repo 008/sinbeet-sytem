@@ -262,7 +262,7 @@ echo "no bootstrap.7z starting daemon"
 
 
 export MALLOC_ARENA_MAX=1
-./sind -daemon -debug=0 -staking=0 -rpcbind=:: -wallet=01 -dbcache=50 -maxmempool=50 -mempoolexpiry=4 -rpcthreads=2
+./sind -daemon -debug=0 -staking=0 -rpcbind=:: -wallet=01 -dbcache=0 -maxmempool=50 -mempoolexpiry=4 -rpcthreads=2
 # -maxconnections=4
 
 
