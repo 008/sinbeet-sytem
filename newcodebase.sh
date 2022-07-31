@@ -32,7 +32,7 @@ echo alias t1=\"tail .sin/debug.log -f\" >> .bashrc
 echo alias t2=\"tail .sin/debug.log -n2000\" >> .bashrc 
 echo alias reboot2=\"bash safereboot.sh\" >> .bashrc
 echo "#ver003  autobootstrap " >> .bashrc
-echo " SFTP DISABLED " >> .bashrc
+echo "# SFTP DISABLED " >> .bashrc
 echo "   " >> .bashrc
 echo "   " >> .bashrc
 echo "   " >> .bashrc
