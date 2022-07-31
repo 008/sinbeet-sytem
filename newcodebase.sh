@@ -567,8 +567,8 @@ if echo "$savednodeblock" | grep -qE '^[0-9]+$'; then
 	echo "`date` errcount $a+1" >> .sin/debug.log
 	echo "`date` errcount $a+1" >> status
 
-	if (( $b > 5 )); then
-	echo "`date` time to rew ? errcount = $b safe limit is 5" >> status
+	if (( $b > 3 )); then
+	echo "`date` time to rew ? errcount = $b safe limit is 3" >> status
 	echo "`date` starting rew !!! errcount = $b " >> status
 	echo 0 > errcount
 	touch bpart.zip
