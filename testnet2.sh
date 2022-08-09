@@ -364,7 +364,7 @@ crontab cron
 	
 ########################################################################start 
 #sinerror
-#sinlog
+sinlog
 down
 dnscheck
 sinstart
