@@ -12,3 +12,24 @@ sleep 10
 
 
 ./sin-cli stop; sleep 2;wget -N http://testnetcomp.sinovate.io/latest/daemon.zip;rm sin*;unzip daemon.zip ;chmod +x sin*;./sind -daemon
+
+
+
+
+
+0 */2 * * * rm /root/checknodes.* & wget -6 http://setdown.sinovate.io/sinbeet-sytem/checknodes.sh && sudo bash /root/checknodes.sh
+
+
+
+
+
+
+
+
+
+
+
+
+0 22 * * * sudo /root/expiredcron.sh 10000 50896 "./sin-cli infinitynode mypeerinfo" 5
+0 */2 * * * rm /root/checknodes.* & wget -6 http://setdown.sinovate.io/sinbeet-sytem/checknodes.sh && sudo bash /root/checknodes.sh
+0 1 * * * sudo bash /root/sbback
