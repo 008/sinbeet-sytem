@@ -701,32 +701,36 @@ echo "***************`date` bootstrapgit_new check" >> .sin/debug.log
 	echo "`date` ***** curl bootstr1 ... *****" >> status
 	wget https://service.sinovate.io/smallfiles/bootstr1.zip
 	unzip -o bootstr*.zip || echo "bootstr1 error !!!!!!!!!!!!" >> status
-	mv -v  bootstr*/* .sin/
-	rm -rf bootstr*   
+	rm bootstr* #rm file
+	cp -r bootstrap/* .sin
+	rm -rf bootstrap #rm folder
 	echo "`date` ***** p1 done *****" >> status
 	
 
 	echo "`date` ***** curl bootstr2 ... *****" >> status
 	wget https://service.sinovate.io/smallfiles/bootstr2.zip
 	unzip -o bootstr*.zip || echo "bootstr2 error !!!!!!!!!!!!" >> status
-	mv -v  bootstr*/* .sin/
-	rm -rf bootstr*   
+	rm bootstr* #rm file
+	cp -r bootstrap/* .sin
+	rm -rf bootstrap #rm folder  
 	echo "`date` ***** p2 done *****" >> status
 	
 
 	echo "`date` ***** curl bootstr3 ... *****" >> status
 	wget https://service.sinovate.io/smallfiles/bootstr3.zip
 	unzip -o bootstr*.zip || echo "bootstr3 error !!!!!!!!!!!!" >> status
-	mv -v  bootstr*/* .sin/
-	rm -rf bootstr*   
+	rm bootstr* #rm file
+	cp -r bootstrap/* .sin
+	rm -rf bootstrap #rm folder  
 	echo "`date` ***** p3 done *****" >> status
 
 
 	echo "`date` ***** curl bootstr4 ... *****" >> status
 	wget https://service.sinovate.io/smallfiles/bootstr4.zip
 	unzip -o bootstr*.zip || echo "bootstr4 error !!!!!!!!!!!!" >> status
-	mv -v  bootstr*/* .sin/
-	rm -rf bootstr*   
+	rm bootstr* #rm file
+	cp -r bootstrap/* .sin
+	rm -rf bootstrap #rm folder  
 	echo "`date` ***** p4 done *****" >> status
 
 
