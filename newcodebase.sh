@@ -735,6 +735,7 @@ echo "***************`date` bootstrapgit_new check" >> .sin/debug.log
 	echo "`date` ***** bpart.zip use done *****" >> status
 	echo "`date` ***** bpart.zip use done *****" >> .sin/debug.log
 	
+	rm savednodeblock
 	import &
 	sinstart
 	fi
