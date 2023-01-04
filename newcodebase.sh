@@ -572,6 +572,7 @@ if echo "$savednodeblock" | grep -qE '^[0-9]+$'; then
 	echo "`date` time to rew ? errcount = $b safe limit is 3" >> status
 	echo "`date` starting rew !!! errcount = $b " >> status
 	echo 0 > errcount
+	rm savednodeblock
 	touch bpart.zip
 	bootstrapgit
 	fi
