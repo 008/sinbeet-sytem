@@ -674,9 +674,84 @@ fi
 	fi
 ###################################################
 
+
 bootstrapgit(){
-echo "`date` bootstrapgit check" >> status
-echo "***************`date` bootstrapgit check" >> .sin/debug.log
+echo "`date` bootstrapgit_new check" >> status
+echo "***************`date` bootstrapgit_new check" >> .sin/debug.log
+
+
+
+	#touch bpart.zip
+	if [ -f "bpart.zip" ]; then
+	
+	echo "!!! we have bpart.zip" >> status
+	echo "!!! we have bpart.zip" >> .sin/debug.log
+	sinstop
+	sinclean
+	
+	apt update -y
+	apt install curl -y
+	#https://bugs.launchpad.net/ubuntu/+source/ansible/+bug/1833013
+	UCF_FORCE_CONFOLD=1 DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -qq -y install curl
+	apt install unzip -y
+	#apt install zip -y
+	
+	rm -rf bootstr*
+	
+	echo "`date` ***** curl bootstr1 ... *****" >> status
+	wget https://service.sinovate.io/smallfiles/bootstr1.zip
+	unzip -o bootstr*.zip || echo "bootstr1 error !!!!!!!!!!!!" >> status
+	mv -v  bootstr*/* .sin/
+	rm -rf bootstr*   
+	echo "`date` ***** p1 done *****" >> status
+	
+
+	echo "`date` ***** curl bootstr2 ... *****" >> status
+	wget https://service.sinovate.io/smallfiles/bootstr2.zip
+	unzip -o bootstr*.zip || echo "bootstr2 error !!!!!!!!!!!!" >> status
+	mv -v  bootstr*/* .sin/
+	rm -rf bootstr*   
+	echo "`date` ***** p2 done *****" >> status
+	
+
+	echo "`date` ***** curl bootstr3 ... *****" >> status
+	wget https://service.sinovate.io/smallfiles/bootstr3.zip
+	unzip -o bootstr*.zip || echo "bootstr3 error !!!!!!!!!!!!" >> status
+	mv -v  bootstr*/* .sin/
+	rm -rf bootstr*   
+	echo "`date` ***** p3 done *****" >> status
+
+
+	echo "`date` ***** curl bootstr4 ... *****" >> status
+	wget https://service.sinovate.io/smallfiles/bootstr4.zip
+	unzip -o bootstr*.zip || echo "bootstr4 error !!!!!!!!!!!!" >> status
+	mv -v  bootstr*/* .sin/
+	rm -rf bootstr*   
+	echo "`date` ***** p4 done *****" >> status
+
+
+	rm bpart.zip
+	echo "`date` ***** bpart.zip use done *****"
+	echo "`date` ***** bpart.zip use done *****" >> status
+	echo "`date` ***** bpart.zip use done *****" >> .sin/debug.log
+	
+	import &
+	sinstart
+	fi
+
+}
+
+
+
+
+
+
+
+
+
+bootstrapgitOLD(){
+echo "`date` bootstrapgitOLD check" >> status
+echo "***************`date` bootstrapgitOLD check" >> .sin/debug.log
 
 
 
