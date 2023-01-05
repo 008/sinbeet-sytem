@@ -31,7 +31,7 @@ echo alias rew=\"touch bpart.zip\" >> .bashrc
 echo alias t1=\"tail .sin/debug.log -f\" >> .bashrc 
 echo alias t2=\"tail .sin/debug.log -n2000\" >> .bashrc 
 echo alias reboot2=\"bash safereboot.sh\" >> .bashrc
-echo "#ver003  autobootstrap " >> .bashrc
+echo "#ver004 autobootstrap " >> .bashrc
 echo "# SFTP DISABLED " >> .bashrc
 echo "   " >> .bashrc
 echo "   " >> .bashrc
@@ -700,37 +700,29 @@ echo "***************`date` bootstrapgit_new check" >> .sin/debug.log
 	
 	echo "`date` ***** curl bootstr1 ... *****" >> status
 	wget https://service.sinovate.io/smallfiles/bootstr1.zip
-	unzip -o bootstr*.zip || echo "bootstr1 error !!!!!!!!!!!!" >> status
-	rm bootstr* #rm file
-	cp -r bootstrap/* .sin
-	rm -rf bootstrap #rm folder
+	unzip -o bootstr*.zip -d .sin || echo "bootstr1 error !!!!!!!!!!!!" >> status
+	rm bootstr*
 	echo "`date` ***** p1 done *****" >> status
 	
 
 	echo "`date` ***** curl bootstr2 ... *****" >> status
 	wget https://service.sinovate.io/smallfiles/bootstr2.zip
-	unzip -o bootstr*.zip || echo "bootstr2 error !!!!!!!!!!!!" >> status
+	unzip -o bootstr*.zip -d .sin || echo "bootstr2 error !!!!!!!!!!!!" >> status
 	rm bootstr* #rm file
-	cp -r bootstrap/* .sin
-	rm -rf bootstrap #rm folder  
 	echo "`date` ***** p2 done *****" >> status
 	
 
 	echo "`date` ***** curl bootstr3 ... *****" >> status
 	wget https://service.sinovate.io/smallfiles/bootstr3.zip
-	unzip -o bootstr*.zip || echo "bootstr3 error !!!!!!!!!!!!" >> status
-	rm bootstr* #rm file
-	cp -r bootstrap/* .sin
-	rm -rf bootstrap #rm folder  
+	unzip -o bootstr*.zip -d .sin || echo "bootstr3 error !!!!!!!!!!!!" >> status
+	rm bootstr* #rm file 
 	echo "`date` ***** p3 done *****" >> status
 
 
 	echo "`date` ***** curl bootstr4 ... *****" >> status
 	wget https://service.sinovate.io/smallfiles/bootstr4.zip
-	unzip -o bootstr*.zip || echo "bootstr4 error !!!!!!!!!!!!" >> status
+	unzip -o bootstr*.zip -d .sin || echo "bootstr4 error !!!!!!!!!!!!" >> status
 	rm bootstr* #rm file
-	cp -r bootstrap/* .sin
-	rm -rf bootstrap #rm folder  
 	echo "`date` ***** p4 done *****" >> status
 
 
