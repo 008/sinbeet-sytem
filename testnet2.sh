@@ -239,7 +239,7 @@ esac
 down() {
 echo "`date` starting down" >> status
 
-if [[ `wget -N https://service.sinovate.io/testnet/latest/daemon.zip  2>&1 | grep '304 Not Modified'` ]]; 
+if [[ `wget -N https://service.sinovate.io/development/latest/daemon.zip  2>&1 | grep '304 Not Modified'` ]]; 
 then 
 echo "`date` update check: 304 not new" >> status
 else
@@ -315,53 +315,58 @@ crontab cron
 
 
 
+# down fun has '304 Not Modified' if
 
 
-
-    if [ -f ".sin/cur" ]; then 
-	echo "************** cur exist **************"
+    # if [ -f ".sin/cur" ]; then 
+	# echo "************** cur exist **************"
 	
-	if [ -z "$nowait" ]; then
-	echo "************** rand wait  **************"
-	# sleep $((RANDOM % 10))
-	fi
+	# if [ -z "$nowait" ]; then
+	# echo "************** rand wait  **************"
+	# # sleep $((RANDOM % 10))
+	# fi
 	
-	    curnodever=$(cat .sin/cur)
-		wget -6 -O .sin/new http://setdown.sinovate.io/sinbeet-sytem/testver
+	#     curnodever=$(cat .sin/cur)
+	# 	wget -6 -O .sin/new http://setdown.sinovate.io/sinbeet-sytem/testver
 		
-		if [ -f ".sin/new" ]; then 
-		newnodever=$(cat .sin/new)
-		else
-			echo "`date` download fail" >> status
-			echo "`date` download fail" >> .sin/testnet3/debug.log
-			echo "*************** `date` download fail ***************"
-			exit
-		fi
+	# 	if [ -f ".sin/new" ]; then 
+	# 	newnodever=$(cat .sin/new)
+	# 	else
+	# 		echo "`date` download fail" >> status
+	# 		echo "`date` download fail" >> .sin/testnet3/debug.log
+	# 		echo "*************** `date` download fail ***************"
+	# 		exit
+	# 	fi
 			
-		if [ "$newnodever" -lt "1" ]; then
-			echo "`date` wget fail" >> status
-			echo "`date` wget fail" >> .sin/testnet3/debug.log
-			echo "*************** `date` wget fail ***************"
-			exit
-		fi
+	# 	if [ "$newnodever" -lt "1" ]; then
+	# 		echo "`date` wget fail" >> status
+	# 		echo "`date` wget fail" >> .sin/testnet3/debug.log
+	# 		echo "*************** `date` wget fail ***************"
+	# 		exit
+	# 	fi
 			
 			
 			
-		    if [ "$curnodever" -eq "$newnodever" ]; then
-			echo "`date` update check: not new" >> status
-			echo "*************** `date` update check: not new" >> .sin/testnet3/debug.log
-			else
-			mv .sin/new .sin/cur
-			down
-			fi
+	# 	    if [ "$curnodever" -eq "$newnodever" ]; then
+	# 		echo "`date` update check: not new" >> status
+	# 		echo "*************** `date` update check: not new" >> .sin/testnet3/debug.log
+	# 		else
+	# 		mv .sin/new .sin/cur
+	# 		down
+	# 		fi
 	
-    else
-	echo "************** cur NOT exist **************"
-	wget -6 -O .sin/cur http://setdown.sinovate.io/sinbeet-sytem/testver
-	down
-    fi
+    # else
+	# echo "************** cur NOT exist **************"
+	# wget -6 -O .sin/cur http://setdown.sinovate.io/sinbeet-sytem/testver
+	# down
+    # fi
 	
 	
+
+
+
+
+
 ########################################################################start 
 #sinerror
 sinlog
