@@ -246,7 +246,7 @@ else
 			if [ ! -f "daemon.zip" ]; then 
 			echo "`date` download node fail, will try later" >> .sin/testnet3/debug.log
 			echo "`date` download node fail, will try later" >> status
-			echo "*************** `date` download node fail, will try later"
+			echo "*************** `date` download node fail........."
 			exit
 			fi
 
@@ -256,6 +256,7 @@ else
 			sleep 0.2
 			chmod +x sin*
 			echo "`date` updating daemon DONE " >> .sin/testnet3/debug.log
+			ls -lh >> status
 			echo "*************** `date` updating daemon DONE" >> status
 			
 			sinstart
@@ -291,9 +292,10 @@ fi
 
 nodeprepare(){
 echo "`date` start nodeprepare" >> status
-ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981 
-sleep 10 && ./sin-cli createwallet 01 && echo "`date` createwallet done" >> status
-sleep 10 && ./sin-cli loadwallet 01 && echo "`date` loadwallet done" >> status
+ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981 #for setUP
+sleep 30 && ./sin-cli createwallet 01 && echo "`date` createwallet done" >> status
+sleep 40 && ./sin-cli loadwallet 01 && echo "`date` loadwallet1 done" >> status
+sleep 50 && ./sin-cli loadwallet 01 && echo "`date` loadwallet2 done" >> status
 sleep 10 && ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981 && echo "`date` ip6tables" >> status
 #sleep 60 && ./sin-cli settxfee 0.025 && echo "`date` settxfee 0.025 done" >> status &
 }
@@ -367,7 +369,7 @@ crontab cron
 
 
 
-########################################################################start 
+########################################################################start
 #sinerror
 sinlog
 down
