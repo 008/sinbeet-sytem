@@ -378,6 +378,7 @@ sinstart
 nodeprepare &
 cronjob &
 
+while sleep 600; do sinlog; done & #check log for size and remove if too big
 
 #ip6tables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 20971 -j REDIRECT --to-ports 20981
 #apt-get install iptables-persistent
